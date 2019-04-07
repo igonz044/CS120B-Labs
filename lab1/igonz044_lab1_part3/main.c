@@ -1,9 +1,11 @@
-/*
- * igonz044_lab1_part3.c
- *
+/* 
+ * Name & Email: Itzel G. igonz044@ucr.edu
+ * Lab Section: 026
+ * Assignment: igonz044_lab1_part3.c
  * Created: 4/7/2019 11:57:13 AM
  * Author : ucrcse
- */ 
+ * Exercise Description: Parking spaces modified
+ */
 #include <avr/io.h>
 
 int main(void)
