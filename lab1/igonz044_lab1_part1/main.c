@@ -1,8 +1,10 @@
 /*
- * igonz044_lab1_part1.c
- *
+ * Name & Email: Itzel G. igonz044@ucr.edu
+ * Lab Section: 026
+ * Assignment: igonz044_lab1_part1.c 
  * Created: 4/3/2019 10:26:24 AM
  * Author : ucrcse
+ * Exercise Description: Garage opener
  */ 
 
 #include <avr/io.h>
