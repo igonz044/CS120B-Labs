@@ -5,6 +5,9 @@
  * Created: 4/7/2019 11:57:13 AM
  * Author : ucrcse
  * Exercise Description: Parking spaces modified
+ *
+ * I acknowledge all content contained herein, excluding template or example
+ * code, is my own original work.
  */
 #include <avr/io.h>
 
