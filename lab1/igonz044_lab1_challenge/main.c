@@ -4,13 +4,12 @@
  * Assignment: igonz044_lab1_challenge.c 
  * Created: 4/7/2019 12:25:50 PM
  * Author : ucrcse
- * Exercise Description: Garage opener
+ * Exercise Description: AMUSEMENT PARK RIDE
  */ 
 #include <avr/io.h>
 
 int main(void)
 {
-    /*AMUSEMENT PARK RIDE*/
 	//weight sensors weight 0 - 255 
 	
 	DDRA = 0x00; PORTA = 0xFF;
