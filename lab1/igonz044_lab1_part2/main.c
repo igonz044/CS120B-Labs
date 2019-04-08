@@ -5,6 +5,9 @@
  * Created: 4/3/2019 11:02:33 AM
  * Author : ucrcse
  * Exercise Description: Returns parking spaces available
+ *
+ * I acknowledge all content contained herein, excluding template or example
+ * code, is my own original work.
  */ 
 
 #include <avr/io.h>
