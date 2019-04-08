@@ -5,6 +5,9 @@
  * Created: 4/3/2019 10:26:24 AM
  * Author : ucrcse
  * Exercise Description: Garage opener
+ *
+ * I acknowledge all content contained herein, excluding template or example
+ * code, is my own original work.
  */ 
 
 #include <avr/io.h>
