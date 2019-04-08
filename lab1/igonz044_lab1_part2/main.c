@@ -4,7 +4,7 @@
  * Assignment: igonz044_lab1_part2.c
  * Created: 4/3/2019 11:02:33 AM
  * Author : ucrcse
- * Exercise Description: Garage opener
+ * Exercise Description: Returns parking spaces available
  */ 
 
 #include <avr/io.h>
