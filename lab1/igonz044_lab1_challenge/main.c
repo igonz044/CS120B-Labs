@@ -5,6 +5,9 @@
  * Created: 4/7/2019 12:25:50 PM
  * Author : ucrcse
  * Exercise Description: AMUSEMENT PARK RIDE
+ *
+ * I acknowledge all content contained herein, excluding template or example
+ * code, is my own original work.
  */ 
 #include <avr/io.h>
 
