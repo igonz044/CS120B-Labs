@@ -27,30 +27,23 @@ int main(void)
 	DDRD = 0x00; PORTD = 0xFF;//input
 	DDRB = 0xFE; PORTB = 0x01;//input on high nibble & output on low nibble
 	
-	unsigned char tmpA = 0x00;
+	unsigned char tmpD = 0x00;
+	unsigned char tmpB = 0x00;
 	
 	
     /* Replace with your application code */
     while (1) 
     {
-		tmpA = PIND;
-		tmpA = tmpA << 1;
-		tmpA = tmpA | (PINB & 0x01);
+	        tmpD = PIND;
+	        tmpB = PINB&0x01;
 
-		if (tmpA > 70){
+		if (tmpD >= 70 || (tmpD >= 69 && tmpB == 1)){
 			PORTB = SetBit(PORTB, 1, 1);
-			PORTB = SetBit(PORTB, 2, 0);
 		} 
-		else if (tmpA > 5){
-			PORTB = SetBit(PORTB, 1, 0);
-			PORTB = SetBit(PORTB, 2, 1);
-		} 
-		else {
-			PORTB = SetBit(PORTB, 1, 0);
-			PORTB = SetBit(PORTB, 2, 0);
+		else if (tmpD >= 5 || (tmpD >= 4 && tmpB == 1)){
+			PORTB = SetBit(PORTB, 3, 1);
 		}
-
-		if (tmpA == 511) {PORTB = SetBit(PORTB, 7, 0);}
+	    	else{ PORTB = 0x00; }
     }
 }
 
