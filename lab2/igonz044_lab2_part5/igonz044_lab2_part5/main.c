@@ -4,7 +4,6 @@
  * Assignment: igonz044_lab2_part5.c
  * Created: 4/10/2019 2:03:15 AM
  * Author : ucrcse
- * Exercise Description: Switching nibbles around
  *
  * I acknowledge all content contained herein, excluding template or example
  * code, is my own original work.
