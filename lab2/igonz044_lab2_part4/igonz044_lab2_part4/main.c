@@ -1,10 +1,4 @@
-/*
- * igonz044_lab2_part4.c
- *
- * Created: 4/10/2019 1:07:12 AM
- * Author : ucrcse
- */ 
-/* 
+ /* 
  * Name & Email: Itzel G. igonz044@ucr.edu
  * Lab Section: 026
  * Assignment: igonz044_lab2_part4.c
