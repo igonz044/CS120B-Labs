@@ -54,12 +54,3 @@ int main(void)
 		PORTC = count;
 	}
 }
-/*unsigned char GetBits(unsigned char tmp, unsigned char size) 
-{
-	unsigned char count = 0;
-	for (unsigned char i = 0; i < size; i++) 
-	{
-		if (tmp & (0x01 << i)) {count++;}
-	}
-	return count;
-}*/
