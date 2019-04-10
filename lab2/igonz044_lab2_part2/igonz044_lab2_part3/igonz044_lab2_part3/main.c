@@ -4,7 +4,7 @@
  * Assignment: igonz044_lab2_part3.c
  * Created: 4/9/2019 10:32:36 PM
  * Author : ucrcse
- * Exercise Description: Parking spaces modified
+ * Exercise Description: Gas Tank 
  *
  * I acknowledge all content contained herein, excluding template or example
  * code, is my own original work.

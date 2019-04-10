@@ -1,10 +1,4 @@
-/*
- * igonz044_lab2_part4.c
- *
- * Created: 4/10/2019 1:07:12 AM
- * Author : ucrcse
- */ 
-/* 
+ /* 
  * Name & Email: Itzel G. igonz044@ucr.edu
  * Lab Section: 026
  * Assignment: igonz044_lab2_part4.c
@@ -31,8 +25,11 @@ unsigned char topNibl(unsigned char num){return (0xF0 & num);}
 int main(void)
 {
 	DDRA = 0x00; PORTA = 0xFF;//input
-	DDRB = 0xFF; PORTB = 0x00;//output
-	DDRC = 0xFF; PORTC = 0x00;//output
+	DDRB = 0xFF; PORTB = 0x00;//input on high nibble & output on low nibble
+	DDRC = 0xFF; PORTC = 0x00;
+	
+	//DDRB = 0x0F; PORTB = 0x00;//input on high nibble & output on low nibble
+	//DDRC = 0xF0; PORTC = 0x00;//output on high nibble & input on low nibble
 	
 	unsigned char tmpA = 0x00;
 	unsigned char tmpB= 0x00;
@@ -41,8 +38,8 @@ int main(void)
     while (1) 
     {
 		//Step 1: Shift input PINA 
-		tmpA = PINA>>4;
-		tmpB = PINA<<4;
+		tmpA = PINA>>4; //making upper 0
+		tmpB = PINA<<4; //making lower 0
 		//Step 2: Mask lower nibble of PortB
 		PORTB = topNibl(PORTB) + tmpA;
 		PORTC = tmpB + botNibl(PORTC);
