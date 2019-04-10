@@ -31,8 +31,8 @@ unsigned char topNibl(unsigned char num){return (0xF0 & num);}
 int main(void)
 {
 	DDRA = 0x00; PORTA = 0xFF;//input
-	DDRB = 0x0F; PORTB = 0x00;//input on high nibble & output on low nibble
-	DDRC = 0xF0; PORTC = 0x00;
+	DDRB = 0xFF; PORTB = 0x00;//input on high nibble & output on low nibble
+	DDRC = 0xFF; PORTC = 0x00;
 	
 	//DDRB = 0x0F; PORTB = 0x00;//input on high nibble & output on low nibble
 	//DDRC = 0xF0; PORTC = 0x00;//output on high nibble & input on low nibble
