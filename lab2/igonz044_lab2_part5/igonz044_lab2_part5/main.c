@@ -4,6 +4,7 @@
  * Assignment: igonz044_lab2_part5.c
  * Created: 4/10/2019 2:03:15 AM
  * Author : ucrcse
+ * Exercise Description: ec 2
  *
  * I acknowledge all content contained herein, excluding template or example
  * code, is my own original work.
@@ -29,18 +30,19 @@ int main(void)
 	unsigned char tmpD = 0x00;
 	unsigned char tmpB = 0x00;
 	
-	
-    /* Replace with your application code */
     while (1) 
     {
-	        tmpD = PIND;
-	        tmpB = PINB&0x01;
+	    tmpD = PIND;
+	    tmpB = PINB&0x01;
 
-		if (tmpD >= 70 || (tmpD >= 69 && tmpB == 1)){
+		if (tmpD >= 70 || (tmpD >= 69 && tmpB == 1))
+		{
 			PORTB = SetBit(PORTB, 1, 1);
+			PORTB = SetBit(PORTB, 2, 0);
 		} 
 		else if (tmpD >= 5 || (tmpD >= 4 && tmpB == 1)){
-			PORTB = SetBit(PORTB, 3, 1);
+			PORTB = SetBit(PORTB, 2, 1);
+			PORTB = SetBit(PORTB, 1, 0);
 		}
 	    	else{ PORTB = 0x00; }
     }
