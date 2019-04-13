@@ -10,87 +10,124 @@
  * code, is my own original work.
  */
 #include <avr/io.h>
-//#include ìsm.hî
+//#include ‚Äúsm.h‚Äù
+
+
+enum States {bla, Start, Init, Inc, Dec, Reset, Stay} state;
+
+//Global variables here
 
 unsigned char Increment(unsigned char x){ return x += 1;}
 unsigned char Decrement(unsigned char x){ return x -= 1;}
 
 unsigned char SetBit(unsigned char x, unsigned char k, unsigned char b){
-    return (b ? x | (0x01 << k) : x & ~(0x01 << k));
+	return (b ? x | (0x01 << k) : x & ~(0x01 << k));
 }
 unsigned char GetBit(unsigned char x, unsigned char k){
-    return ((x & (0x01 << k)) != 0);
+	return ((x & (0x01 << k)) != 0);
 }
 
-enum States {Start, Init, Inc, Dec, Reset, Wait1, Wait2} state;
-
-//Global variables here
-#define A0 (~PINA & 0x01)
-#define A1 (~PINA & 0x02)
 
 void tick()
 {
 	switch (state) { //Transitions
+		case bla:
+			state = Start;
+		break;
+		
 		case Start:
 			state = Init;
-        break;  
+		break;
 		
 		case Init:
-		if(A0 && !A1){state = Inc;}
-        else if(!A0 && A1){state = Dec;}
-		else if(!A0 && !A1){state = Init;}
-        else if(A0 && A1){state = Reset;}
-        else{state = Init;}
-        break;
-
+		//In this state you can dec, incr, or reset from here
+			if(GetBit(PINA, 0) && PORTB <= 0x09){//if incrementing
+    			state = Inc;//increment
+			}
+			else if (GetBit(PINA, 1) && PORTB >= 0x00){
+    			state = Dec; //decrement
+			}
+			else if (GetBit(PINA, 0)&&GetBit(PINA, 1)){//both pressed together
+    			state = Reset;
+			}
+			else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
+		break;
+        
         case Inc:
-          state = Wait1; 
+            if(GetBit(PINA, 0) && PORTB <= 0x09){//if incrementing
+                state = Stay;//increment
+            }
+            else if (GetBit(PINA, 1) && PORTB >= 0x00){
+                state = Dec; //decrement
+            }
+            else if (GetBit(PINA, 0) && GetBit(PINA, 1)){//both pressed together
+                state = Reset;
+            }
+            else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
         break;
         
         case Dec:
-           state = Wait2; 
+            if(GetBit(PINA, 0) && PORTB <= 0x09){//if incrementing
+                state = Inc;//increment
+            }
+            else if (GetBit(PINA, 1) && PORTB >= 0x00){
+                state = Stay; //decrement
+            }
+            else if (GetBit(PINA, 0) && GetBit(PINA, 1)){//both pressed together
+                state = Reset;
+            }
+            else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
         break;
         
-        case Wait1://check if buttons have been released
+        case Stay://check if buttons have been released
             //not pressed, count stays the same
-        if (A0 && A1){state = Reset;}
-        if (A0)      {state = Wait1;}
-        if (!A0)     {state = Init; }
+            if(GetBit(PINA, 0) && PORTB <= 0x09){//if incrementing
+                state = Stay; 
+            }
+            if (GetBit(PINA, 1) && PORTB >= 0x00){//decrement
+                state = Stay; 
+            }
+            if (GetBit(PINA, 0) && GetBit(PINA, 1)){//both pressed together
+                state = Reset;
+            }
+            else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
         break;
-
-        case Wait2:
-        if (A0 && A1){state = Reset;}
-        if (A1)      {state = Wait2;}
-        else if (!A1){state = Init; }
         
         case Reset:
-            state = Init; 
+            if(GetBit(PINA, 0) && PORTB <= 0x09){//if incrementing
+                state = Inc;//increment
+            }
+            else if (GetBit(PINA, 1) && PORTB >= 0x00){
+                state = Dec; //decrement
+            }
+            else if (GetBit(PINA, 0) && GetBit(PINA, 1)){//both pressed together
+                state = Reset;
+            }
+			else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
         break;
 
-		default: 
+		default:
 		break;
 	}
 	
 	switch (state) { //State Actions
 		case Start:
-		    PORTB = 0x07; 
-        break;
+		PORTB = 0x07; break;
 				
 		case Init:
 			break;
 
 		case Inc:
-            if(PORTB<9)
-             PORTB= Increment(PORTB); break;
+            PORTB = Increment(PORTB); break;
 		
 		case Dec:
-             if(PORTB>0)
-               PORTB =Decrement(PORTB) ; break;
-case Wait1: break;
-case Wait2: break;
-		
+            PORTB = Decrement(PORTB); break;		
+
+        case Stay://do not change portB
+            PORTB = PORTB; break;
+
 		case Reset:
-		    PORTB = 0x07; break;
+		    PORTB = 0x00; break;
 
 		default:
 		break;	
@@ -100,9 +137,8 @@ int main(void)
 {
 	DDRA = 0x00; PORTA = 0xFF; //inputs, 2 buttons
 	DDRB = 0xFF; PORTB = 0x00; //outputs 
-	PORTB = 0x07;
-	state = Start;//initialize state
-
 	
- 	while(1) { tick(); }
+	state = bla;//initialize state
+	
+	while(1) { tick();}
 }
