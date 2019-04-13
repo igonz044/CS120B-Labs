@@ -75,3 +75,18 @@ void tick()
 		
 		case unlocked:
 		PORTB = 0x01;
+
+		break;
+		
+		default: break;
+	}
+}
+int main(void)
+{
+	DDRA = 0x00; PORTA = 0xFF; //inputs, 2 buttons
+	DDRB = 0xFF; PORTB = 0x00; //outputs
+	
+	state = Start;//initialize state
+	
+	while(1) { tick(); }
+}
