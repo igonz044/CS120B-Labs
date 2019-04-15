@@ -1,10 +1,10 @@
 /*
  * Name & Email: Itzel G. igonz044@ucr.edu
  * Lab Section: 026
- * Assignment: igonz044_lab4_part3.c 
- * Created: 4/12/2019 10:36:24 AM
+ * Assignment: igonz044_lab4_challenge1.c 
+ * Created: 4/12/2019 10:55:34 AM
  * Author : ucrcse
- * Exercise Description: Security System
+ * Exercise Description: Security System: Lock
  *
  * I acknowledge all content contained herein, excluding template or example
  * code, is my own original work.
@@ -13,10 +13,9 @@
 enum States {Start, locked, entry1, wait, entry2, unlocked}state;
 
 //Global variables here
-/*
 #define A0 (~PINA & 0x01)
 #define A1 (~PINA & 0x02)
-#define A2 (~PINA & 0x04)
+#define A2 (~PINA & 0x03)
 
 unsigned char SetBit(unsigned char x, unsigned char k, unsigned char b){
 	return (b ? x | (0x01 << k) : x & ~(0x01 << k));
@@ -24,7 +23,7 @@ unsigned char SetBit(unsigned char x, unsigned char k, unsigned char b){
 unsigned char GetBit(unsigned char x, unsigned char k){
 	return ((x & (0x01 << k)) != 0);
 }
-*/
+
 void tick()
 {
 	switch(state)//Transitions
@@ -33,26 +32,26 @@ void tick()
 			state = locked;
 		break;
 		
-		case locked:
+		case unlocked:
 			state = wait;
 		break;
 		
 		case entry1:
-			if(PINA && 0x04){ state = wait;}
-			else  { state = locked;}
+			if(A2){ state = wait;}
+			else  { state = unlocked;}
 		break;
 		
 		case wait:
-			if(!(PINA && 0x04)) { state = entry2;}
+			if(A2) { state = wait;}
 			else   {state = wait;}
 		break;
 		
 		case entry2:
-			if(PINA && 0x02){ state = unlocked;}
-			else  { state = locked;}
+			if(A1){ state = locked;}
+			else  { state = unlocked;}
 		break;
 		
-		case unlocked://opens vault
+		case locked://opens vault
 		break;
 
 		default: break;
@@ -62,7 +61,7 @@ void tick()
 		//state = locked;
 		break;
 		
-		case locked:
+		case unlocked:
 		break;
 		
 		case entry1:
@@ -74,9 +73,9 @@ void tick()
 		case entry2:
 		break;
 		
-		case unlocked:
-		PORTB = 0x01;
+		case locked:
 
+		PORTB = 0x01;
 		break;
 		
 		default: break;
@@ -89,9 +88,5 @@ int main(void)
 	
 	state = Start;//initialize state
 	
-	while(1) { 
-
-		tick();
-	}
-	return 0;
+	while(1) { tick(); }
 }

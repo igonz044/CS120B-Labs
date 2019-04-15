@@ -3,712 +3,950 @@ igonz044_lab4_part2.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  000004c8  2**0
+  0 .data         00000000  00800100  00800100  0000065a  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000454  00000000  00000000  00000074  2**1
+  1 .text         000005e6  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000002  00800100  00800100  000004c8  2**0
+  2 .bss          00000002  00800100  00800100  0000065a  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000004c8  2**0
+  3 .comment      00000030  00000000  00000000  0000065a  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000004f8  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000068c  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000048  00000000  00000000  00000538  2**0
+  5 .debug_aranges 00000048  00000000  00000000  000006cc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000951  00000000  00000000  00000580  2**0
+  6 .debug_info   0000094b  00000000  00000000  00000714  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000007f1  00000000  00000000  00000ed1  2**0
+  7 .debug_abbrev 000007f1  00000000  00000000  0000105f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000433  00000000  00000000  000016c2  2**0
+  8 .debug_line   00000593  00000000  00000000  00001850  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000dc  00000000  00000000  00001af8  2**2
+  9 .debug_frame  000000dc  00000000  00000000  00001de4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000439  00000000  00000000  00001bd4  2**0
+ 10 .debug_str    00000432  00000000  00000000  00001ec0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000001b0  00000000  00000000  0000200d  2**0
+ 11 .debug_loc    000001b0  00000000  00000000  000022f2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000038  00000000  00000000  000021bd  2**0
+ 12 .debug_ranges 00000038  00000000  00000000  000024a2  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
-   0:	55 c0       	rjmp	.+170    	; 0xac <__ctors_end>
+   0:	4c c0       	rjmp	.+152    	; 0x9a <__ctors_end>
    2:	00 00       	nop
-   4:	63 c0       	rjmp	.+198    	; 0xcc <__bad_interrupt>
+   4:	5a c0       	rjmp	.+180    	; 0xba <__bad_interrupt>
    6:	00 00       	nop
-   8:	61 c0       	rjmp	.+194    	; 0xcc <__bad_interrupt>
+   8:	58 c0       	rjmp	.+176    	; 0xba <__bad_interrupt>
    a:	00 00       	nop
-   c:	5f c0       	rjmp	.+190    	; 0xcc <__bad_interrupt>
+   c:	56 c0       	rjmp	.+172    	; 0xba <__bad_interrupt>
    e:	00 00       	nop
-  10:	5d c0       	rjmp	.+186    	; 0xcc <__bad_interrupt>
+  10:	54 c0       	rjmp	.+168    	; 0xba <__bad_interrupt>
   12:	00 00       	nop
-  14:	5b c0       	rjmp	.+182    	; 0xcc <__bad_interrupt>
+  14:	52 c0       	rjmp	.+164    	; 0xba <__bad_interrupt>
   16:	00 00       	nop
-  18:	59 c0       	rjmp	.+178    	; 0xcc <__bad_interrupt>
+  18:	50 c0       	rjmp	.+160    	; 0xba <__bad_interrupt>
   1a:	00 00       	nop
-  1c:	57 c0       	rjmp	.+174    	; 0xcc <__bad_interrupt>
+  1c:	4e c0       	rjmp	.+156    	; 0xba <__bad_interrupt>
   1e:	00 00       	nop
-  20:	55 c0       	rjmp	.+170    	; 0xcc <__bad_interrupt>
+  20:	4c c0       	rjmp	.+152    	; 0xba <__bad_interrupt>
   22:	00 00       	nop
-  24:	53 c0       	rjmp	.+166    	; 0xcc <__bad_interrupt>
+  24:	4a c0       	rjmp	.+148    	; 0xba <__bad_interrupt>
   26:	00 00       	nop
-  28:	51 c0       	rjmp	.+162    	; 0xcc <__bad_interrupt>
+  28:	48 c0       	rjmp	.+144    	; 0xba <__bad_interrupt>
   2a:	00 00       	nop
-  2c:	4f c0       	rjmp	.+158    	; 0xcc <__bad_interrupt>
+  2c:	46 c0       	rjmp	.+140    	; 0xba <__bad_interrupt>
   2e:	00 00       	nop
-  30:	4d c0       	rjmp	.+154    	; 0xcc <__bad_interrupt>
+  30:	44 c0       	rjmp	.+136    	; 0xba <__bad_interrupt>
   32:	00 00       	nop
-  34:	4b c0       	rjmp	.+150    	; 0xcc <__bad_interrupt>
+  34:	42 c0       	rjmp	.+132    	; 0xba <__bad_interrupt>
   36:	00 00       	nop
-  38:	49 c0       	rjmp	.+146    	; 0xcc <__bad_interrupt>
+  38:	40 c0       	rjmp	.+128    	; 0xba <__bad_interrupt>
   3a:	00 00       	nop
-  3c:	47 c0       	rjmp	.+142    	; 0xcc <__bad_interrupt>
+  3c:	3e c0       	rjmp	.+124    	; 0xba <__bad_interrupt>
   3e:	00 00       	nop
-  40:	45 c0       	rjmp	.+138    	; 0xcc <__bad_interrupt>
+  40:	3c c0       	rjmp	.+120    	; 0xba <__bad_interrupt>
   42:	00 00       	nop
-  44:	43 c0       	rjmp	.+134    	; 0xcc <__bad_interrupt>
+  44:	3a c0       	rjmp	.+116    	; 0xba <__bad_interrupt>
   46:	00 00       	nop
-  48:	41 c0       	rjmp	.+130    	; 0xcc <__bad_interrupt>
+  48:	38 c0       	rjmp	.+112    	; 0xba <__bad_interrupt>
   4a:	00 00       	nop
-  4c:	3f c0       	rjmp	.+126    	; 0xcc <__bad_interrupt>
+  4c:	36 c0       	rjmp	.+108    	; 0xba <__bad_interrupt>
   4e:	00 00       	nop
-  50:	3d c0       	rjmp	.+122    	; 0xcc <__bad_interrupt>
+  50:	34 c0       	rjmp	.+104    	; 0xba <__bad_interrupt>
   52:	00 00       	nop
-  54:	3b c0       	rjmp	.+118    	; 0xcc <__bad_interrupt>
+  54:	32 c0       	rjmp	.+100    	; 0xba <__bad_interrupt>
   56:	00 00       	nop
-  58:	39 c0       	rjmp	.+114    	; 0xcc <__bad_interrupt>
+  58:	30 c0       	rjmp	.+96     	; 0xba <__bad_interrupt>
   5a:	00 00       	nop
-  5c:	37 c0       	rjmp	.+110    	; 0xcc <__bad_interrupt>
+  5c:	2e c0       	rjmp	.+92     	; 0xba <__bad_interrupt>
   5e:	00 00       	nop
-  60:	35 c0       	rjmp	.+106    	; 0xcc <__bad_interrupt>
+  60:	2c c0       	rjmp	.+88     	; 0xba <__bad_interrupt>
   62:	00 00       	nop
-  64:	33 c0       	rjmp	.+102    	; 0xcc <__bad_interrupt>
+  64:	2a c0       	rjmp	.+84     	; 0xba <__bad_interrupt>
   66:	00 00       	nop
-  68:	31 c0       	rjmp	.+98     	; 0xcc <__bad_interrupt>
+  68:	28 c0       	rjmp	.+80     	; 0xba <__bad_interrupt>
   6a:	00 00       	nop
-  6c:	2f c0       	rjmp	.+94     	; 0xcc <__bad_interrupt>
+  6c:	26 c0       	rjmp	.+76     	; 0xba <__bad_interrupt>
   6e:	00 00       	nop
-  70:	2d c0       	rjmp	.+90     	; 0xcc <__bad_interrupt>
+  70:	24 c0       	rjmp	.+72     	; 0xba <__bad_interrupt>
   72:	00 00       	nop
-  74:	2b c0       	rjmp	.+86     	; 0xcc <__bad_interrupt>
+  74:	22 c0       	rjmp	.+68     	; 0xba <__bad_interrupt>
   76:	00 00       	nop
-  78:	29 c0       	rjmp	.+82     	; 0xcc <__bad_interrupt>
+  78:	20 c0       	rjmp	.+64     	; 0xba <__bad_interrupt>
   7a:	00 00       	nop
-  7c:	27 c0       	rjmp	.+78     	; 0xcc <__bad_interrupt>
+  7c:	1e c0       	rjmp	.+60     	; 0xba <__bad_interrupt>
   7e:	00 00       	nop
-  80:	25 c0       	rjmp	.+74     	; 0xcc <__bad_interrupt>
+  80:	1c c0       	rjmp	.+56     	; 0xba <__bad_interrupt>
   82:	00 00       	nop
-  84:	23 c0       	rjmp	.+70     	; 0xcc <__bad_interrupt>
+  84:	1a c0       	rjmp	.+52     	; 0xba <__bad_interrupt>
   86:	00 00       	nop
-  88:	21 c0       	rjmp	.+66     	; 0xcc <__bad_interrupt>
+  88:	18 c0       	rjmp	.+48     	; 0xba <__bad_interrupt>
   8a:	00 00       	nop
-  8c:	9e 00       	.word	0x009e	; ????
-  8e:	a5 00       	.word	0x00a5	; ????
-  90:	ac 00       	.word	0x00ac	; ????
-  92:	20 01       	movw	r4, r0
-  94:	27 01       	movw	r4, r14
-  96:	a6 01       	movw	r20, r12
-  98:	2e 01       	movw	r4, r28
-  9a:	6a 01       	movw	r12, r20
-  9c:	c7 01       	movw	r24, r14
-  9e:	f3 01       	movw	r30, r6
-  a0:	f3 01       	movw	r30, r6
-  a2:	cd 01       	movw	r24, r26
-  a4:	dd 01       	movw	r26, r26
-  a6:	ed 01       	movw	r28, r26
-  a8:	f3 01       	movw	r30, r6
-  aa:	f3 01       	movw	r30, r6
+  8c:	b3 00       	.word	0x00b3	; ????
+  8e:	ba 00       	.word	0x00ba	; ????
+  90:	c1 00       	.word	0x00c1	; ????
+  92:	1a 01       	movw	r2, r20
+  94:	73 01       	movw	r14, r6
+  96:	22 02       	muls	r18, r18
+  98:	cc 01       	movw	r24, r24
 
-000000ac <__ctors_end>:
-  ac:	11 24       	eor	r1, r1
-  ae:	1f be       	out	0x3f, r1	; 63
-  b0:	cf ef       	ldi	r28, 0xFF	; 255
-  b2:	d0 e4       	ldi	r29, 0x40	; 64
-  b4:	de bf       	out	0x3e, r29	; 62
-  b6:	cd bf       	out	0x3d, r28	; 61
+0000009a <__ctors_end>:
+  9a:	11 24       	eor	r1, r1
+  9c:	1f be       	out	0x3f, r1	; 63
+  9e:	cf ef       	ldi	r28, 0xFF	; 255
+  a0:	d0 e4       	ldi	r29, 0x40	; 64
+  a2:	de bf       	out	0x3e, r29	; 62
+  a4:	cd bf       	out	0x3d, r28	; 61
 
-000000b8 <__do_clear_bss>:
-  b8:	21 e0       	ldi	r18, 0x01	; 1
-  ba:	a0 e0       	ldi	r26, 0x00	; 0
-  bc:	b1 e0       	ldi	r27, 0x01	; 1
-  be:	01 c0       	rjmp	.+2      	; 0xc2 <.do_clear_bss_start>
+000000a6 <__do_clear_bss>:
+  a6:	21 e0       	ldi	r18, 0x01	; 1
+  a8:	a0 e0       	ldi	r26, 0x00	; 0
+  aa:	b1 e0       	ldi	r27, 0x01	; 1
+  ac:	01 c0       	rjmp	.+2      	; 0xb0 <.do_clear_bss_start>
 
-000000c0 <.do_clear_bss_loop>:
-  c0:	1d 92       	st	X+, r1
+000000ae <.do_clear_bss_loop>:
+  ae:	1d 92       	st	X+, r1
 
-000000c2 <.do_clear_bss_start>:
-  c2:	a2 30       	cpi	r26, 0x02	; 2
-  c4:	b2 07       	cpc	r27, r18
-  c6:	e1 f7       	brne	.-8      	; 0xc0 <.do_clear_bss_loop>
-  c8:	99 d1       	rcall	.+818    	; 0x3fc <main>
-  ca:	c2 c1       	rjmp	.+900    	; 0x450 <_exit>
+000000b0 <.do_clear_bss_start>:
+  b0:	a2 30       	cpi	r26, 0x02	; 2
+  b2:	b2 07       	cpc	r27, r18
+  b4:	e1 f7       	brne	.-8      	; 0xae <.do_clear_bss_loop>
+  b6:	70 d2       	rcall	.+1248   	; 0x598 <main>
+  b8:	94 c2       	rjmp	.+1320   	; 0x5e2 <_exit>
 
-000000cc <__bad_interrupt>:
-  cc:	99 cf       	rjmp	.-206    	; 0x0 <__vectors>
+000000ba <__bad_interrupt>:
+  ba:	a2 cf       	rjmp	.-188    	; 0x0 <__vectors>
 
-000000ce <Increment>:
+000000bc <Increment>:
+unsigned char Increment(unsigned char x){ return x += 1;}
+unsigned char Decrement(unsigned char x){ return x -= 1;}
+
 unsigned char SetBit(unsigned char x, unsigned char k, unsigned char b){
 	return (b ? x | (0x01 << k) : x & ~(0x01 << k));
 }
+  bc:	cf 93       	push	r28
+  be:	df 93       	push	r29
+  c0:	1f 92       	push	r1
+  c2:	cd b7       	in	r28, 0x3d	; 61
+  c4:	de b7       	in	r29, 0x3e	; 62
+  c6:	89 83       	std	Y+1, r24	; 0x01
+  c8:	89 81       	ldd	r24, Y+1	; 0x01
+  ca:	8f 5f       	subi	r24, 0xFF	; 255
+  cc:	89 83       	std	Y+1, r24	; 0x01
+  ce:	89 81       	ldd	r24, Y+1	; 0x01
+  d0:	0f 90       	pop	r0
+  d2:	df 91       	pop	r29
+  d4:	cf 91       	pop	r28
+  d6:	08 95       	ret
+
+000000d8 <Decrement>:
+  d8:	cf 93       	push	r28
+  da:	df 93       	push	r29
+  dc:	1f 92       	push	r1
+  de:	cd b7       	in	r28, 0x3d	; 61
+  e0:	de b7       	in	r29, 0x3e	; 62
+  e2:	89 83       	std	Y+1, r24	; 0x01
+  e4:	89 81       	ldd	r24, Y+1	; 0x01
+  e6:	81 50       	subi	r24, 0x01	; 1
+  e8:	89 83       	std	Y+1, r24	; 0x01
+  ea:	89 81       	ldd	r24, Y+1	; 0x01
+  ec:	0f 90       	pop	r0
+  ee:	df 91       	pop	r29
+  f0:	cf 91       	pop	r28
+  f2:	08 95       	ret
+
+000000f4 <GetBit>:
 unsigned char GetBit(unsigned char x, unsigned char k){
+  f4:	cf 93       	push	r28
+  f6:	df 93       	push	r29
+  f8:	00 d0       	rcall	.+0      	; 0xfa <GetBit+0x6>
+  fa:	cd b7       	in	r28, 0x3d	; 61
+  fc:	de b7       	in	r29, 0x3e	; 62
+  fe:	89 83       	std	Y+1, r24	; 0x01
+ 100:	6a 83       	std	Y+2, r22	; 0x02
 	return ((x & (0x01 << k)) != 0);
+ 102:	89 81       	ldd	r24, Y+1	; 0x01
+ 104:	88 2f       	mov	r24, r24
+ 106:	90 e0       	ldi	r25, 0x00	; 0
+ 108:	2a 81       	ldd	r18, Y+2	; 0x02
+ 10a:	22 2f       	mov	r18, r18
+ 10c:	30 e0       	ldi	r19, 0x00	; 0
+ 10e:	02 c0       	rjmp	.+4      	; 0x114 <GetBit+0x20>
+ 110:	95 95       	asr	r25
+ 112:	87 95       	ror	r24
+ 114:	2a 95       	dec	r18
+ 116:	e2 f7       	brpl	.-8      	; 0x110 <GetBit+0x1c>
+ 118:	81 70       	andi	r24, 0x01	; 1
+ 11a:	99 27       	eor	r25, r25
+ 11c:	21 e0       	ldi	r18, 0x01	; 1
+ 11e:	89 2b       	or	r24, r25
+ 120:	09 f4       	brne	.+2      	; 0x124 <GetBit+0x30>
+ 122:	20 e0       	ldi	r18, 0x00	; 0
+ 124:	82 2f       	mov	r24, r18
 }
-  ce:	cf 93       	push	r28
-  d0:	df 93       	push	r29
-  d2:	1f 92       	push	r1
-  d4:	cd b7       	in	r28, 0x3d	; 61
-  d6:	de b7       	in	r29, 0x3e	; 62
-  d8:	89 83       	std	Y+1, r24	; 0x01
-  da:	89 81       	ldd	r24, Y+1	; 0x01
-  dc:	8f 5f       	subi	r24, 0xFF	; 255
-  de:	89 83       	std	Y+1, r24	; 0x01
-  e0:	89 81       	ldd	r24, Y+1	; 0x01
-  e2:	0f 90       	pop	r0
-  e4:	df 91       	pop	r29
-  e6:	cf 91       	pop	r28
-  e8:	08 95       	ret
+ 126:	0f 90       	pop	r0
+ 128:	0f 90       	pop	r0
+ 12a:	df 91       	pop	r29
+ 12c:	cf 91       	pop	r28
+ 12e:	08 95       	ret
 
-000000ea <Decrement>:
-  ea:	cf 93       	push	r28
-  ec:	df 93       	push	r29
-  ee:	1f 92       	push	r1
-  f0:	cd b7       	in	r28, 0x3d	; 61
-  f2:	de b7       	in	r29, 0x3e	; 62
-  f4:	89 83       	std	Y+1, r24	; 0x01
-  f6:	89 81       	ldd	r24, Y+1	; 0x01
-  f8:	81 50       	subi	r24, 0x01	; 1
-  fa:	89 83       	std	Y+1, r24	; 0x01
-  fc:	89 81       	ldd	r24, Y+1	; 0x01
-  fe:	0f 90       	pop	r0
- 100:	df 91       	pop	r29
- 102:	cf 91       	pop	r28
- 104:	08 95       	ret
-
-00000106 <tick>:
-#define A1 (~PINA & 0x02)
-
+00000130 <tick>:
 
 
 void tick()
 {
- 106:	0f 93       	push	r16
- 108:	1f 93       	push	r17
- 10a:	cf 93       	push	r28
- 10c:	df 93       	push	r29
- 10e:	cd b7       	in	r28, 0x3d	; 61
- 110:	de b7       	in	r29, 0x3e	; 62
+ 130:	0f 93       	push	r16
+ 132:	1f 93       	push	r17
+ 134:	cf 93       	push	r28
+ 136:	df 93       	push	r29
+ 138:	cd b7       	in	r28, 0x3d	; 61
+ 13a:	de b7       	in	r29, 0x3e	; 62
 	switch (state) { //Transitions
- 112:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
- 116:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
- 11a:	cc 01       	movw	r24, r24
- 11c:	a0 e0       	ldi	r26, 0x00	; 0
- 11e:	b0 e0       	ldi	r27, 0x00	; 0
- 120:	40 e0       	ldi	r20, 0x00	; 0
- 122:	50 e0       	ldi	r21, 0x00	; 0
- 124:	27 e0       	ldi	r18, 0x07	; 7
- 126:	30 e0       	ldi	r19, 0x00	; 0
- 128:	84 1b       	sub	r24, r20
- 12a:	95 0b       	sbc	r25, r21
- 12c:	28 17       	cp	r18, r24
- 12e:	39 07       	cpc	r19, r25
- 130:	08 f4       	brcc	.+2      	; 0x134 <tick+0x2e>
- 132:	13 c1       	rjmp	.+550    	; 0x35a <tick+0x254>
- 134:	8a 5b       	subi	r24, 0xBA	; 186
- 136:	9f 4f       	sbci	r25, 0xFF	; 255
- 138:	fc 01       	movw	r30, r24
- 13a:	81 c1       	rjmp	.+770    	; 0x43e <__tablejump2__>
-		case Start:
-			state = bla;
- 13c:	81 e0       	ldi	r24, 0x01	; 1
- 13e:	90 e0       	ldi	r25, 0x00	; 0
- 140:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 144:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 13c:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 140:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 144:	cc 01       	movw	r24, r24
+ 146:	a0 e0       	ldi	r26, 0x00	; 0
+ 148:	b0 e0       	ldi	r27, 0x00	; 0
+ 14a:	40 e0       	ldi	r20, 0x00	; 0
+ 14c:	50 e0       	ldi	r21, 0x00	; 0
+ 14e:	26 e0       	ldi	r18, 0x06	; 6
+ 150:	30 e0       	ldi	r19, 0x00	; 0
+ 152:	84 1b       	sub	r24, r20
+ 154:	95 0b       	sbc	r25, r21
+ 156:	28 17       	cp	r18, r24
+ 158:	39 07       	cpc	r19, r25
+ 15a:	08 f4       	brcc	.+2      	; 0x15e <tick+0x2e>
+ 15c:	ca c1       	rjmp	.+916    	; 0x4f2 <__LOCK_REGION_LENGTH__+0xf2>
+ 15e:	8a 5b       	subi	r24, 0xBA	; 186
+ 160:	9f 4f       	sbci	r25, 0xFF	; 255
+ 162:	fc 01       	movw	r30, r24
+ 164:	35 c2       	rjmp	.+1130   	; 0x5d0 <__tablejump2__>
+		case bla:
+			state = Start;
+ 166:	81 e0       	ldi	r24, 0x01	; 1
+ 168:	90 e0       	ldi	r25, 0x00	; 0
+ 16a:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 16e:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
 		break;
- 148:	0e c1       	rjmp	.+540    	; 0x366 <tick+0x260>
-case bla: 
-state =Init; 
- 14a:	82 e0       	ldi	r24, 0x02	; 2
- 14c:	90 e0       	ldi	r25, 0x00	; 0
- 14e:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 152:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-break; 
- 156:	07 c1       	rjmp	.+526    	; 0x366 <tick+0x260>
+ 172:	ca c1       	rjmp	.+916    	; 0x508 <__LOCK_REGION_LENGTH__+0x108>
+		
+		case Start:
+			state = Init;
+ 174:	82 e0       	ldi	r24, 0x02	; 2
+ 176:	90 e0       	ldi	r25, 0x00	; 0
+ 178:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 17c:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+		break;
+ 180:	c3 c1       	rjmp	.+902    	; 0x508 <__LOCK_REGION_LENGTH__+0x108>
 		
 		case Init:
-		if(A0 && !A1)
- 158:	80 e2       	ldi	r24, 0x20	; 32
- 15a:	90 e0       	ldi	r25, 0x00	; 0
- 15c:	fc 01       	movw	r30, r24
- 15e:	80 81       	ld	r24, Z
- 160:	88 2f       	mov	r24, r24
- 162:	90 e0       	ldi	r25, 0x00	; 0
- 164:	81 70       	andi	r24, 0x01	; 1
- 166:	99 27       	eor	r25, r25
- 168:	89 2b       	or	r24, r25
- 16a:	89 f4       	brne	.+34     	; 0x18e <tick+0x88>
- 16c:	80 e2       	ldi	r24, 0x20	; 32
- 16e:	90 e0       	ldi	r25, 0x00	; 0
- 170:	fc 01       	movw	r30, r24
- 172:	80 81       	ld	r24, Z
- 174:	88 2f       	mov	r24, r24
- 176:	90 e0       	ldi	r25, 0x00	; 0
- 178:	82 70       	andi	r24, 0x02	; 2
- 17a:	99 27       	eor	r25, r25
- 17c:	89 2b       	or	r24, r25
- 17e:	39 f0       	breq	.+14     	; 0x18e <tick+0x88>
-         {
-              state = Inc;
- 180:	83 e0       	ldi	r24, 0x03	; 3
- 182:	90 e0       	ldi	r25, 0x00	; 0
- 184:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 188:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
- 18c:	58 c0       	rjmp	.+176    	; 0x23e <tick+0x138>
-              
-         }
-       else if(!A0 && A1)
- 18e:	80 e2       	ldi	r24, 0x20	; 32
- 190:	90 e0       	ldi	r25, 0x00	; 0
- 192:	fc 01       	movw	r30, r24
- 194:	80 81       	ld	r24, Z
- 196:	88 2f       	mov	r24, r24
- 198:	90 e0       	ldi	r25, 0x00	; 0
- 19a:	81 70       	andi	r24, 0x01	; 1
- 19c:	99 27       	eor	r25, r25
- 19e:	89 2b       	or	r24, r25
- 1a0:	89 f0       	breq	.+34     	; 0x1c4 <tick+0xbe>
- 1a2:	80 e2       	ldi	r24, 0x20	; 32
- 1a4:	90 e0       	ldi	r25, 0x00	; 0
- 1a6:	fc 01       	movw	r30, r24
- 1a8:	80 81       	ld	r24, Z
- 1aa:	88 2f       	mov	r24, r24
- 1ac:	90 e0       	ldi	r25, 0x00	; 0
- 1ae:	82 70       	andi	r24, 0x02	; 2
- 1b0:	99 27       	eor	r25, r25
- 1b2:	89 2b       	or	r24, r25
- 1b4:	39 f4       	brne	.+14     	; 0x1c4 <tick+0xbe>
-         {
-              state = Dec;
- 1b6:	84 e0       	ldi	r24, 0x04	; 4
- 1b8:	90 e0       	ldi	r25, 0x00	; 0
- 1ba:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 1be:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
- 1c2:	3d c0       	rjmp	.+122    	; 0x23e <tick+0x138>
-               
-         }
-
-		else if(!A0 && !A1)
- 1c4:	80 e2       	ldi	r24, 0x20	; 32
+		//In this state you can dec, incr, or reset from here
+			if(GetBit(PINA, 0) && PORTB <= 0x09){//if incrementing
+ 182:	80 e2       	ldi	r24, 0x20	; 32
+ 184:	90 e0       	ldi	r25, 0x00	; 0
+ 186:	fc 01       	movw	r30, r24
+ 188:	80 81       	ld	r24, Z
+ 18a:	60 e0       	ldi	r22, 0x00	; 0
+ 18c:	b3 df       	rcall	.-154    	; 0xf4 <GetBit>
+ 18e:	88 23       	and	r24, r24
+ 190:	69 f0       	breq	.+26     	; 0x1ac <tick+0x7c>
+ 192:	85 e2       	ldi	r24, 0x25	; 37
+ 194:	90 e0       	ldi	r25, 0x00	; 0
+ 196:	fc 01       	movw	r30, r24
+ 198:	80 81       	ld	r24, Z
+ 19a:	8a 30       	cpi	r24, 0x0A	; 10
+ 19c:	38 f4       	brcc	.+14     	; 0x1ac <tick+0x7c>
+    			state = Inc;//increment
+ 19e:	83 e0       	ldi	r24, 0x03	; 3
+ 1a0:	90 e0       	ldi	r25, 0x00	; 0
+ 1a2:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 1a6:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 1aa:	43 c0       	rjmp	.+134    	; 0x232 <tick+0x102>
+			}
+			else if (GetBit(PINA, 1) && PORTB >= 0x00){
+ 1ac:	80 e2       	ldi	r24, 0x20	; 32
+ 1ae:	90 e0       	ldi	r25, 0x00	; 0
+ 1b0:	fc 01       	movw	r30, r24
+ 1b2:	80 81       	ld	r24, Z
+ 1b4:	61 e0       	ldi	r22, 0x01	; 1
+ 1b6:	9e df       	rcall	.-196    	; 0xf4 <GetBit>
+ 1b8:	88 23       	and	r24, r24
+ 1ba:	59 f0       	breq	.+22     	; 0x1d2 <tick+0xa2>
+ 1bc:	85 e2       	ldi	r24, 0x25	; 37
+ 1be:	90 e0       	ldi	r25, 0x00	; 0
+ 1c0:	fc 01       	movw	r30, r24
+ 1c2:	80 81       	ld	r24, Z
+    			state = Dec; //decrement
+ 1c4:	84 e0       	ldi	r24, 0x04	; 4
  1c6:	90 e0       	ldi	r25, 0x00	; 0
- 1c8:	fc 01       	movw	r30, r24
- 1ca:	80 81       	ld	r24, Z
- 1cc:	88 2f       	mov	r24, r24
- 1ce:	90 e0       	ldi	r25, 0x00	; 0
- 1d0:	81 70       	andi	r24, 0x01	; 1
- 1d2:	99 27       	eor	r25, r25
- 1d4:	89 2b       	or	r24, r25
- 1d6:	89 f0       	breq	.+34     	; 0x1fa <tick+0xf4>
- 1d8:	80 e2       	ldi	r24, 0x20	; 32
- 1da:	90 e0       	ldi	r25, 0x00	; 0
- 1dc:	fc 01       	movw	r30, r24
- 1de:	80 81       	ld	r24, Z
- 1e0:	88 2f       	mov	r24, r24
- 1e2:	90 e0       	ldi	r25, 0x00	; 0
- 1e4:	82 70       	andi	r24, 0x02	; 2
- 1e6:	99 27       	eor	r25, r25
- 1e8:	89 2b       	or	r24, r25
- 1ea:	39 f0       	breq	.+14     	; 0x1fa <tick+0xf4>
-         {
-              state = Init;
- 1ec:	82 e0       	ldi	r24, 0x02	; 2
- 1ee:	90 e0       	ldi	r25, 0x00	; 0
- 1f0:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 1f4:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
- 1f8:	22 c0       	rjmp	.+68     	; 0x23e <tick+0x138>
-               
-         }
-        else if(A0 && A1)
- 1fa:	80 e2       	ldi	r24, 0x20	; 32
- 1fc:	90 e0       	ldi	r25, 0x00	; 0
- 1fe:	fc 01       	movw	r30, r24
- 200:	80 81       	ld	r24, Z
- 202:	88 2f       	mov	r24, r24
- 204:	90 e0       	ldi	r25, 0x00	; 0
- 206:	81 70       	andi	r24, 0x01	; 1
- 208:	99 27       	eor	r25, r25
- 20a:	89 2b       	or	r24, r25
- 20c:	89 f4       	brne	.+34     	; 0x230 <tick+0x12a>
- 20e:	80 e2       	ldi	r24, 0x20	; 32
- 210:	90 e0       	ldi	r25, 0x00	; 0
- 212:	fc 01       	movw	r30, r24
- 214:	80 81       	ld	r24, Z
- 216:	88 2f       	mov	r24, r24
- 218:	90 e0       	ldi	r25, 0x00	; 0
- 21a:	82 70       	andi	r24, 0x02	; 2
- 21c:	99 27       	eor	r25, r25
- 21e:	89 2b       	or	r24, r25
- 220:	39 f4       	brne	.+14     	; 0x230 <tick+0x12a>
-         {
-              state = Reset;
- 222:	85 e0       	ldi	r24, 0x05	; 5
- 224:	90 e0       	ldi	r25, 0x00	; 0
- 226:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 22a:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
- 22e:	07 c0       	rjmp	.+14     	; 0x23e <tick+0x138>
-              
-         }
-        else{state = Init;}
- 230:	82 e0       	ldi	r24, 0x02	; 2
- 232:	90 e0       	ldi	r25, 0x00	; 0
- 234:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 238:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-        break;
- 23c:	94 c0       	rjmp	.+296    	; 0x366 <tick+0x260>
- 23e:	93 c0       	rjmp	.+294    	; 0x366 <tick+0x260>
-
+ 1c8:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 1cc:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 1d0:	30 c0       	rjmp	.+96     	; 0x232 <tick+0x102>
+			}
+			else if (GetBit(PINA, 0)&&GetBit(PINA, 1)){//both pressed together
+ 1d2:	80 e2       	ldi	r24, 0x20	; 32
+ 1d4:	90 e0       	ldi	r25, 0x00	; 0
+ 1d6:	fc 01       	movw	r30, r24
+ 1d8:	80 81       	ld	r24, Z
+ 1da:	60 e0       	ldi	r22, 0x00	; 0
+ 1dc:	8b df       	rcall	.-234    	; 0xf4 <GetBit>
+ 1de:	88 23       	and	r24, r24
+ 1e0:	79 f0       	breq	.+30     	; 0x200 <tick+0xd0>
+ 1e2:	80 e2       	ldi	r24, 0x20	; 32
+ 1e4:	90 e0       	ldi	r25, 0x00	; 0
+ 1e6:	fc 01       	movw	r30, r24
+ 1e8:	80 81       	ld	r24, Z
+ 1ea:	61 e0       	ldi	r22, 0x01	; 1
+ 1ec:	83 df       	rcall	.-250    	; 0xf4 <GetBit>
+ 1ee:	88 23       	and	r24, r24
+ 1f0:	39 f0       	breq	.+14     	; 0x200 <tick+0xd0>
+    			state = Reset;
+ 1f2:	85 e0       	ldi	r24, 0x05	; 5
+ 1f4:	90 e0       	ldi	r25, 0x00	; 0
+ 1f6:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 1fa:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 1fe:	19 c0       	rjmp	.+50     	; 0x232 <tick+0x102>
+			}
+			else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
+ 200:	80 e2       	ldi	r24, 0x20	; 32
+ 202:	90 e0       	ldi	r25, 0x00	; 0
+ 204:	fc 01       	movw	r30, r24
+ 206:	80 81       	ld	r24, Z
+ 208:	60 e0       	ldi	r22, 0x00	; 0
+ 20a:	74 df       	rcall	.-280    	; 0xf4 <GetBit>
+ 20c:	88 23       	and	r24, r24
+ 20e:	09 f0       	breq	.+2      	; 0x212 <tick+0xe2>
+ 210:	72 c1       	rjmp	.+740    	; 0x4f6 <__LOCK_REGION_LENGTH__+0xf6>
+ 212:	80 e2       	ldi	r24, 0x20	; 32
+ 214:	90 e0       	ldi	r25, 0x00	; 0
+ 216:	fc 01       	movw	r30, r24
+ 218:	80 81       	ld	r24, Z
+ 21a:	61 e0       	ldi	r22, 0x01	; 1
+ 21c:	6b df       	rcall	.-298    	; 0xf4 <GetBit>
+ 21e:	88 23       	and	r24, r24
+ 220:	09 f0       	breq	.+2      	; 0x224 <tick+0xf4>
+ 222:	69 c1       	rjmp	.+722    	; 0x4f6 <__LOCK_REGION_LENGTH__+0xf6>
+ 224:	82 e0       	ldi	r24, 0x02	; 2
+ 226:	90 e0       	ldi	r25, 0x00	; 0
+ 228:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 22c:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 230:	62 c1       	rjmp	.+708    	; 0x4f6 <__LOCK_REGION_LENGTH__+0xf6>
+		break;
+ 232:	61 c1       	rjmp	.+706    	; 0x4f6 <__LOCK_REGION_LENGTH__+0xf6>
+        
         case Inc:
-          state = Wait1; 
- 240:	86 e0       	ldi	r24, 0x06	; 6
- 242:	90 e0       	ldi	r25, 0x00	; 0
- 244:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 248:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-        break;
- 24c:	8c c0       	rjmp	.+280    	; 0x366 <tick+0x260>
-        
-        case Dec:
-           state = Wait2; 
- 24e:	87 e0       	ldi	r24, 0x07	; 7
- 250:	90 e0       	ldi	r25, 0x00	; 0
- 252:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 256:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-        break;
- 25a:	85 c0       	rjmp	.+266    	; 0x366 <tick+0x260>
-        
-        case Wait1://check if buttons have been released
-            //not pressed, count stays the same
-if(A0 && A1)
- 25c:	80 e2       	ldi	r24, 0x20	; 32
- 25e:	90 e0       	ldi	r25, 0x00	; 0
- 260:	fc 01       	movw	r30, r24
- 262:	80 81       	ld	r24, Z
- 264:	88 2f       	mov	r24, r24
- 266:	90 e0       	ldi	r25, 0x00	; 0
- 268:	81 70       	andi	r24, 0x01	; 1
- 26a:	99 27       	eor	r25, r25
- 26c:	89 2b       	or	r24, r25
- 26e:	81 f4       	brne	.+32     	; 0x290 <tick+0x18a>
- 270:	80 e2       	ldi	r24, 0x20	; 32
- 272:	90 e0       	ldi	r25, 0x00	; 0
- 274:	fc 01       	movw	r30, r24
- 276:	80 81       	ld	r24, Z
- 278:	88 2f       	mov	r24, r24
- 27a:	90 e0       	ldi	r25, 0x00	; 0
- 27c:	82 70       	andi	r24, 0x02	; 2
- 27e:	99 27       	eor	r25, r25
- 280:	89 2b       	or	r24, r25
- 282:	31 f4       	brne	.+12     	; 0x290 <tick+0x18a>
-         {
-              state = Reset;
- 284:	85 e0       	ldi	r24, 0x05	; 5
+            if(GetBit(PINA, 0) && PORTB <= 0x09){//if incrementing
+ 234:	80 e2       	ldi	r24, 0x20	; 32
+ 236:	90 e0       	ldi	r25, 0x00	; 0
+ 238:	fc 01       	movw	r30, r24
+ 23a:	80 81       	ld	r24, Z
+ 23c:	60 e0       	ldi	r22, 0x00	; 0
+ 23e:	5a df       	rcall	.-332    	; 0xf4 <GetBit>
+ 240:	88 23       	and	r24, r24
+ 242:	69 f0       	breq	.+26     	; 0x25e <tick+0x12e>
+ 244:	85 e2       	ldi	r24, 0x25	; 37
+ 246:	90 e0       	ldi	r25, 0x00	; 0
+ 248:	fc 01       	movw	r30, r24
+ 24a:	80 81       	ld	r24, Z
+ 24c:	8a 30       	cpi	r24, 0x0A	; 10
+ 24e:	38 f4       	brcc	.+14     	; 0x25e <tick+0x12e>
+ 250:	86 e0       	ldi	r24, 0x06	; 6
+                state = Stay;//increment
+ 252:	90 e0       	ldi	r25, 0x00	; 0
+ 254:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 258:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 25c:	43 c0       	rjmp	.+134    	; 0x2e4 <tick+0x1b4>
+            }
+            else if (GetBit(PINA, 1) && PORTB >= 0x00){
+ 25e:	80 e2       	ldi	r24, 0x20	; 32
+ 260:	90 e0       	ldi	r25, 0x00	; 0
+ 262:	fc 01       	movw	r30, r24
+ 264:	80 81       	ld	r24, Z
+ 266:	61 e0       	ldi	r22, 0x01	; 1
+ 268:	45 df       	rcall	.-374    	; 0xf4 <GetBit>
+ 26a:	88 23       	and	r24, r24
+ 26c:	59 f0       	breq	.+22     	; 0x284 <tick+0x154>
+ 26e:	85 e2       	ldi	r24, 0x25	; 37
+ 270:	90 e0       	ldi	r25, 0x00	; 0
+ 272:	fc 01       	movw	r30, r24
+ 274:	80 81       	ld	r24, Z
+ 276:	84 e0       	ldi	r24, 0x04	; 4
+                state = Dec; //decrement
+ 278:	90 e0       	ldi	r25, 0x00	; 0
+ 27a:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 27e:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 282:	30 c0       	rjmp	.+96     	; 0x2e4 <tick+0x1b4>
+            }
+            else if (GetBit(PINA, 0) && GetBit(PINA, 1)){//both pressed together
+ 284:	80 e2       	ldi	r24, 0x20	; 32
  286:	90 e0       	ldi	r25, 0x00	; 0
- 288:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 28c:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-              
-         }
-        if (A0){state = Wait1;}
- 290:	80 e2       	ldi	r24, 0x20	; 32
- 292:	90 e0       	ldi	r25, 0x00	; 0
- 294:	fc 01       	movw	r30, r24
- 296:	80 81       	ld	r24, Z
- 298:	88 2f       	mov	r24, r24
- 29a:	90 e0       	ldi	r25, 0x00	; 0
- 29c:	81 70       	andi	r24, 0x01	; 1
- 29e:	99 27       	eor	r25, r25
- 2a0:	89 2b       	or	r24, r25
- 2a2:	31 f4       	brne	.+12     	; 0x2b0 <tick+0x1aa>
- 2a4:	86 e0       	ldi	r24, 0x06	; 6
+ 288:	fc 01       	movw	r30, r24
+ 28a:	80 81       	ld	r24, Z
+ 28c:	60 e0       	ldi	r22, 0x00	; 0
+ 28e:	32 df       	rcall	.-412    	; 0xf4 <GetBit>
+ 290:	88 23       	and	r24, r24
+ 292:	79 f0       	breq	.+30     	; 0x2b2 <tick+0x182>
+ 294:	80 e2       	ldi	r24, 0x20	; 32
+ 296:	90 e0       	ldi	r25, 0x00	; 0
+ 298:	fc 01       	movw	r30, r24
+ 29a:	80 81       	ld	r24, Z
+ 29c:	61 e0       	ldi	r22, 0x01	; 1
+ 29e:	2a df       	rcall	.-428    	; 0xf4 <GetBit>
+ 2a0:	88 23       	and	r24, r24
+ 2a2:	39 f0       	breq	.+14     	; 0x2b2 <tick+0x182>
+ 2a4:	85 e0       	ldi	r24, 0x05	; 5
+                state = Reset;
  2a6:	90 e0       	ldi	r25, 0x00	; 0
  2a8:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
  2ac:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-        if (!A0){state = Init; }
- 2b0:	80 e2       	ldi	r24, 0x20	; 32
- 2b2:	90 e0       	ldi	r25, 0x00	; 0
- 2b4:	fc 01       	movw	r30, r24
- 2b6:	80 81       	ld	r24, Z
- 2b8:	88 2f       	mov	r24, r24
- 2ba:	90 e0       	ldi	r25, 0x00	; 0
- 2bc:	81 70       	andi	r24, 0x01	; 1
- 2be:	99 27       	eor	r25, r25
- 2c0:	89 2b       	or	r24, r25
- 2c2:	09 f4       	brne	.+2      	; 0x2c6 <tick+0x1c0>
- 2c4:	4f c0       	rjmp	.+158    	; 0x364 <tick+0x25e>
- 2c6:	82 e0       	ldi	r24, 0x02	; 2
- 2c8:	90 e0       	ldi	r25, 0x00	; 0
- 2ca:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 2ce:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 2b0:	19 c0       	rjmp	.+50     	; 0x2e4 <tick+0x1b4>
+            }
+            else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
+ 2b2:	80 e2       	ldi	r24, 0x20	; 32
+ 2b4:	90 e0       	ldi	r25, 0x00	; 0
+ 2b6:	fc 01       	movw	r30, r24
+ 2b8:	80 81       	ld	r24, Z
+ 2ba:	60 e0       	ldi	r22, 0x00	; 0
+ 2bc:	1b df       	rcall	.-458    	; 0xf4 <GetBit>
+ 2be:	88 23       	and	r24, r24
+ 2c0:	09 f0       	breq	.+2      	; 0x2c4 <tick+0x194>
+ 2c2:	1b c1       	rjmp	.+566    	; 0x4fa <__LOCK_REGION_LENGTH__+0xfa>
+ 2c4:	80 e2       	ldi	r24, 0x20	; 32
+ 2c6:	90 e0       	ldi	r25, 0x00	; 0
+ 2c8:	fc 01       	movw	r30, r24
+ 2ca:	80 81       	ld	r24, Z
+ 2cc:	61 e0       	ldi	r22, 0x01	; 1
+ 2ce:	12 df       	rcall	.-476    	; 0xf4 <GetBit>
+ 2d0:	88 23       	and	r24, r24
+ 2d2:	09 f0       	breq	.+2      	; 0x2d6 <tick+0x1a6>
+ 2d4:	12 c1       	rjmp	.+548    	; 0x4fa <__LOCK_REGION_LENGTH__+0xfa>
+ 2d6:	82 e0       	ldi	r24, 0x02	; 2
+ 2d8:	90 e0       	ldi	r25, 0x00	; 0
+ 2da:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 2de:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
         break;
- 2d2:	48 c0       	rjmp	.+144    	; 0x364 <tick+0x25e>
-
-        case Wait2:
-if(A0 && A1)
- 2d4:	80 e2       	ldi	r24, 0x20	; 32
- 2d6:	90 e0       	ldi	r25, 0x00	; 0
- 2d8:	fc 01       	movw	r30, r24
- 2da:	80 81       	ld	r24, Z
- 2dc:	88 2f       	mov	r24, r24
- 2de:	90 e0       	ldi	r25, 0x00	; 0
- 2e0:	81 70       	andi	r24, 0x01	; 1
- 2e2:	99 27       	eor	r25, r25
- 2e4:	89 2b       	or	r24, r25
- 2e6:	89 f4       	brne	.+34     	; 0x30a <tick+0x204>
- 2e8:	80 e2       	ldi	r24, 0x20	; 32
- 2ea:	90 e0       	ldi	r25, 0x00	; 0
- 2ec:	fc 01       	movw	r30, r24
- 2ee:	80 81       	ld	r24, Z
- 2f0:	88 2f       	mov	r24, r24
- 2f2:	90 e0       	ldi	r25, 0x00	; 0
- 2f4:	82 70       	andi	r24, 0x02	; 2
- 2f6:	99 27       	eor	r25, r25
- 2f8:	89 2b       	or	r24, r25
- 2fa:	39 f4       	brne	.+14     	; 0x30a <tick+0x204>
-         {
-              state = Reset;
- 2fc:	85 e0       	ldi	r24, 0x05	; 5
- 2fe:	90 e0       	ldi	r25, 0x00	; 0
- 300:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 304:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
- 308:	21 c0       	rjmp	.+66     	; 0x34c <tick+0x246>
-              
-         }
-            else if (A1)
- 30a:	80 e2       	ldi	r24, 0x20	; 32
- 30c:	90 e0       	ldi	r25, 0x00	; 0
- 30e:	fc 01       	movw	r30, r24
- 310:	80 81       	ld	r24, Z
- 312:	88 2f       	mov	r24, r24
- 314:	90 e0       	ldi	r25, 0x00	; 0
- 316:	82 70       	andi	r24, 0x02	; 2
- 318:	99 27       	eor	r25, r25
- 31a:	89 2b       	or	r24, r25
- 31c:	39 f4       	brne	.+14     	; 0x32c <tick+0x226>
-            {state = Wait2;}
- 31e:	87 e0       	ldi	r24, 0x07	; 7
- 320:	90 e0       	ldi	r25, 0x00	; 0
- 322:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 326:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
- 32a:	10 c0       	rjmp	.+32     	; 0x34c <tick+0x246>
-else if (!A1)
- 32c:	80 e2       	ldi	r24, 0x20	; 32
- 32e:	90 e0       	ldi	r25, 0x00	; 0
- 330:	fc 01       	movw	r30, r24
- 332:	80 81       	ld	r24, Z
- 334:	88 2f       	mov	r24, r24
- 336:	90 e0       	ldi	r25, 0x00	; 0
- 338:	82 70       	andi	r24, 0x02	; 2
- 33a:	99 27       	eor	r25, r25
- 33c:	89 2b       	or	r24, r25
- 33e:	31 f0       	breq	.+12     	; 0x34c <tick+0x246>
-{state = Init; }
- 340:	82 e0       	ldi	r24, 0x02	; 2
- 342:	90 e0       	ldi	r25, 0x00	; 0
- 344:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 348:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 2e2:	0b c1       	rjmp	.+534    	; 0x4fa <__LOCK_REGION_LENGTH__+0xfa>
+ 2e4:	0a c1       	rjmp	.+532    	; 0x4fa <__LOCK_REGION_LENGTH__+0xfa>
+        
+        case Dec:
+            if(GetBit(PINA, 0) && PORTB <= 0x09){//if incrementing
+ 2e6:	80 e2       	ldi	r24, 0x20	; 32
+ 2e8:	90 e0       	ldi	r25, 0x00	; 0
+ 2ea:	fc 01       	movw	r30, r24
+ 2ec:	80 81       	ld	r24, Z
+ 2ee:	60 e0       	ldi	r22, 0x00	; 0
+ 2f0:	01 df       	rcall	.-510    	; 0xf4 <GetBit>
+ 2f2:	88 23       	and	r24, r24
+ 2f4:	69 f0       	breq	.+26     	; 0x310 <tick+0x1e0>
+ 2f6:	85 e2       	ldi	r24, 0x25	; 37
+ 2f8:	90 e0       	ldi	r25, 0x00	; 0
+ 2fa:	fc 01       	movw	r30, r24
+ 2fc:	80 81       	ld	r24, Z
+ 2fe:	8a 30       	cpi	r24, 0x0A	; 10
+ 300:	38 f4       	brcc	.+14     	; 0x310 <tick+0x1e0>
+                state = Inc;//increment
+ 302:	83 e0       	ldi	r24, 0x03	; 3
+ 304:	90 e0       	ldi	r25, 0x00	; 0
+ 306:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 30a:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 30e:	43 c0       	rjmp	.+134    	; 0x396 <tick+0x266>
+            }
+            else if (GetBit(PINA, 1) && PORTB >= 0x00){
+ 310:	80 e2       	ldi	r24, 0x20	; 32
+ 312:	90 e0       	ldi	r25, 0x00	; 0
+ 314:	fc 01       	movw	r30, r24
+ 316:	80 81       	ld	r24, Z
+ 318:	61 e0       	ldi	r22, 0x01	; 1
+ 31a:	ec de       	rcall	.-552    	; 0xf4 <GetBit>
+ 31c:	88 23       	and	r24, r24
+ 31e:	59 f0       	breq	.+22     	; 0x336 <tick+0x206>
+ 320:	85 e2       	ldi	r24, 0x25	; 37
+ 322:	90 e0       	ldi	r25, 0x00	; 0
+ 324:	fc 01       	movw	r30, r24
+ 326:	80 81       	ld	r24, Z
+                state = Stay; //decrement
+ 328:	86 e0       	ldi	r24, 0x06	; 6
+ 32a:	90 e0       	ldi	r25, 0x00	; 0
+ 32c:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 330:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+            }
+            else if (GetBit(PINA, 0) && GetBit(PINA, 1)){//both pressed together
+ 334:	30 c0       	rjmp	.+96     	; 0x396 <tick+0x266>
+ 336:	80 e2       	ldi	r24, 0x20	; 32
+ 338:	90 e0       	ldi	r25, 0x00	; 0
+ 33a:	fc 01       	movw	r30, r24
+ 33c:	80 81       	ld	r24, Z
+ 33e:	60 e0       	ldi	r22, 0x00	; 0
+ 340:	d9 de       	rcall	.-590    	; 0xf4 <GetBit>
+ 342:	88 23       	and	r24, r24
+ 344:	79 f0       	breq	.+30     	; 0x364 <tick+0x234>
+ 346:	80 e2       	ldi	r24, 0x20	; 32
+ 348:	90 e0       	ldi	r25, 0x00	; 0
+ 34a:	fc 01       	movw	r30, r24
+ 34c:	80 81       	ld	r24, Z
+ 34e:	61 e0       	ldi	r22, 0x01	; 1
+ 350:	d1 de       	rcall	.-606    	; 0xf4 <GetBit>
+ 352:	88 23       	and	r24, r24
+ 354:	39 f0       	breq	.+14     	; 0x364 <tick+0x234>
+                state = Reset;
+ 356:	85 e0       	ldi	r24, 0x05	; 5
+ 358:	90 e0       	ldi	r25, 0x00	; 0
+ 35a:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 35e:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+            }
+            else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
+ 362:	19 c0       	rjmp	.+50     	; 0x396 <tick+0x266>
+ 364:	80 e2       	ldi	r24, 0x20	; 32
+ 366:	90 e0       	ldi	r25, 0x00	; 0
+ 368:	fc 01       	movw	r30, r24
+ 36a:	80 81       	ld	r24, Z
+ 36c:	60 e0       	ldi	r22, 0x00	; 0
+ 36e:	c2 de       	rcall	.-636    	; 0xf4 <GetBit>
+ 370:	88 23       	and	r24, r24
+ 372:	09 f0       	breq	.+2      	; 0x376 <tick+0x246>
+ 374:	c4 c0       	rjmp	.+392    	; 0x4fe <__LOCK_REGION_LENGTH__+0xfe>
+ 376:	80 e2       	ldi	r24, 0x20	; 32
+ 378:	90 e0       	ldi	r25, 0x00	; 0
+ 37a:	fc 01       	movw	r30, r24
+ 37c:	80 81       	ld	r24, Z
+ 37e:	61 e0       	ldi	r22, 0x01	; 1
+ 380:	b9 de       	rcall	.-654    	; 0xf4 <GetBit>
+ 382:	88 23       	and	r24, r24
+ 384:	09 f0       	breq	.+2      	; 0x388 <tick+0x258>
+ 386:	bb c0       	rjmp	.+374    	; 0x4fe <__LOCK_REGION_LENGTH__+0xfe>
+ 388:	82 e0       	ldi	r24, 0x02	; 2
+ 38a:	90 e0       	ldi	r25, 0x00	; 0
+ 38c:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 390:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+        break;
+ 394:	b4 c0       	rjmp	.+360    	; 0x4fe <__LOCK_REGION_LENGTH__+0xfe>
+ 396:	b3 c0       	rjmp	.+358    	; 0x4fe <__LOCK_REGION_LENGTH__+0xfe>
+        
+        case Stay://check if buttons have been released
+            //not pressed, count stays the same
+            if(GetBit(PINA, 0) && PORTB <= 0x09){//if incrementing
+ 398:	80 e2       	ldi	r24, 0x20	; 32
+ 39a:	90 e0       	ldi	r25, 0x00	; 0
+ 39c:	fc 01       	movw	r30, r24
+ 39e:	80 81       	ld	r24, Z
+ 3a0:	60 e0       	ldi	r22, 0x00	; 0
+ 3a2:	a8 de       	rcall	.-688    	; 0xf4 <GetBit>
+ 3a4:	88 23       	and	r24, r24
+ 3a6:	61 f0       	breq	.+24     	; 0x3c0 <tick+0x290>
+ 3a8:	85 e2       	ldi	r24, 0x25	; 37
+ 3aa:	90 e0       	ldi	r25, 0x00	; 0
+ 3ac:	fc 01       	movw	r30, r24
+ 3ae:	80 81       	ld	r24, Z
+ 3b0:	8a 30       	cpi	r24, 0x0A	; 10
+ 3b2:	30 f4       	brcc	.+12     	; 0x3c0 <tick+0x290>
+                state = Stay; 
+ 3b4:	86 e0       	ldi	r24, 0x06	; 6
+ 3b6:	90 e0       	ldi	r25, 0x00	; 0
+ 3b8:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 3bc:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+            }
+            if (GetBit(PINA, 1) && PORTB >= 0x00){//decrement
+ 3c0:	80 e2       	ldi	r24, 0x20	; 32
+ 3c2:	90 e0       	ldi	r25, 0x00	; 0
+ 3c4:	fc 01       	movw	r30, r24
+ 3c6:	80 81       	ld	r24, Z
+ 3c8:	61 e0       	ldi	r22, 0x01	; 1
+ 3ca:	94 de       	rcall	.-728    	; 0xf4 <GetBit>
+ 3cc:	88 23       	and	r24, r24
+ 3ce:	51 f0       	breq	.+20     	; 0x3e4 <tick+0x2b4>
+ 3d0:	85 e2       	ldi	r24, 0x25	; 37
+ 3d2:	90 e0       	ldi	r25, 0x00	; 0
+ 3d4:	fc 01       	movw	r30, r24
+                state = Stay; 
+ 3d6:	80 81       	ld	r24, Z
+ 3d8:	86 e0       	ldi	r24, 0x06	; 6
+ 3da:	90 e0       	ldi	r25, 0x00	; 0
+ 3dc:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 3e0:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+            }
+            if (GetBit(PINA, 0) && GetBit(PINA, 1)){//both pressed together
+ 3e4:	80 e2       	ldi	r24, 0x20	; 32
+ 3e6:	90 e0       	ldi	r25, 0x00	; 0
+ 3e8:	fc 01       	movw	r30, r24
+ 3ea:	80 81       	ld	r24, Z
+ 3ec:	60 e0       	ldi	r22, 0x00	; 0
+ 3ee:	82 de       	rcall	.-764    	; 0xf4 <GetBit>
+ 3f0:	88 23       	and	r24, r24
+ 3f2:	79 f0       	breq	.+30     	; 0x412 <__LOCK_REGION_LENGTH__+0x12>
+ 3f4:	80 e2       	ldi	r24, 0x20	; 32
+ 3f6:	90 e0       	ldi	r25, 0x00	; 0
+ 3f8:	fc 01       	movw	r30, r24
+ 3fa:	80 81       	ld	r24, Z
+ 3fc:	61 e0       	ldi	r22, 0x01	; 1
+ 3fe:	7a de       	rcall	.-780    	; 0xf4 <GetBit>
+ 400:	88 23       	and	r24, r24
+                state = Reset;
+ 402:	39 f0       	breq	.+14     	; 0x412 <__LOCK_REGION_LENGTH__+0x12>
+ 404:	85 e0       	ldi	r24, 0x05	; 5
+ 406:	90 e0       	ldi	r25, 0x00	; 0
+ 408:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 40c:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+            }
+            else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
+ 410:	78 c0       	rjmp	.+240    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+ 412:	80 e2       	ldi	r24, 0x20	; 32
+ 414:	90 e0       	ldi	r25, 0x00	; 0
+ 416:	fc 01       	movw	r30, r24
+ 418:	80 81       	ld	r24, Z
+ 41a:	60 e0       	ldi	r22, 0x00	; 0
+ 41c:	6b de       	rcall	.-810    	; 0xf4 <GetBit>
+ 41e:	88 23       	and	r24, r24
+ 420:	09 f0       	breq	.+2      	; 0x424 <__LOCK_REGION_LENGTH__+0x24>
+ 422:	6f c0       	rjmp	.+222    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+ 424:	80 e2       	ldi	r24, 0x20	; 32
+ 426:	90 e0       	ldi	r25, 0x00	; 0
+ 428:	fc 01       	movw	r30, r24
+ 42a:	80 81       	ld	r24, Z
+ 42c:	61 e0       	ldi	r22, 0x01	; 1
+ 42e:	62 de       	rcall	.-828    	; 0xf4 <GetBit>
+ 430:	88 23       	and	r24, r24
+ 432:	09 f0       	breq	.+2      	; 0x436 <__LOCK_REGION_LENGTH__+0x36>
+ 434:	66 c0       	rjmp	.+204    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+ 436:	82 e0       	ldi	r24, 0x02	; 2
+ 438:	90 e0       	ldi	r25, 0x00	; 0
+ 43a:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 43e:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+        break;
+ 442:	5f c0       	rjmp	.+190    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
         
         case Reset:
-         state = Init; 
- 34c:	82 e0       	ldi	r24, 0x02	; 2
- 34e:	90 e0       	ldi	r25, 0x00	; 0
- 350:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 354:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+            if(GetBit(PINA, 0) && PORTB <= 0x09){//if incrementing
+ 444:	80 e2       	ldi	r24, 0x20	; 32
+ 446:	90 e0       	ldi	r25, 0x00	; 0
+ 448:	fc 01       	movw	r30, r24
+ 44a:	80 81       	ld	r24, Z
+ 44c:	60 e0       	ldi	r22, 0x00	; 0
+ 44e:	52 de       	rcall	.-860    	; 0xf4 <GetBit>
+ 450:	88 23       	and	r24, r24
+ 452:	69 f0       	breq	.+26     	; 0x46e <__LOCK_REGION_LENGTH__+0x6e>
+ 454:	85 e2       	ldi	r24, 0x25	; 37
+ 456:	90 e0       	ldi	r25, 0x00	; 0
+ 458:	fc 01       	movw	r30, r24
+ 45a:	80 81       	ld	r24, Z
+ 45c:	8a 30       	cpi	r24, 0x0A	; 10
+ 45e:	38 f4       	brcc	.+14     	; 0x46e <__LOCK_REGION_LENGTH__+0x6e>
+                state = Inc;//increment
+ 460:	83 e0       	ldi	r24, 0x03	; 3
+ 462:	90 e0       	ldi	r25, 0x00	; 0
+ 464:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 468:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+            }
+            else if (GetBit(PINA, 1) && PORTB >= 0x00){
+ 46c:	41 c0       	rjmp	.+130    	; 0x4f0 <__LOCK_REGION_LENGTH__+0xf0>
+ 46e:	80 e2       	ldi	r24, 0x20	; 32
+ 470:	90 e0       	ldi	r25, 0x00	; 0
+ 472:	fc 01       	movw	r30, r24
+ 474:	80 81       	ld	r24, Z
+ 476:	61 e0       	ldi	r22, 0x01	; 1
+ 478:	3d de       	rcall	.-902    	; 0xf4 <GetBit>
+ 47a:	88 23       	and	r24, r24
+ 47c:	59 f0       	breq	.+22     	; 0x494 <__LOCK_REGION_LENGTH__+0x94>
+ 47e:	85 e2       	ldi	r24, 0x25	; 37
+ 480:	90 e0       	ldi	r25, 0x00	; 0
+ 482:	fc 01       	movw	r30, r24
+                state = Dec; //decrement
+ 484:	80 81       	ld	r24, Z
+ 486:	84 e0       	ldi	r24, 0x04	; 4
+ 488:	90 e0       	ldi	r25, 0x00	; 0
+ 48a:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 48e:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+            }
+            else if (GetBit(PINA, 0) && GetBit(PINA, 1)){//both pressed together
+ 492:	2e c0       	rjmp	.+92     	; 0x4f0 <__LOCK_REGION_LENGTH__+0xf0>
+ 494:	80 e2       	ldi	r24, 0x20	; 32
+ 496:	90 e0       	ldi	r25, 0x00	; 0
+ 498:	fc 01       	movw	r30, r24
+ 49a:	80 81       	ld	r24, Z
+ 49c:	60 e0       	ldi	r22, 0x00	; 0
+ 49e:	2a de       	rcall	.-940    	; 0xf4 <GetBit>
+ 4a0:	88 23       	and	r24, r24
+ 4a2:	79 f0       	breq	.+30     	; 0x4c2 <__LOCK_REGION_LENGTH__+0xc2>
+ 4a4:	80 e2       	ldi	r24, 0x20	; 32
+ 4a6:	90 e0       	ldi	r25, 0x00	; 0
+ 4a8:	fc 01       	movw	r30, r24
+ 4aa:	80 81       	ld	r24, Z
+ 4ac:	61 e0       	ldi	r22, 0x01	; 1
+ 4ae:	22 de       	rcall	.-956    	; 0xf4 <GetBit>
+ 4b0:	88 23       	and	r24, r24
+                state = Reset;
+ 4b2:	39 f0       	breq	.+14     	; 0x4c2 <__LOCK_REGION_LENGTH__+0xc2>
+ 4b4:	85 e0       	ldi	r24, 0x05	; 5
+ 4b6:	90 e0       	ldi	r25, 0x00	; 0
+ 4b8:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 4bc:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+            }
+			else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
+ 4c0:	17 c0       	rjmp	.+46     	; 0x4f0 <__LOCK_REGION_LENGTH__+0xf0>
+ 4c2:	80 e2       	ldi	r24, 0x20	; 32
+ 4c4:	90 e0       	ldi	r25, 0x00	; 0
+ 4c6:	fc 01       	movw	r30, r24
+ 4c8:	80 81       	ld	r24, Z
+ 4ca:	60 e0       	ldi	r22, 0x00	; 0
+ 4cc:	13 de       	rcall	.-986    	; 0xf4 <GetBit>
+ 4ce:	88 23       	and	r24, r24
+ 4d0:	d1 f4       	brne	.+52     	; 0x506 <__LOCK_REGION_LENGTH__+0x106>
+ 4d2:	80 e2       	ldi	r24, 0x20	; 32
+ 4d4:	90 e0       	ldi	r25, 0x00	; 0
+ 4d6:	fc 01       	movw	r30, r24
+ 4d8:	80 81       	ld	r24, Z
+ 4da:	61 e0       	ldi	r22, 0x01	; 1
+ 4dc:	0b de       	rcall	.-1002   	; 0xf4 <GetBit>
+ 4de:	88 23       	and	r24, r24
+ 4e0:	91 f4       	brne	.+36     	; 0x506 <__LOCK_REGION_LENGTH__+0x106>
+ 4e2:	82 e0       	ldi	r24, 0x02	; 2
+ 4e4:	90 e0       	ldi	r25, 0x00	; 0
+ 4e6:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 4ea:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 4ee:	0b c0       	rjmp	.+22     	; 0x506 <__LOCK_REGION_LENGTH__+0x106>
         break;
- 358:	06 c0       	rjmp	.+12     	; 0x366 <tick+0x260>
+ 4f0:	0a c0       	rjmp	.+20     	; 0x506 <__LOCK_REGION_LENGTH__+0x106>
+ 4f2:	00 00       	nop
 
 		default:
-state = Start; 
- 35a:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
- 35e:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
 		break;
- 362:	01 c0       	rjmp	.+2      	; 0x366 <tick+0x260>
-              state = Reset;
-              
-         }
-        if (A0){state = Wait1;}
-        if (!A0){state = Init; }
+ 4f4:	09 c0       	rjmp	.+18     	; 0x508 <__LOCK_REGION_LENGTH__+0x108>
+ 4f6:	00 00       	nop
+			}
+			else if (GetBit(PINA, 0)&&GetBit(PINA, 1)){//both pressed together
+    			state = Reset;
+			}
+			else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
+		break;
+ 4f8:	07 c0       	rjmp	.+14     	; 0x508 <__LOCK_REGION_LENGTH__+0x108>
+ 4fa:	00 00       	nop
+            }
+            else if (GetBit(PINA, 0) && GetBit(PINA, 1)){//both pressed together
+                state = Reset;
+            }
+            else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
         break;
- 364:	00 00       	nop
+ 4fc:	05 c0       	rjmp	.+10     	; 0x508 <__LOCK_REGION_LENGTH__+0x108>
+ 4fe:	00 00       	nop
+            }
+            else if (GetBit(PINA, 0) && GetBit(PINA, 1)){//both pressed together
+                state = Reset;
+            }
+            else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
+        break;
+ 500:	03 c0       	rjmp	.+6      	; 0x508 <__LOCK_REGION_LENGTH__+0x108>
+ 502:	00 00       	nop
+            }
+            if (GetBit(PINA, 0) && GetBit(PINA, 1)){//both pressed together
+                state = Reset;
+            }
+            else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
+        break;
+ 504:	01 c0       	rjmp	.+2      	; 0x508 <__LOCK_REGION_LENGTH__+0x108>
+ 506:	00 00       	nop
+            }
+            else if (GetBit(PINA, 0) && GetBit(PINA, 1)){//both pressed together
+                state = Reset;
+            }
+			else if(!GetBit(PINA, 0) && !GetBit(PINA, 1)){ state = Init; }
+        break;
+ 508:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+
 		default:
-state = Start; 
 		break;
 	}
 	
 	switch (state) { //State Actions
- 366:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
- 36a:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
- 36e:	cc 01       	movw	r24, r24
- 370:	a0 e0       	ldi	r26, 0x00	; 0
- 372:	b0 e0       	ldi	r27, 0x00	; 0
- 374:	40 e0       	ldi	r20, 0x00	; 0
- 376:	50 e0       	ldi	r21, 0x00	; 0
- 378:	27 e0       	ldi	r18, 0x07	; 7
- 37a:	30 e0       	ldi	r19, 0x00	; 0
- 37c:	84 1b       	sub	r24, r20
- 37e:	95 0b       	sbc	r25, r21
- 380:	28 17       	cp	r18, r24
- 382:	39 07       	cpc	r19, r25
- 384:	80 f1       	brcs	.+96     	; 0x3e6 <tick+0x2e0>
- 386:	82 5b       	subi	r24, 0xB2	; 178
- 388:	9f 4f       	sbci	r25, 0xFF	; 255
- 38a:	fc 01       	movw	r30, r24
- 38c:	58 c0       	rjmp	.+176    	; 0x43e <__tablejump2__>
+ 50c:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 510:	83 30       	cpi	r24, 0x03	; 3
+ 512:	91 05       	cpc	r25, r1
+ 514:	c1 f0       	breq	.+48     	; 0x546 <__LOCK_REGION_LENGTH__+0x146>
+ 516:	84 30       	cpi	r24, 0x04	; 4
+ 518:	91 05       	cpc	r25, r1
+ 51a:	30 f4       	brcc	.+12     	; 0x528 <__LOCK_REGION_LENGTH__+0x128>
+ 51c:	81 30       	cpi	r24, 0x01	; 1
+ 51e:	91 05       	cpc	r25, r1
+ 520:	61 f0       	breq	.+24     	; 0x53a <__LOCK_REGION_LENGTH__+0x13a>
+ 522:	02 97       	sbiw	r24, 0x02	; 2
+ 524:	91 f1       	breq	.+100    	; 0x58a <__LOCK_REGION_LENGTH__+0x18a>
+
+		case Reset:
+		    PORTB = 0x00; break;
+
+		default:
+		break;	
+ 526:	32 c0       	rjmp	.+100    	; 0x58c <__LOCK_REGION_LENGTH__+0x18c>
+
+		default:
+		break;
+	}
+	
+	switch (state) { //State Actions
+ 528:	85 30       	cpi	r24, 0x05	; 5
+ 52a:	91 05       	cpc	r25, r1
+ 52c:	49 f1       	breq	.+82     	; 0x580 <__LOCK_REGION_LENGTH__+0x180>
+ 52e:	85 30       	cpi	r24, 0x05	; 5
+ 530:	91 05       	cpc	r25, r1
+ 532:	98 f0       	brcs	.+38     	; 0x55a <__LOCK_REGION_LENGTH__+0x15a>
+ 534:	06 97       	sbiw	r24, 0x06	; 6
+
+		case Reset:
+		    PORTB = 0x00; break;
+
+		default:
+		break;	
+ 536:	d9 f0       	breq	.+54     	; 0x56e <__LOCK_REGION_LENGTH__+0x16e>
+		break;
+	}
+	
+	switch (state) { //State Actions
 		case Start:
-		    PORTB = 0x07; 
- 38e:	85 e2       	ldi	r24, 0x25	; 37
- 390:	90 e0       	ldi	r25, 0x00	; 0
- 392:	27 e0       	ldi	r18, 0x07	; 7
- 394:	fc 01       	movw	r30, r24
- 396:	20 83       	st	Z, r18
-        break;
- 398:	2b c0       	rjmp	.+86     	; 0x3f0 <tick+0x2ea>
+		PORTB = 0x07; break;
+ 538:	29 c0       	rjmp	.+82     	; 0x58c <__LOCK_REGION_LENGTH__+0x18c>
+ 53a:	85 e2       	ldi	r24, 0x25	; 37
+ 53c:	90 e0       	ldi	r25, 0x00	; 0
+ 53e:	27 e0       	ldi	r18, 0x07	; 7
+ 540:	fc 01       	movw	r30, r24
+ 542:	20 83       	st	Z, r18
 				
 		case Init:
 			break;
 
 		case Inc:
-            if(PORTB<9)
- 39a:	85 e2       	ldi	r24, 0x25	; 37
- 39c:	90 e0       	ldi	r25, 0x00	; 0
- 39e:	fc 01       	movw	r30, r24
- 3a0:	80 81       	ld	r24, Z
- 3a2:	89 30       	cpi	r24, 0x09	; 9
- 3a4:	10 f5       	brcc	.+68     	; 0x3ea <tick+0x2e4>
-             PORTB= Increment(PORTB); break;
- 3a6:	05 e2       	ldi	r16, 0x25	; 37
- 3a8:	10 e0       	ldi	r17, 0x00	; 0
- 3aa:	85 e2       	ldi	r24, 0x25	; 37
- 3ac:	90 e0       	ldi	r25, 0x00	; 0
- 3ae:	fc 01       	movw	r30, r24
- 3b0:	80 81       	ld	r24, Z
- 3b2:	8d de       	rcall	.-742    	; 0xce <Increment>
- 3b4:	f8 01       	movw	r30, r16
- 3b6:	80 83       	st	Z, r24
- 3b8:	18 c0       	rjmp	.+48     	; 0x3ea <tick+0x2e4>
+            PORTB = Increment(PORTB); break;
+ 544:	23 c0       	rjmp	.+70     	; 0x58c <__LOCK_REGION_LENGTH__+0x18c>
+ 546:	05 e2       	ldi	r16, 0x25	; 37
+ 548:	10 e0       	ldi	r17, 0x00	; 0
+ 54a:	85 e2       	ldi	r24, 0x25	; 37
+ 54c:	90 e0       	ldi	r25, 0x00	; 0
+ 54e:	fc 01       	movw	r30, r24
+ 550:	80 81       	ld	r24, Z
+ 552:	b4 dd       	rcall	.-1176   	; 0xbc <Increment>
+ 554:	f8 01       	movw	r30, r16
+ 556:	80 83       	st	Z, r24
+ 558:	19 c0       	rjmp	.+50     	; 0x58c <__LOCK_REGION_LENGTH__+0x18c>
 		
 		case Dec:
-             if(PORTB>0)
- 3ba:	85 e2       	ldi	r24, 0x25	; 37
- 3bc:	90 e0       	ldi	r25, 0x00	; 0
- 3be:	fc 01       	movw	r30, r24
- 3c0:	80 81       	ld	r24, Z
- 3c2:	88 23       	and	r24, r24
- 3c4:	a1 f0       	breq	.+40     	; 0x3ee <tick+0x2e8>
-               PORTB =Decrement(PORTB) ; break;
- 3c6:	05 e2       	ldi	r16, 0x25	; 37
- 3c8:	10 e0       	ldi	r17, 0x00	; 0
- 3ca:	85 e2       	ldi	r24, 0x25	; 37
- 3cc:	90 e0       	ldi	r25, 0x00	; 0
- 3ce:	fc 01       	movw	r30, r24
- 3d0:	80 81       	ld	r24, Z
- 3d2:	8b de       	rcall	.-746    	; 0xea <Decrement>
- 3d4:	f8 01       	movw	r30, r16
- 3d6:	80 83       	st	Z, r24
- 3d8:	0a c0       	rjmp	.+20     	; 0x3ee <tick+0x2e8>
-case Wait1: break;
-case Wait2: break;
-		
-		case Reset:
-		    PORTB = 0x07; break;
- 3da:	85 e2       	ldi	r24, 0x25	; 37
- 3dc:	90 e0       	ldi	r25, 0x00	; 0
- 3de:	27 e0       	ldi	r18, 0x07	; 7
- 3e0:	fc 01       	movw	r30, r24
- 3e2:	20 83       	st	Z, r18
- 3e4:	05 c0       	rjmp	.+10     	; 0x3f0 <tick+0x2ea>
+            PORTB = Decrement(PORTB); break;		
+ 55a:	05 e2       	ldi	r16, 0x25	; 37
+ 55c:	10 e0       	ldi	r17, 0x00	; 0
+ 55e:	85 e2       	ldi	r24, 0x25	; 37
+ 560:	90 e0       	ldi	r25, 0x00	; 0
+ 562:	fc 01       	movw	r30, r24
+ 564:	80 81       	ld	r24, Z
+ 566:	b8 dd       	rcall	.-1168   	; 0xd8 <Decrement>
+ 568:	f8 01       	movw	r30, r16
+ 56a:	80 83       	st	Z, r24
+ 56c:	0f c0       	rjmp	.+30     	; 0x58c <__LOCK_REGION_LENGTH__+0x18c>
+ 56e:	85 e2       	ldi	r24, 0x25	; 37
 
-		default:
-		break;	
- 3e6:	00 00       	nop
- 3e8:	03 c0       	rjmp	.+6      	; 0x3f0 <tick+0x2ea>
+        case Stay://do not change portB
+            PORTB = PORTB; break;
+ 570:	90 e0       	ldi	r25, 0x00	; 0
+ 572:	25 e2       	ldi	r18, 0x25	; 37
+ 574:	30 e0       	ldi	r19, 0x00	; 0
+ 576:	f9 01       	movw	r30, r18
+ 578:	20 81       	ld	r18, Z
+ 57a:	fc 01       	movw	r30, r24
+ 57c:	20 83       	st	Z, r18
+ 57e:	06 c0       	rjmp	.+12     	; 0x58c <__LOCK_REGION_LENGTH__+0x18c>
+ 580:	85 e2       	ldi	r24, 0x25	; 37
+
+		case Reset:
+		    PORTB = 0x00; break;
+ 582:	90 e0       	ldi	r25, 0x00	; 0
+ 584:	fc 01       	movw	r30, r24
+ 586:	10 82       	st	Z, r1
+ 588:	01 c0       	rjmp	.+2      	; 0x58c <__LOCK_REGION_LENGTH__+0x18c>
+ 58a:	00 00       	nop
+	switch (state) { //State Actions
+		case Start:
+		PORTB = 0x07; break;
+				
 		case Init:
 			break;
-
-		case Inc:
-            if(PORTB<9)
-             PORTB= Increment(PORTB); break;
- 3ea:	00 00       	nop
- 3ec:	01 c0       	rjmp	.+2      	; 0x3f0 <tick+0x2ea>
-		
-		case Dec:
-             if(PORTB>0)
-               PORTB =Decrement(PORTB) ; break;
- 3ee:	00 00       	nop
-		    PORTB = 0x07; break;
+ 58c:	00 00       	nop
+		    PORTB = 0x00; break;
 
 		default:
 		break;	
 	}
 }
- 3f0:	00 00       	nop
- 3f2:	df 91       	pop	r29
- 3f4:	cf 91       	pop	r28
- 3f6:	1f 91       	pop	r17
- 3f8:	0f 91       	pop	r16
- 3fa:	08 95       	ret
+ 58e:	df 91       	pop	r29
+ 590:	cf 91       	pop	r28
+ 592:	1f 91       	pop	r17
+ 594:	0f 91       	pop	r16
+ 596:	08 95       	ret
 
-000003fc <main>:
+00000598 <main>:
+ 598:	cf 93       	push	r28
 int main(void)
 {
- 3fc:	cf 93       	push	r28
- 3fe:	df 93       	push	r29
- 400:	cd b7       	in	r28, 0x3d	; 61
- 402:	de b7       	in	r29, 0x3e	; 62
+ 59a:	df 93       	push	r29
+ 59c:	cd b7       	in	r28, 0x3d	; 61
+ 59e:	de b7       	in	r29, 0x3e	; 62
 	DDRA = 0x00; PORTA = 0xFF; //inputs, 2 buttons
- 404:	81 e2       	ldi	r24, 0x21	; 33
- 406:	90 e0       	ldi	r25, 0x00	; 0
- 408:	fc 01       	movw	r30, r24
- 40a:	10 82       	st	Z, r1
- 40c:	82 e2       	ldi	r24, 0x22	; 34
- 40e:	90 e0       	ldi	r25, 0x00	; 0
- 410:	2f ef       	ldi	r18, 0xFF	; 255
- 412:	fc 01       	movw	r30, r24
- 414:	20 83       	st	Z, r18
+ 5a0:	81 e2       	ldi	r24, 0x21	; 33
+ 5a2:	90 e0       	ldi	r25, 0x00	; 0
+ 5a4:	fc 01       	movw	r30, r24
+ 5a6:	10 82       	st	Z, r1
+ 5a8:	82 e2       	ldi	r24, 0x22	; 34
+ 5aa:	90 e0       	ldi	r25, 0x00	; 0
+ 5ac:	2f ef       	ldi	r18, 0xFF	; 255
+ 5ae:	fc 01       	movw	r30, r24
+ 5b0:	20 83       	st	Z, r18
 	DDRB = 0xFF; PORTB = 0x00; //outputs 
- 416:	84 e2       	ldi	r24, 0x24	; 36
- 418:	90 e0       	ldi	r25, 0x00	; 0
- 41a:	2f ef       	ldi	r18, 0xFF	; 255
- 41c:	fc 01       	movw	r30, r24
- 41e:	20 83       	st	Z, r18
- 420:	85 e2       	ldi	r24, 0x25	; 37
- 422:	90 e0       	ldi	r25, 0x00	; 0
- 424:	fc 01       	movw	r30, r24
- 426:	10 82       	st	Z, r1
-	PORTB = 0x07;
- 428:	85 e2       	ldi	r24, 0x25	; 37
- 42a:	90 e0       	ldi	r25, 0x00	; 0
- 42c:	27 e0       	ldi	r18, 0x07	; 7
- 42e:	fc 01       	movw	r30, r24
- 430:	20 83       	st	Z, r18
-	state = Start;//initialize state
- 432:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
- 436:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
-
+ 5b2:	84 e2       	ldi	r24, 0x24	; 36
+ 5b4:	90 e0       	ldi	r25, 0x00	; 0
+ 5b6:	2f ef       	ldi	r18, 0xFF	; 255
+ 5b8:	fc 01       	movw	r30, r24
+ 5ba:	20 83       	st	Z, r18
+ 5bc:	85 e2       	ldi	r24, 0x25	; 37
+ 5be:	90 e0       	ldi	r25, 0x00	; 0
+ 5c0:	fc 01       	movw	r30, r24
+ 5c2:	10 82       	st	Z, r1
 	
- 	while(1) { tick(); }
- 43a:	65 de       	rcall	.-822    	; 0x106 <tick>
- 43c:	fe cf       	rjmp	.-4      	; 0x43a <__LOCK_REGION_LENGTH__+0x3a>
+	state = bla;//initialize state
+ 5c4:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
+ 5c8:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+	
+	while(1) { tick();}
+ 5cc:	b1 dd       	rcall	.-1182   	; 0x130 <tick>
+ 5ce:	fe cf       	rjmp	.-4      	; 0x5cc <main+0x34>
 
-0000043e <__tablejump2__>:
- 43e:	ee 0f       	add	r30, r30
- 440:	ff 1f       	adc	r31, r31
- 442:	00 24       	eor	r0, r0
- 444:	00 1c       	adc	r0, r0
- 446:	0b be       	out	0x3b, r0	; 59
- 448:	07 90       	elpm	r0, Z+
- 44a:	f6 91       	elpm	r31, Z
- 44c:	e0 2d       	mov	r30, r0
- 44e:	09 94       	ijmp
+000005d0 <__tablejump2__>:
+ 5d0:	ee 0f       	add	r30, r30
+ 5d2:	ff 1f       	adc	r31, r31
+ 5d4:	00 24       	eor	r0, r0
+ 5d6:	00 1c       	adc	r0, r0
+ 5d8:	0b be       	out	0x3b, r0	; 59
+ 5da:	07 90       	elpm	r0, Z+
+ 5dc:	f6 91       	elpm	r31, Z
+ 5de:	e0 2d       	mov	r30, r0
+ 5e0:	09 94       	ijmp
 
-00000450 <_exit>:
- 450:	f8 94       	cli
+000005e2 <_exit>:
+ 5e2:	f8 94       	cli
 
-00000452 <__stop_program>:
- 452:	ff cf       	rjmp	.-2      	; 0x452 <__stop_program>
+000005e4 <__stop_program>:
+ 5e4:	ff cf       	rjmp	.-2      	; 0x5e4 <__stop_program>
