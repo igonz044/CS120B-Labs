@@ -13,10 +13,12 @@
 //#include “sm.h”
 
 
-enum States {Start, Init, PressOn, Stay, PressOff} state;
+enum States {Init, PressOn, Stay, PressOff} state;
 //press2, release2
 //Global variables here
-
+#define A0 (PINA & 0x01)
+#define A1 (~PINA & 0x02)
+#define A2 (~PINA & 0x04)
 
 unsigned char SetBit(unsigned char x, unsigned char k, unsigned char b) {
 	return (b ? x | (0x01 << k) : x & ~(0x01 << k));
@@ -29,33 +31,33 @@ unsigned char GetBit(unsigned char x, unsigned char k) {
 void tick()
 {
 	switch (state) { //Transitions
-		case Start:
+		/*case Start:
 			state = Init;
-		break;
+		break;*/
 		
 		case Init:
 		//Check if button has been pressed
-			if(GetBit(PINA, 0))
+			if(A0)
 			{ state = PressOn; }//pressed, go to next state 
 			else {state = Init; }//not pressed, stay in Init
 		break;
 			
 		case PressOn: //turn on led
-			if(GetBit(PINA, 0))
+			if(A0)
 			{ state = PressOn; } //next state
 			else {state = Stay; }//still pressed stay 
 		break;
 			
 		case Stay:
 		//Check if button has been released
-			if(GetBit(PINA, 0))
+			if(A0)
 			{ state = PressOff; }//not pressed, LED stays on
 			else {state = Stay; }//pressed, go to next state
 		break;
 		
 		case PressOff:
 		//Check if button has been pressed
-			if(GetBit(PINA, 0))
+			if(A0)
 			{ state = PressOff; }//still pressed, stay in PressOff
 			else {state = Init;}//pressed, go to back to Init 
 		break;
@@ -100,7 +102,7 @@ int main(void)
 	DDRA = 0x00; PORTA = 0xFF;
 	DDRB = 0xFF; PORTB = 0x00;
 	
-	state = Start;//initialize state
-	
+	//state = Start;//initialize state
+	state = Init;
 	while(1) { tick(); }
 }

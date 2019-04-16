@@ -17,6 +17,7 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
+ .text.GetBit   0x00000000       0x3c main.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
@@ -174,7 +175,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x356
+.text           0x00000000      0x32e
  *(.vectors)
  .vectors       0x00000000       0x8c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284/avr51/crtatmega1284.o
                 0x00000000                __vector_default
@@ -270,17 +271,15 @@ END GROUP
  *(.text.*)
  .text.SetBit   0x000000ae       0x5c main.o
                 0x000000ae                SetBit
- .text.GetBit   0x0000010a       0x3c main.o
-                0x0000010a                GetBit
- .text.tick     0x00000146      0x1d4 main.o
-                0x00000146                tick
- .text.main     0x0000031a       0x38 main.o
-                0x0000031a                main
-                0x00000352                . = ALIGN (0x2)
+ .text.tick     0x0000010a      0x1e4 main.o
+                0x0000010a                tick
+ .text.main     0x000002ee       0x3c main.o
+                0x000002ee                main
+                0x0000032a                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000352        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
-                0x00000352                _exit
-                0x00000352                exit
+ .fini9         0x0000032a        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
+                0x0000032a                _exit
+                0x0000032a                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -299,11 +298,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000352        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
+ .fini0         0x0000032a        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000356                _etext = .
+                0x0000032e                _etext = .
 
-.data           0x00800100        0x0 load address 0x00000356
+.data           0x00800100        0x0 load address 0x0000032e
                 [!provide]                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -323,8 +322,8 @@ END GROUP
  COMMON         0x00800100        0x2 main.o
                 0x00800100                state
                 0x00800102                PROVIDE (__bss_end, .)
-                0x00000356                __data_load_start = LOADADDR (.data)
-                0x00000356                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000032e                __data_load_start = LOADADDR (.data)
+                0x0000032e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800102        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
