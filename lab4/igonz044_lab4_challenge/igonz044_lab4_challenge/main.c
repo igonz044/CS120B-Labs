@@ -8,77 +8,69 @@
  *
  * I acknowledge all content contained herein, excluding template or example
  * code, is my own original work.
- */ 
+ */  
 #include <avr/io.h>
-enum States {Start, locked, entry1, wait, entry2, unlocked}state;
+enum States {Unlocked, Wait, Locked} state;
 
 //Global variables here
-#define A0 (~PINA & 0x01)
-#define A1 (~PINA & 0x02)
-#define A2 (~PINA & 0x03)
-
+#define A0 (PINA & 0x01)
+#define A1 (PINA & 0x02)
+#define A2 (PINA & 0x04)
+/*
 unsigned char SetBit(unsigned char x, unsigned char k, unsigned char b){
 	return (b ? x | (0x01 << k) : x & ~(0x01 << k));
 }
 unsigned char GetBit(unsigned char x, unsigned char k){
 	return ((x & (0x01 << k)) != 0);
 }
-
+*/
 void tick()
 {
 	switch(state)//Transitions
 	{
-		case Start:
-			state = locked;
+		case Unlocked:
+			if(A2&0x04 && !A0 && !A1)
+			{
+				state = Wait;
+			}
+			else
+			{
+				state = Unlocked;
+			}
 		break;
 		
-		case unlocked:
-			state = wait;
+		case Wait:
+			if(A1&0x02 && !A0 && !A2)
+			{
+				state = Locked;
+			}
+			else
+			{
+				state = Wait;
+			}
 		break;
 		
-		case entry1:
-			if(A2){ state = wait;}
-			else  { state = unlocked;}
-		break;
-		
-		case wait:
-			if(A2) { state = wait;}
-			else   {state = wait;}
-		break;
-		
-		case entry2:
-			if(A1){ state = locked;}
-			else  { state = unlocked;}
-		break;
-		
-		case locked://opens vault
+		case Locked://opens vault
 		break;
 
-		default: break;
+		default: 
+		break;
 	}	
 	switch (state) { //State Actions
-		case Start:
-		//state = locked;
+		case Unlocked:
+			PORTB = 0x01;
 		break;
 		
-		case unlocked:
+		case Wait:
+			PORTB = 0x01;
 		break;
 		
-		case entry1:
+		case Locked://opens vault
+			PORTB = 0x00;
 		break;
-		
-		case wait:
-		break;
-		
-		case entry2:
-		break;
-		
-		case locked:
 
-		PORTB = 0x01;
+		default: 
 		break;
-		
-		default: break;
 	}
 }
 int main(void)
@@ -86,7 +78,8 @@ int main(void)
 	DDRA = 0x00; PORTA = 0xFF; //inputs, 2 buttons
 	DDRB = 0xFF; PORTB = 0x00; //outputs
 	
-	state = Start;//initialize state
+	state = Unlocked;//initialize state
 	
 	while(1) { tick(); }
+	return 0;
 }
