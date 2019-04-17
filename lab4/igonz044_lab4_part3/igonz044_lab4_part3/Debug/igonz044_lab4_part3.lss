@@ -3,31 +3,31 @@ igonz044_lab4_part3.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  00000284  2**0
+  0 .data         00000000  00800100  00800100  00000272  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000210  00000000  00000000  00000074  2**1
+  1 .text         000001fe  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000002  00800100  00800100  00000284  2**0
+  2 .bss          00000002  00800100  00800100  00000272  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000284  2**0
+  3 .comment      00000030  00000000  00000000  00000272  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002b4  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002a4  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000038  00000000  00000000  000002f4  2**0
+  5 .debug_aranges 00000028  00000000  00000000  000002e4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000008ef  00000000  00000000  0000032c  2**0
+  6 .debug_info   00000863  00000000  00000000  0000030c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000007e8  00000000  00000000  00000c1b  2**0
+  7 .debug_abbrev 000007bd  00000000  00000000  00000b6f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000383  00000000  00000000  00001403  2**0
+  8 .debug_line   000002eb  00000000  00000000  0000132c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000094  00000000  00000000  00001788  2**2
+  9 .debug_frame  00000054  00000000  00000000  00001618  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000042a  00000000  00000000  0000181c  2**0
+ 10 .debug_str    0000040f  00000000  00000000  0000166c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000106  00000000  00000000  00001c46  2**0
+ 11 .debug_loc    00000076  00000000  00000000  00001a7b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000028  00000000  00000000  00001d4c  2**0
+ 12 .debug_ranges 00000018  00000000  00000000  00001af1  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -125,8 +125,8 @@ Disassembly of section .text:
   a2:	a2 30       	cpi	r26, 0x02	; 2
   a4:	b2 07       	cpc	r27, r18
   a6:	e1 f7       	brne	.-8      	; 0xa0 <.do_clear_bss_loop>
-  a8:	95 d0       	rcall	.+298    	; 0x1d4 <main>
-  aa:	b0 c0       	rjmp	.+352    	; 0x20c <_exit>
+  a8:	8c d0       	rcall	.+280    	; 0x1c2 <main>
+  aa:	a7 c0       	rjmp	.+334    	; 0x1fa <_exit>
 
 000000ac <__bad_interrupt>:
   ac:	a9 cf       	rjmp	.-174    	; 0x0 <__vectors>
@@ -135,7 +135,7 @@ Disassembly of section .text:
 unsigned char GetBit(unsigned char x, unsigned char k){
 	return ((x & (0x01 << k)) != 0);
 }
-
+*/
 void tick()
 {
   ae:	cf 93       	push	r28
@@ -145,300 +145,249 @@ void tick()
 	switch(state)//Transitions
   b6:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
   ba:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
-  be:	82 30       	cpi	r24, 0x02	; 2
+  be:	81 30       	cpi	r24, 0x01	; 1
   c0:	91 05       	cpc	r25, r1
-  c2:	01 f1       	breq	.+64     	; 0x104 <tick+0x56>
-  c4:	83 30       	cpi	r24, 0x03	; 3
+  c2:	89 f1       	breq	.+98     	; 0x126 <tick+0x78>
+  c4:	81 30       	cpi	r24, 0x01	; 1
   c6:	91 05       	cpc	r25, r1
-  c8:	28 f4       	brcc	.+10     	; 0xd4 <tick+0x26>
-  ca:	00 97       	sbiw	r24, 0x00	; 0
-  cc:	69 f0       	breq	.+26     	; 0xe8 <tick+0x3a>
-  ce:	01 97       	sbiw	r24, 0x01	; 1
-  d0:	91 f0       	breq	.+36     	; 0xf6 <tick+0x48>
-		break;
+  c8:	20 f0       	brcs	.+8      	; 0xd2 <tick+0x24>
+  ca:	02 97       	sbiw	r24, 0x02	; 2
+  cc:	09 f4       	brne	.+2      	; 0xd0 <tick+0x22>
+  ce:	57 c0       	rjmp	.+174    	; 0x17e <tick+0xd0>
 		
-		case unlocked://opens vault
+		case Unlocked://opens vault
 		break;
 
-		default: break;
-  d2:	55 c0       	rjmp	.+170    	; 0x17e <tick+0xd0>
-	return ((x & (0x01 << k)) != 0);
-}
-
-void tick()
-{
-	switch(state)//Transitions
-  d4:	84 30       	cpi	r24, 0x04	; 4
-  d6:	91 05       	cpc	r25, r1
-  d8:	e9 f1       	breq	.+122    	; 0x154 <tick+0xa6>
-  da:	84 30       	cpi	r24, 0x04	; 4
-  dc:	91 05       	cpc	r25, r1
-  de:	30 f1       	brcs	.+76     	; 0x12c <tick+0x7e>
-  e0:	05 97       	sbiw	r24, 0x05	; 5
-  e2:	09 f4       	brne	.+2      	; 0xe6 <tick+0x38>
-  e4:	4b c0       	rjmp	.+150    	; 0x17c <tick+0xce>
+		default: 
 		break;
-		
-		case unlocked://opens vault
-		break;
-
-		default: break;
-  e6:	4b c0       	rjmp	.+150    	; 0x17e <tick+0xd0>
+  d0:	57 c0       	rjmp	.+174    	; 0x180 <tick+0xd2>
 void tick()
 {
 	switch(state)//Transitions
 	{
-		case Start:
-			state = locked;
-  e8:	81 e0       	ldi	r24, 0x01	; 1
-  ea:	90 e0       	ldi	r25, 0x00	; 0
-  ec:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
-  f0:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+		case Locked:
+			if(A2&0x04 && !A0 && !A1)
+  d2:	80 e2       	ldi	r24, 0x20	; 32
+  d4:	90 e0       	ldi	r25, 0x00	; 0
+  d6:	fc 01       	movw	r30, r24
+  d8:	80 81       	ld	r24, Z
+  da:	88 2f       	mov	r24, r24
+  dc:	90 e0       	ldi	r25, 0x00	; 0
+  de:	84 70       	andi	r24, 0x04	; 4
+  e0:	99 27       	eor	r25, r25
+  e2:	89 2b       	or	r24, r25
+  e4:	d9 f0       	breq	.+54     	; 0x11c <tick+0x6e>
+  e6:	80 e2       	ldi	r24, 0x20	; 32
+  e8:	90 e0       	ldi	r25, 0x00	; 0
+  ea:	fc 01       	movw	r30, r24
+  ec:	80 81       	ld	r24, Z
+  ee:	88 2f       	mov	r24, r24
+  f0:	90 e0       	ldi	r25, 0x00	; 0
+  f2:	81 70       	andi	r24, 0x01	; 1
+  f4:	99 27       	eor	r25, r25
+  f6:	89 2b       	or	r24, r25
+  f8:	89 f4       	brne	.+34     	; 0x11c <tick+0x6e>
+  fa:	80 e2       	ldi	r24, 0x20	; 32
+  fc:	90 e0       	ldi	r25, 0x00	; 0
+  fe:	fc 01       	movw	r30, r24
+ 100:	80 81       	ld	r24, Z
+ 102:	88 2f       	mov	r24, r24
+ 104:	90 e0       	ldi	r25, 0x00	; 0
+ 106:	82 70       	andi	r24, 0x02	; 2
+ 108:	99 27       	eor	r25, r25
+ 10a:	89 2b       	or	r24, r25
+ 10c:	39 f4       	brne	.+14     	; 0x11c <tick+0x6e>
+			{
+				state = Wait;
+ 10e:	81 e0       	ldi	r24, 0x01	; 1
+ 110:	90 e0       	ldi	r25, 0x00	; 0
+ 112:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 116:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+			}
+			else
+			{
+				state = Locked;
+			}
 		break;
-  f4:	44 c0       	rjmp	.+136    	; 0x17e <tick+0xd0>
+ 11a:	32 c0       	rjmp	.+100    	; 0x180 <tick+0xd2>
+			{
+				state = Wait;
+			}
+			else
+			{
+				state = Locked;
+ 11c:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
+ 120:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+			}
+		break;
+ 124:	2d c0       	rjmp	.+90     	; 0x180 <tick+0xd2>
 		
-		case locked:
-			state = wait;
-  f6:	83 e0       	ldi	r24, 0x03	; 3
-  f8:	90 e0       	ldi	r25, 0x00	; 0
-  fa:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
-  fe:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+		case Wait:
+			if(A1&0x02 && !A0 && !A2)
+ 126:	80 e2       	ldi	r24, 0x20	; 32
+ 128:	90 e0       	ldi	r25, 0x00	; 0
+ 12a:	fc 01       	movw	r30, r24
+ 12c:	80 81       	ld	r24, Z
+ 12e:	88 2f       	mov	r24, r24
+ 130:	90 e0       	ldi	r25, 0x00	; 0
+ 132:	82 70       	andi	r24, 0x02	; 2
+ 134:	99 27       	eor	r25, r25
+ 136:	89 2b       	or	r24, r25
+ 138:	d9 f0       	breq	.+54     	; 0x170 <tick+0xc2>
+ 13a:	80 e2       	ldi	r24, 0x20	; 32
+ 13c:	90 e0       	ldi	r25, 0x00	; 0
+ 13e:	fc 01       	movw	r30, r24
+ 140:	80 81       	ld	r24, Z
+ 142:	88 2f       	mov	r24, r24
+ 144:	90 e0       	ldi	r25, 0x00	; 0
+ 146:	81 70       	andi	r24, 0x01	; 1
+ 148:	99 27       	eor	r25, r25
+ 14a:	89 2b       	or	r24, r25
+ 14c:	89 f4       	brne	.+34     	; 0x170 <tick+0xc2>
+ 14e:	80 e2       	ldi	r24, 0x20	; 32
+ 150:	90 e0       	ldi	r25, 0x00	; 0
+ 152:	fc 01       	movw	r30, r24
+ 154:	80 81       	ld	r24, Z
+ 156:	88 2f       	mov	r24, r24
+ 158:	90 e0       	ldi	r25, 0x00	; 0
+ 15a:	84 70       	andi	r24, 0x04	; 4
+ 15c:	99 27       	eor	r25, r25
+ 15e:	89 2b       	or	r24, r25
+ 160:	39 f4       	brne	.+14     	; 0x170 <tick+0xc2>
+			{
+				state = Unlocked;
+ 162:	82 e0       	ldi	r24, 0x02	; 2
+ 164:	90 e0       	ldi	r25, 0x00	; 0
+ 166:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 16a:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+			}
+			else
+			{
+				state = Wait;
+			}
 		break;
- 102:	3d c0       	rjmp	.+122    	; 0x17e <tick+0xd0>
+ 16e:	08 c0       	rjmp	.+16     	; 0x180 <tick+0xd2>
+			{
+				state = Unlocked;
+			}
+			else
+			{
+				state = Wait;
+ 170:	81 e0       	ldi	r24, 0x01	; 1
+ 172:	90 e0       	ldi	r25, 0x00	; 0
+ 174:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 178:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+			}
+		break;
+ 17c:	01 c0       	rjmp	.+2      	; 0x180 <tick+0xd2>
 		
-		case entry1:
-			if(PINA && 0x04){ state = wait;}
- 104:	80 e2       	ldi	r24, 0x20	; 32
- 106:	90 e0       	ldi	r25, 0x00	; 0
- 108:	fc 01       	movw	r30, r24
- 10a:	80 81       	ld	r24, Z
- 10c:	88 23       	and	r24, r24
- 10e:	39 f0       	breq	.+14     	; 0x11e <tick+0x70>
- 110:	83 e0       	ldi	r24, 0x03	; 3
- 112:	90 e0       	ldi	r25, 0x00	; 0
- 114:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 118:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-			else  { state = locked;}
+		case Unlocked://opens vault
 		break;
- 11c:	30 c0       	rjmp	.+96     	; 0x17e <tick+0xd0>
-			state = wait;
-		break;
-		
-		case entry1:
-			if(PINA && 0x04){ state = wait;}
-			else  { state = locked;}
- 11e:	81 e0       	ldi	r24, 0x01	; 1
- 120:	90 e0       	ldi	r25, 0x00	; 0
- 122:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 126:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-		break;
- 12a:	29 c0       	rjmp	.+82     	; 0x17e <tick+0xd0>
-		
-		case wait:
-			if(!(PINA && 0x04)) { state = entry2;}
- 12c:	80 e2       	ldi	r24, 0x20	; 32
- 12e:	90 e0       	ldi	r25, 0x00	; 0
- 130:	fc 01       	movw	r30, r24
- 132:	80 81       	ld	r24, Z
- 134:	88 23       	and	r24, r24
- 136:	39 f4       	brne	.+14     	; 0x146 <tick+0x98>
- 138:	84 e0       	ldi	r24, 0x04	; 4
- 13a:	90 e0       	ldi	r25, 0x00	; 0
- 13c:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 140:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-			else   {state = wait;}
-		break;
- 144:	1c c0       	rjmp	.+56     	; 0x17e <tick+0xd0>
-			else  { state = locked;}
-		break;
-		
-		case wait:
-			if(!(PINA && 0x04)) { state = entry2;}
-			else   {state = wait;}
- 146:	83 e0       	ldi	r24, 0x03	; 3
- 148:	90 e0       	ldi	r25, 0x00	; 0
- 14a:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 14e:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-		break;
- 152:	15 c0       	rjmp	.+42     	; 0x17e <tick+0xd0>
-		
-		case entry2:
-			if(PINA && 0x02){ state = unlocked;}
- 154:	80 e2       	ldi	r24, 0x20	; 32
- 156:	90 e0       	ldi	r25, 0x00	; 0
- 158:	fc 01       	movw	r30, r24
- 15a:	80 81       	ld	r24, Z
- 15c:	88 23       	and	r24, r24
- 15e:	39 f0       	breq	.+14     	; 0x16e <tick+0xc0>
- 160:	85 e0       	ldi	r24, 0x05	; 5
- 162:	90 e0       	ldi	r25, 0x00	; 0
- 164:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 168:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-			else  { state = locked;}
-		break;
- 16c:	08 c0       	rjmp	.+16     	; 0x17e <tick+0xd0>
-			else   {state = wait;}
-		break;
-		
-		case entry2:
-			if(PINA && 0x02){ state = unlocked;}
-			else  { state = locked;}
- 16e:	81 e0       	ldi	r24, 0x01	; 1
- 170:	90 e0       	ldi	r25, 0x00	; 0
- 172:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 176:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-		break;
- 17a:	01 c0       	rjmp	.+2      	; 0x17e <tick+0xd0>
-		
-		case unlocked://opens vault
-		break;
- 17c:	00 00       	nop
+ 17e:	00 00       	nop
 
-		default: break;
+		default: 
+		break;
 	}	
 	switch (state) { //State Actions
- 17e:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
- 182:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
- 186:	82 30       	cpi	r24, 0x02	; 2
- 188:	91 05       	cpc	r25, r1
- 18a:	b9 f0       	breq	.+46     	; 0x1ba <tick+0x10c>
- 18c:	83 30       	cpi	r24, 0x03	; 3
- 18e:	91 05       	cpc	r25, r1
- 190:	28 f4       	brcc	.+10     	; 0x19c <tick+0xee>
- 192:	00 97       	sbiw	r24, 0x00	; 0
- 194:	a1 f0       	breq	.+40     	; 0x1be <tick+0x110>
- 196:	01 97       	sbiw	r24, 0x01	; 1
- 198:	a1 f0       	breq	.+40     	; 0x1c2 <tick+0x114>
-		case unlocked:
-		PORTB = 0x01;
-
-		break;
-		
-		default: break;
- 19a:	18 c0       	rjmp	.+48     	; 0x1cc <tick+0x11e>
-		case unlocked://opens vault
+ 180:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 184:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 188:	81 30       	cpi	r24, 0x01	; 1
+ 18a:	91 05       	cpc	r25, r1
+ 18c:	59 f0       	breq	.+22     	; 0x1a4 <tick+0xf6>
+ 18e:	81 30       	cpi	r24, 0x01	; 1
+ 190:	91 05       	cpc	r25, r1
+ 192:	18 f0       	brcs	.+6      	; 0x19a <tick+0xec>
+ 194:	02 97       	sbiw	r24, 0x02	; 2
+ 196:	59 f0       	breq	.+22     	; 0x1ae <tick+0x100>
+		case Unlocked://opens vault
+			PORTB = 0x01;
 		break;
 
-		default: break;
+		default: 
+		break;
+ 198:	10 c0       	rjmp	.+32     	; 0x1ba <tick+0x10c>
+		default: 
+		break;
 	}	
 	switch (state) { //State Actions
- 19c:	84 30       	cpi	r24, 0x04	; 4
- 19e:	91 05       	cpc	r25, r1
- 1a0:	91 f0       	breq	.+36     	; 0x1c6 <tick+0x118>
- 1a2:	84 30       	cpi	r24, 0x04	; 4
- 1a4:	91 05       	cpc	r25, r1
- 1a6:	88 f0       	brcs	.+34     	; 0x1ca <tick+0x11c>
- 1a8:	05 97       	sbiw	r24, 0x05	; 5
- 1aa:	09 f0       	breq	.+2      	; 0x1ae <tick+0x100>
-		case unlocked:
-		PORTB = 0x01;
-
+		case Locked:
+			PORTB = 0x00;
+ 19a:	85 e2       	ldi	r24, 0x25	; 37
+ 19c:	90 e0       	ldi	r25, 0x00	; 0
+ 19e:	fc 01       	movw	r30, r24
+ 1a0:	10 82       	st	Z, r1
 		break;
+ 1a2:	0b c0       	rjmp	.+22     	; 0x1ba <tick+0x10c>
 		
-		default: break;
- 1ac:	0f c0       	rjmp	.+30     	; 0x1cc <tick+0x11e>
-		
-		case entry2:
+		case Wait:
+			PORTB = 0x00;
+ 1a4:	85 e2       	ldi	r24, 0x25	; 37
+ 1a6:	90 e0       	ldi	r25, 0x00	; 0
+ 1a8:	fc 01       	movw	r30, r24
+ 1aa:	10 82       	st	Z, r1
 		break;
+ 1ac:	06 c0       	rjmp	.+12     	; 0x1ba <tick+0x10c>
 		
-		case unlocked:
-		PORTB = 0x01;
+		case Unlocked://opens vault
+			PORTB = 0x01;
  1ae:	85 e2       	ldi	r24, 0x25	; 37
  1b0:	90 e0       	ldi	r25, 0x00	; 0
  1b2:	21 e0       	ldi	r18, 0x01	; 1
  1b4:	fc 01       	movw	r30, r24
  1b6:	20 83       	st	Z, r18
+		break;
+ 1b8:	00 00       	nop
 
+		default: 
 		break;
- 1b8:	09 c0       	rjmp	.+18     	; 0x1cc <tick+0x11e>
-		
-		case locked:
-		break;
-		
-		case entry1:
-		break;
- 1ba:	00 00       	nop
- 1bc:	07 c0       	rjmp	.+14     	; 0x1cc <tick+0x11e>
-		default: break;
-	}	
-	switch (state) { //State Actions
-		case Start:
-		//state = locked;
-		break;
- 1be:	00 00       	nop
- 1c0:	05 c0       	rjmp	.+10     	; 0x1cc <tick+0x11e>
-		
-		case locked:
-		break;
- 1c2:	00 00       	nop
- 1c4:	03 c0       	rjmp	.+6      	; 0x1cc <tick+0x11e>
-		
-		case wait:
-		break;
-		
-		case entry2:
-		break;
- 1c6:	00 00       	nop
- 1c8:	01 c0       	rjmp	.+2      	; 0x1cc <tick+0x11e>
-		
-		case entry1:
-		break;
-		
-		case wait:
-		break;
- 1ca:	00 00       	nop
-
-		break;
-		
-		default: break;
 	}
 }
- 1cc:	00 00       	nop
- 1ce:	df 91       	pop	r29
- 1d0:	cf 91       	pop	r28
- 1d2:	08 95       	ret
+ 1ba:	00 00       	nop
+ 1bc:	df 91       	pop	r29
+ 1be:	cf 91       	pop	r28
+ 1c0:	08 95       	ret
 
-000001d4 <main>:
+000001c2 <main>:
 int main(void)
 {
- 1d4:	cf 93       	push	r28
- 1d6:	df 93       	push	r29
- 1d8:	cd b7       	in	r28, 0x3d	; 61
- 1da:	de b7       	in	r29, 0x3e	; 62
+ 1c2:	cf 93       	push	r28
+ 1c4:	df 93       	push	r29
+ 1c6:	cd b7       	in	r28, 0x3d	; 61
+ 1c8:	de b7       	in	r29, 0x3e	; 62
 	DDRA = 0x00; PORTA = 0xFF; //inputs, 2 buttons
- 1dc:	81 e2       	ldi	r24, 0x21	; 33
- 1de:	90 e0       	ldi	r25, 0x00	; 0
- 1e0:	fc 01       	movw	r30, r24
- 1e2:	10 82       	st	Z, r1
- 1e4:	82 e2       	ldi	r24, 0x22	; 34
- 1e6:	90 e0       	ldi	r25, 0x00	; 0
- 1e8:	2f ef       	ldi	r18, 0xFF	; 255
- 1ea:	fc 01       	movw	r30, r24
- 1ec:	20 83       	st	Z, r18
+ 1ca:	81 e2       	ldi	r24, 0x21	; 33
+ 1cc:	90 e0       	ldi	r25, 0x00	; 0
+ 1ce:	fc 01       	movw	r30, r24
+ 1d0:	10 82       	st	Z, r1
+ 1d2:	82 e2       	ldi	r24, 0x22	; 34
+ 1d4:	90 e0       	ldi	r25, 0x00	; 0
+ 1d6:	2f ef       	ldi	r18, 0xFF	; 255
+ 1d8:	fc 01       	movw	r30, r24
+ 1da:	20 83       	st	Z, r18
 	DDRB = 0xFF; PORTB = 0x00; //outputs
- 1ee:	84 e2       	ldi	r24, 0x24	; 36
- 1f0:	90 e0       	ldi	r25, 0x00	; 0
- 1f2:	2f ef       	ldi	r18, 0xFF	; 255
- 1f4:	fc 01       	movw	r30, r24
- 1f6:	20 83       	st	Z, r18
- 1f8:	85 e2       	ldi	r24, 0x25	; 37
- 1fa:	90 e0       	ldi	r25, 0x00	; 0
- 1fc:	fc 01       	movw	r30, r24
- 1fe:	10 82       	st	Z, r1
+ 1dc:	84 e2       	ldi	r24, 0x24	; 36
+ 1de:	90 e0       	ldi	r25, 0x00	; 0
+ 1e0:	2f ef       	ldi	r18, 0xFF	; 255
+ 1e2:	fc 01       	movw	r30, r24
+ 1e4:	20 83       	st	Z, r18
+ 1e6:	85 e2       	ldi	r24, 0x25	; 37
+ 1e8:	90 e0       	ldi	r25, 0x00	; 0
+ 1ea:	fc 01       	movw	r30, r24
+ 1ec:	10 82       	st	Z, r1
 	
-	state = Start;//initialize state
- 200:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
- 204:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+	state = Locked;//initialize state
+ 1ee:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
+ 1f2:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
 	
 	while(1) { 
 
 		tick();
- 208:	52 df       	rcall	.-348    	; 0xae <tick>
+ 1f6:	5b df       	rcall	.-330    	; 0xae <tick>
 	}
- 20a:	fe cf       	rjmp	.-4      	; 0x208 <main+0x34>
+ 1f8:	fe cf       	rjmp	.-4      	; 0x1f6 <main+0x34>
 
-0000020c <_exit>:
- 20c:	f8 94       	cli
+000001fa <_exit>:
+ 1fa:	f8 94       	cli
 
-0000020e <__stop_program>:
- 20e:	ff cf       	rjmp	.-2      	; 0x20e <__stop_program>
+000001fc <__stop_program>:
+ 1fc:	ff cf       	rjmp	.-2      	; 0x1fc <__stop_program>

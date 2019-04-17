@@ -13,11 +13,11 @@
 enum States {Locked, Wait, Unlocked} state;
 
 //Global variables here
-/*
-#define A0 (~PINA & 0x01)
-#define A1 (~PINA & 0x02)
-#define A2 (~PINA & 0x04)
 
+#define A0 (PINA & 0x01)
+#define A1 (PINA & 0x02)
+#define A2 (PINA & 0x04)
+/*
 unsigned char SetBit(unsigned char x, unsigned char k, unsigned char b){
 	return (b ? x | (0x01 << k) : x & ~(0x01 << k));
 }
@@ -30,12 +30,25 @@ void tick()
 	switch(state)//Transitions
 	{
 		case Locked:
-			state = wait;
+			if(A2&0x04 && !A0 && !A1)
+			{
+				state = Wait;
+			}
+			else
+			{
+				state = Locked;
+			}
 		break;
 		
 		case Wait:
-			if(!(PINA && 0x04)) { state = entry2;}
-			else   {state = wait;}
+			if(A1&0x02 && !A0 && !A2)
+			{
+				state = Unlocked;
+			}
+			else
+			{
+				state = Wait;
+			}
 		break;
 		
 		case Unlocked://opens vault
@@ -46,15 +59,15 @@ void tick()
 	}	
 	switch (state) { //State Actions
 		case Locked:
-			state = wait;
+			PORTB = 0x00;
 		break;
 		
 		case Wait:
-			if(!(PINA && 0x04)) { state = entry2;}
-			else   {state = wait;}
+			PORTB = 0x00;
 		break;
 		
 		case Unlocked://opens vault
+			PORTB = 0x01;
 		break;
 
 		default: 
@@ -66,7 +79,7 @@ int main(void)
 	DDRA = 0x00; PORTA = 0xFF; //inputs, 2 buttons
 	DDRB = 0xFF; PORTB = 0x00; //outputs
 	
-	state = Start;//initialize state
+	state = Locked;//initialize state
 	
 	while(1) { 
 
