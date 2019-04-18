@@ -50,7 +50,7 @@ void tick()
 			}
 			else if(A7)
 			{
-				state = Wait;
+				state = Locked;
 			}
 			else
 			{
@@ -59,7 +59,7 @@ void tick()
 		break;
 		
 		case Unlocked://opens vault
-		if(A0 && A1 && A2)// to lock it back up
+		if(A7)// to lock it back up
 		{
 			state = Locked;
 		}
