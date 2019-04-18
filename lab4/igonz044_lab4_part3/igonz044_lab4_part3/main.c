@@ -4,7 +4,9 @@
  * Assignment: igonz044_lab4_part3.c 
  * Created: 4/12/2019 10:36:24 AM
  * Author : ucrcse
- * Exercise Description: Security System
+ * Exercise Description: Security Vault, there is a key pad ordered #yx. 
+ * The sequence # followed by y unlocks vault and turns on PB0 LED
+ * To lock it back up from inside you press A7
  *
  * I acknowledge all content contained herein, excluding template or example
  * code, is my own original work.
@@ -17,7 +19,7 @@ enum States {Locked, Wait, Unlocked} state;
 #define A0 (PINA & 0x01)
 #define A1 (PINA & 0x02)
 #define A2 (PINA & 0x04)
-#define A7 (PINA & 0x07)
+#define A7 (PINA & 0x80)
 /*
 unsigned char SetBit(unsigned char x, unsigned char k, unsigned char b){
 	return (b ? x | (0x01 << k) : x & ~(0x01 << k));
@@ -46,7 +48,7 @@ void tick()
 			{
 				state = Unlocked;
 			}
-			else if(!A1 && !A0 && !A2)
+			else if(A7)
 			{
 				state = Wait;
 			}
