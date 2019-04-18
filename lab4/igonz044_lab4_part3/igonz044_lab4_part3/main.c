@@ -17,6 +17,7 @@ enum States {Locked, Wait, Unlocked} state;
 #define A0 (PINA & 0x01)
 #define A1 (PINA & 0x02)
 #define A2 (PINA & 0x04)
+#define A7 (PINA & 0x07)
 /*
 unsigned char SetBit(unsigned char x, unsigned char k, unsigned char b){
 	return (b ? x | (0x01 << k) : x & ~(0x01 << k));
@@ -30,7 +31,7 @@ void tick()
 	switch(state)//Transitions
 	{
 		case Locked:
-			if(A2&0x04 && !A0 && !A1)
+			if(A2 && !A0 && !A1)
 			{
 				state = Wait;
 			}
@@ -41,9 +42,13 @@ void tick()
 		break;
 		
 		case Wait:
-			if(A1&0x02 && !A0 && !A2)
+			if(A1 && !A0 && !A2)
 			{
 				state = Unlocked;
+			}
+			else if(!A1 && !A0 && !A2)
+			{
+				state = Wait;
 			}
 			else
 			{
@@ -52,11 +57,20 @@ void tick()
 		break;
 		
 		case Unlocked://opens vault
+		if(A0 && A1 && A2)// to lock it back up
+		{
+			state = Locked;
+		}
+		else
+		{
+			state = Unlocked;
+		}
 		break;
 
 		default: 
 		break;
-	}	
+	}
+	//////////////////////////////////////////
 	switch (state) { //State Actions
 		case Locked:
 			PORTB = 0x00;
@@ -81,9 +95,6 @@ int main(void)
 	
 	state = Locked;//initialize state
 	
-	while(1) { 
-
-		tick();
-	}
+	while(1) {tick();}
 	return 0;
 }
