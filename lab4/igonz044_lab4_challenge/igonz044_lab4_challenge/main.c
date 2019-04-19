@@ -10,7 +10,7 @@
  * code, is my own original work.
  */  
 #include <avr/io.h>
-enum States {Locked, Wait, Unlocked, Wait2, Unlocked2} state;
+enum States {Init, Locked, Wait, Unlocked, Wait2, Unlocked2} state;
 
 //Global variables here
 #define A0 (PINA & 0x01)
@@ -29,6 +29,10 @@ void tick()
 {
 	switch(state)//Transitions
 	{
+		case Init:
+		state = Locked;
+		break;
+		
 			case Locked:
 			if(A2 && !A0 && !A1)
 			{
@@ -80,26 +84,15 @@ void tick()
 				state = Wait2;
 			}
 		break;
-		
-		/*case Unlocked2://opens vault
-		if(A7)// to lock it back up
-		{
-			state = Locked;
-		}
-		else if(A2 && !A0 && !A1)
-		{
-			state = Wait2;
-		}
-		else
-		{
-			state = Unlocked2;
-		}
-		break;*/
 
 		default: 
 		break;
 	}	
 	switch (state) { //State Actions
+		case Init:
+		PORTB = 0x00;
+		break;
+		
 		case Locked:
 			PORTB = 0x00;
 		break;
@@ -126,7 +119,7 @@ int main(void)
 	DDRA = 0x00; PORTA = 0xFF; //inputs, 2 buttons
 	DDRB = 0xFF; PORTB = 0x00; //outputs
 	
-	state = Locked;//initialize state
+	state = Init;//initialize state
 	
 	while(1) { tick(); }
 	return 0;
