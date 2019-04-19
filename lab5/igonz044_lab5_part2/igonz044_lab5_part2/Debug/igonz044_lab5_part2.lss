@@ -1,0 +1,792 @@
+
+igonz044_lab5_part2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000520  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000004ac  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000001  00800100  00800100  00000520  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000520  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000550  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000048  00000000  00000000  00000590  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000945  00000000  00000000  000005d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000007f1  00000000  00000000  00000f1d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000004d7  00000000  00000000  0000170e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000d4  00000000  00000000  00001be8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000440  00000000  00000000  00001cbc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000196  00000000  00000000  000020fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000038  00000000  00000000  00002292  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	45 c0       	rjmp	.+138    	; 0x8c <__ctors_end>
+   2:	00 00       	nop
+   4:	53 c0       	rjmp	.+166    	; 0xac <__bad_interrupt>
+   6:	00 00       	nop
+   8:	51 c0       	rjmp	.+162    	; 0xac <__bad_interrupt>
+   a:	00 00       	nop
+   c:	4f c0       	rjmp	.+158    	; 0xac <__bad_interrupt>
+   e:	00 00       	nop
+  10:	4d c0       	rjmp	.+154    	; 0xac <__bad_interrupt>
+  12:	00 00       	nop
+  14:	4b c0       	rjmp	.+150    	; 0xac <__bad_interrupt>
+  16:	00 00       	nop
+  18:	49 c0       	rjmp	.+146    	; 0xac <__bad_interrupt>
+  1a:	00 00       	nop
+  1c:	47 c0       	rjmp	.+142    	; 0xac <__bad_interrupt>
+  1e:	00 00       	nop
+  20:	45 c0       	rjmp	.+138    	; 0xac <__bad_interrupt>
+  22:	00 00       	nop
+  24:	43 c0       	rjmp	.+134    	; 0xac <__bad_interrupt>
+  26:	00 00       	nop
+  28:	41 c0       	rjmp	.+130    	; 0xac <__bad_interrupt>
+  2a:	00 00       	nop
+  2c:	3f c0       	rjmp	.+126    	; 0xac <__bad_interrupt>
+  2e:	00 00       	nop
+  30:	3d c0       	rjmp	.+122    	; 0xac <__bad_interrupt>
+  32:	00 00       	nop
+  34:	3b c0       	rjmp	.+118    	; 0xac <__bad_interrupt>
+  36:	00 00       	nop
+  38:	39 c0       	rjmp	.+114    	; 0xac <__bad_interrupt>
+  3a:	00 00       	nop
+  3c:	37 c0       	rjmp	.+110    	; 0xac <__bad_interrupt>
+  3e:	00 00       	nop
+  40:	35 c0       	rjmp	.+106    	; 0xac <__bad_interrupt>
+  42:	00 00       	nop
+  44:	33 c0       	rjmp	.+102    	; 0xac <__bad_interrupt>
+  46:	00 00       	nop
+  48:	31 c0       	rjmp	.+98     	; 0xac <__bad_interrupt>
+  4a:	00 00       	nop
+  4c:	2f c0       	rjmp	.+94     	; 0xac <__bad_interrupt>
+  4e:	00 00       	nop
+  50:	2d c0       	rjmp	.+90     	; 0xac <__bad_interrupt>
+  52:	00 00       	nop
+  54:	2b c0       	rjmp	.+86     	; 0xac <__bad_interrupt>
+  56:	00 00       	nop
+  58:	29 c0       	rjmp	.+82     	; 0xac <__bad_interrupt>
+  5a:	00 00       	nop
+  5c:	27 c0       	rjmp	.+78     	; 0xac <__bad_interrupt>
+  5e:	00 00       	nop
+  60:	25 c0       	rjmp	.+74     	; 0xac <__bad_interrupt>
+  62:	00 00       	nop
+  64:	23 c0       	rjmp	.+70     	; 0xac <__bad_interrupt>
+  66:	00 00       	nop
+  68:	21 c0       	rjmp	.+66     	; 0xac <__bad_interrupt>
+  6a:	00 00       	nop
+  6c:	1f c0       	rjmp	.+62     	; 0xac <__bad_interrupt>
+  6e:	00 00       	nop
+  70:	1d c0       	rjmp	.+58     	; 0xac <__bad_interrupt>
+  72:	00 00       	nop
+  74:	1b c0       	rjmp	.+54     	; 0xac <__bad_interrupt>
+  76:	00 00       	nop
+  78:	19 c0       	rjmp	.+50     	; 0xac <__bad_interrupt>
+  7a:	00 00       	nop
+  7c:	17 c0       	rjmp	.+46     	; 0xac <__bad_interrupt>
+  7e:	00 00       	nop
+  80:	15 c0       	rjmp	.+42     	; 0xac <__bad_interrupt>
+  82:	00 00       	nop
+  84:	13 c0       	rjmp	.+38     	; 0xac <__bad_interrupt>
+  86:	00 00       	nop
+  88:	11 c0       	rjmp	.+34     	; 0xac <__bad_interrupt>
+	...
+
+0000008c <__ctors_end>:
+  8c:	11 24       	eor	r1, r1
+  8e:	1f be       	out	0x3f, r1	; 63
+  90:	cf ef       	ldi	r28, 0xFF	; 255
+  92:	d0 e4       	ldi	r29, 0x40	; 64
+  94:	de bf       	out	0x3e, r29	; 62
+  96:	cd bf       	out	0x3d, r28	; 61
+
+00000098 <__do_clear_bss>:
+  98:	21 e0       	ldi	r18, 0x01	; 1
+  9a:	a0 e0       	ldi	r26, 0x00	; 0
+  9c:	b1 e0       	ldi	r27, 0x01	; 1
+  9e:	01 c0       	rjmp	.+2      	; 0xa2 <.do_clear_bss_start>
+
+000000a0 <.do_clear_bss_loop>:
+  a0:	1d 92       	st	X+, r1
+
+000000a2 <.do_clear_bss_start>:
+  a2:	a1 30       	cpi	r26, 0x01	; 1
+  a4:	b2 07       	cpc	r27, r18
+  a6:	e1 f7       	brne	.-8      	; 0xa0 <.do_clear_bss_loop>
+  a8:	e5 d1       	rcall	.+970    	; 0x474 <main>
+  aa:	fe c1       	rjmp	.+1020   	; 0x4a8 <_exit>
+
+000000ac <__bad_interrupt>:
+  ac:	a9 cf       	rjmp	.-174    	; 0x0 <__vectors>
+
+000000ae <tick>:
+	return ((x & (0x01 << k)) != 0);
+}
+
+
+void tick()
+{
+  ae:	cf 93       	push	r28
+  b0:	df 93       	push	r29
+  b2:	cd b7       	in	r28, 0x3d	; 61
+  b4:	de b7       	in	r29, 0x3e	; 62
+ 	switch (state) { //Transitions
+  b6:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+  ba:	88 2f       	mov	r24, r24
+  bc:	90 e0       	ldi	r25, 0x00	; 0
+  be:	82 30       	cpi	r24, 0x02	; 2
+  c0:	91 05       	cpc	r25, r1
+  c2:	09 f4       	brne	.+2      	; 0xc6 <tick+0x18>
+  c4:	ae c0       	rjmp	.+348    	; 0x222 <tick+0x174>
+  c6:	83 30       	cpi	r24, 0x03	; 3
+  c8:	91 05       	cpc	r25, r1
+  ca:	34 f4       	brge	.+12     	; 0xd8 <tick+0x2a>
+  cc:	00 97       	sbiw	r24, 0x00	; 0
+  ce:	81 f0       	breq	.+32     	; 0xf0 <tick+0x42>
+  d0:	01 97       	sbiw	r24, 0x01	; 1
+  d2:	09 f4       	brne	.+2      	; 0xd6 <tick+0x28>
+  d4:	59 c0       	rjmp	.+178    	; 0x188 <tick+0xda>
+		else
+		{ state = Reset;}
+        break;
+
+	default:
+	break;
+  d6:	90 c1       	rjmp	.+800    	; 0x3f8 <tick+0x34a>
+}
+
+
+void tick()
+{
+ 	switch (state) { //Transitions
+  d8:	84 30       	cpi	r24, 0x04	; 4
+  da:	91 05       	cpc	r25, r1
+  dc:	09 f4       	brne	.+2      	; 0xe0 <tick+0x32>
+  de:	ee c0       	rjmp	.+476    	; 0x2bc <tick+0x20e>
+  e0:	84 30       	cpi	r24, 0x04	; 4
+  e2:	91 05       	cpc	r25, r1
+  e4:	0c f4       	brge	.+2      	; 0xe8 <tick+0x3a>
+  e6:	53 c1       	rjmp	.+678    	; 0x38e <tick+0x2e0>
+  e8:	05 97       	sbiw	r24, 0x05	; 5
+  ea:	09 f4       	brne	.+2      	; 0xee <tick+0x40>
+  ec:	34 c1       	rjmp	.+616    	; 0x356 <tick+0x2a8>
+		else
+		{ state = Reset;}
+        break;
+
+	default:
+	break;
+  ee:	84 c1       	rjmp	.+776    	; 0x3f8 <tick+0x34a>
+
+void tick()
+{
+ 	switch (state) { //Transitions
+	case Init:
+		if(A0 && !A1)
+  f0:	80 e2       	ldi	r24, 0x20	; 32
+  f2:	90 e0       	ldi	r25, 0x00	; 0
+  f4:	fc 01       	movw	r30, r24
+  f6:	80 81       	ld	r24, Z
+  f8:	88 2f       	mov	r24, r24
+  fa:	90 e0       	ldi	r25, 0x00	; 0
+  fc:	81 70       	andi	r24, 0x01	; 1
+  fe:	99 27       	eor	r25, r25
+ 100:	89 2b       	or	r24, r25
+ 102:	71 f0       	breq	.+28     	; 0x120 <tick+0x72>
+ 104:	80 e2       	ldi	r24, 0x20	; 32
+ 106:	90 e0       	ldi	r25, 0x00	; 0
+ 108:	fc 01       	movw	r30, r24
+ 10a:	80 81       	ld	r24, Z
+ 10c:	88 2f       	mov	r24, r24
+ 10e:	90 e0       	ldi	r25, 0x00	; 0
+ 110:	82 70       	andi	r24, 0x02	; 2
+ 112:	99 27       	eor	r25, r25
+ 114:	89 2b       	or	r24, r25
+ 116:	21 f4       	brne	.+8      	; 0x120 <tick+0x72>
+		{state = Inc;}
+ 118:	81 e0       	ldi	r24, 0x01	; 1
+ 11a:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 11e:	33 c0       	rjmp	.+102    	; 0x186 <tick+0xd8>
+		else if(!A0 && A1)
+ 120:	80 e2       	ldi	r24, 0x20	; 32
+ 122:	90 e0       	ldi	r25, 0x00	; 0
+ 124:	fc 01       	movw	r30, r24
+ 126:	80 81       	ld	r24, Z
+ 128:	88 2f       	mov	r24, r24
+ 12a:	90 e0       	ldi	r25, 0x00	; 0
+ 12c:	81 70       	andi	r24, 0x01	; 1
+ 12e:	99 27       	eor	r25, r25
+ 130:	89 2b       	or	r24, r25
+ 132:	71 f4       	brne	.+28     	; 0x150 <tick+0xa2>
+ 134:	80 e2       	ldi	r24, 0x20	; 32
+ 136:	90 e0       	ldi	r25, 0x00	; 0
+ 138:	fc 01       	movw	r30, r24
+ 13a:	80 81       	ld	r24, Z
+ 13c:	88 2f       	mov	r24, r24
+ 13e:	90 e0       	ldi	r25, 0x00	; 0
+ 140:	82 70       	andi	r24, 0x02	; 2
+ 142:	99 27       	eor	r25, r25
+ 144:	89 2b       	or	r24, r25
+ 146:	21 f0       	breq	.+8      	; 0x150 <tick+0xa2>
+		{state = Dec;}
+ 148:	82 e0       	ldi	r24, 0x02	; 2
+ 14a:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 14e:	1b c0       	rjmp	.+54     	; 0x186 <tick+0xd8>
+		else if(A0 && A1)
+ 150:	80 e2       	ldi	r24, 0x20	; 32
+ 152:	90 e0       	ldi	r25, 0x00	; 0
+ 154:	fc 01       	movw	r30, r24
+ 156:	80 81       	ld	r24, Z
+ 158:	88 2f       	mov	r24, r24
+ 15a:	90 e0       	ldi	r25, 0x00	; 0
+ 15c:	81 70       	andi	r24, 0x01	; 1
+ 15e:	99 27       	eor	r25, r25
+ 160:	89 2b       	or	r24, r25
+ 162:	71 f0       	breq	.+28     	; 0x180 <tick+0xd2>
+ 164:	80 e2       	ldi	r24, 0x20	; 32
+ 166:	90 e0       	ldi	r25, 0x00	; 0
+ 168:	fc 01       	movw	r30, r24
+ 16a:	80 81       	ld	r24, Z
+ 16c:	88 2f       	mov	r24, r24
+ 16e:	90 e0       	ldi	r25, 0x00	; 0
+ 170:	82 70       	andi	r24, 0x02	; 2
+ 172:	99 27       	eor	r25, r25
+ 174:	89 2b       	or	r24, r25
+ 176:	21 f0       	breq	.+8      	; 0x180 <tick+0xd2>
+		{state = Reset;}
+ 178:	83 e0       	ldi	r24, 0x03	; 3
+ 17a:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 17e:	03 c0       	rjmp	.+6      	; 0x186 <tick+0xd8>
+		else
+		{ state = Init;}
+ 180:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+		break;
+ 184:	39 c1       	rjmp	.+626    	; 0x3f8 <tick+0x34a>
+ 186:	38 c1       	rjmp	.+624    	; 0x3f8 <tick+0x34a>
+        
+        case Inc:
+		if(A0 && !A1)
+ 188:	80 e2       	ldi	r24, 0x20	; 32
+ 18a:	90 e0       	ldi	r25, 0x00	; 0
+ 18c:	fc 01       	movw	r30, r24
+ 18e:	80 81       	ld	r24, Z
+ 190:	88 2f       	mov	r24, r24
+ 192:	90 e0       	ldi	r25, 0x00	; 0
+ 194:	81 70       	andi	r24, 0x01	; 1
+ 196:	99 27       	eor	r25, r25
+ 198:	89 2b       	or	r24, r25
+ 19a:	71 f0       	breq	.+28     	; 0x1b8 <tick+0x10a>
+ 19c:	80 e2       	ldi	r24, 0x20	; 32
+ 19e:	90 e0       	ldi	r25, 0x00	; 0
+ 1a0:	fc 01       	movw	r30, r24
+ 1a2:	80 81       	ld	r24, Z
+ 1a4:	88 2f       	mov	r24, r24
+ 1a6:	90 e0       	ldi	r25, 0x00	; 0
+ 1a8:	82 70       	andi	r24, 0x02	; 2
+ 1aa:	99 27       	eor	r25, r25
+ 1ac:	89 2b       	or	r24, r25
+ 1ae:	21 f4       	brne	.+8      	; 0x1b8 <tick+0x10a>
+		{state = Wait2;}
+ 1b0:	85 e0       	ldi	r24, 0x05	; 5
+ 1b2:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 1b6:	34 c0       	rjmp	.+104    	; 0x220 <tick+0x172>
+		else if(!A0 && A1)
+ 1b8:	80 e2       	ldi	r24, 0x20	; 32
+ 1ba:	90 e0       	ldi	r25, 0x00	; 0
+ 1bc:	fc 01       	movw	r30, r24
+ 1be:	80 81       	ld	r24, Z
+ 1c0:	88 2f       	mov	r24, r24
+ 1c2:	90 e0       	ldi	r25, 0x00	; 0
+ 1c4:	81 70       	andi	r24, 0x01	; 1
+ 1c6:	99 27       	eor	r25, r25
+ 1c8:	89 2b       	or	r24, r25
+ 1ca:	71 f4       	brne	.+28     	; 0x1e8 <tick+0x13a>
+ 1cc:	80 e2       	ldi	r24, 0x20	; 32
+ 1ce:	90 e0       	ldi	r25, 0x00	; 0
+ 1d0:	fc 01       	movw	r30, r24
+ 1d2:	80 81       	ld	r24, Z
+ 1d4:	88 2f       	mov	r24, r24
+ 1d6:	90 e0       	ldi	r25, 0x00	; 0
+ 1d8:	82 70       	andi	r24, 0x02	; 2
+ 1da:	99 27       	eor	r25, r25
+ 1dc:	89 2b       	or	r24, r25
+ 1de:	21 f0       	breq	.+8      	; 0x1e8 <tick+0x13a>
+		{state = Dec;}
+ 1e0:	82 e0       	ldi	r24, 0x02	; 2
+ 1e2:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 1e6:	1c c0       	rjmp	.+56     	; 0x220 <tick+0x172>
+		else if(A0 && A1)
+ 1e8:	80 e2       	ldi	r24, 0x20	; 32
+ 1ea:	90 e0       	ldi	r25, 0x00	; 0
+ 1ec:	fc 01       	movw	r30, r24
+ 1ee:	80 81       	ld	r24, Z
+ 1f0:	88 2f       	mov	r24, r24
+ 1f2:	90 e0       	ldi	r25, 0x00	; 0
+ 1f4:	81 70       	andi	r24, 0x01	; 1
+ 1f6:	99 27       	eor	r25, r25
+ 1f8:	89 2b       	or	r24, r25
+ 1fa:	71 f0       	breq	.+28     	; 0x218 <tick+0x16a>
+ 1fc:	80 e2       	ldi	r24, 0x20	; 32
+ 1fe:	90 e0       	ldi	r25, 0x00	; 0
+ 200:	fc 01       	movw	r30, r24
+ 202:	80 81       	ld	r24, Z
+ 204:	88 2f       	mov	r24, r24
+ 206:	90 e0       	ldi	r25, 0x00	; 0
+ 208:	82 70       	andi	r24, 0x02	; 2
+ 20a:	99 27       	eor	r25, r25
+ 20c:	89 2b       	or	r24, r25
+ 20e:	21 f0       	breq	.+8      	; 0x218 <tick+0x16a>
+		{state = Reset;}
+ 210:	83 e0       	ldi	r24, 0x03	; 3
+ 212:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 216:	04 c0       	rjmp	.+8      	; 0x220 <tick+0x172>
+		else
+		{ state = Wait2;}
+ 218:	85 e0       	ldi	r24, 0x05	; 5
+ 21a:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+        break;
+ 21e:	ec c0       	rjmp	.+472    	; 0x3f8 <tick+0x34a>
+ 220:	eb c0       	rjmp	.+470    	; 0x3f8 <tick+0x34a>
+        
+        case Dec:
+		if(A0 && !A1)
+ 222:	80 e2       	ldi	r24, 0x20	; 32
+ 224:	90 e0       	ldi	r25, 0x00	; 0
+ 226:	fc 01       	movw	r30, r24
+ 228:	80 81       	ld	r24, Z
+ 22a:	88 2f       	mov	r24, r24
+ 22c:	90 e0       	ldi	r25, 0x00	; 0
+ 22e:	81 70       	andi	r24, 0x01	; 1
+ 230:	99 27       	eor	r25, r25
+ 232:	89 2b       	or	r24, r25
+ 234:	71 f0       	breq	.+28     	; 0x252 <tick+0x1a4>
+ 236:	80 e2       	ldi	r24, 0x20	; 32
+ 238:	90 e0       	ldi	r25, 0x00	; 0
+ 23a:	fc 01       	movw	r30, r24
+ 23c:	80 81       	ld	r24, Z
+ 23e:	88 2f       	mov	r24, r24
+ 240:	90 e0       	ldi	r25, 0x00	; 0
+ 242:	82 70       	andi	r24, 0x02	; 2
+ 244:	99 27       	eor	r25, r25
+ 246:	89 2b       	or	r24, r25
+ 248:	21 f4       	brne	.+8      	; 0x252 <tick+0x1a4>
+		{state = Inc;}
+ 24a:	81 e0       	ldi	r24, 0x01	; 1
+ 24c:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 250:	34 c0       	rjmp	.+104    	; 0x2ba <tick+0x20c>
+		else if(!A0 && A1)
+ 252:	80 e2       	ldi	r24, 0x20	; 32
+ 254:	90 e0       	ldi	r25, 0x00	; 0
+ 256:	fc 01       	movw	r30, r24
+ 258:	80 81       	ld	r24, Z
+ 25a:	88 2f       	mov	r24, r24
+ 25c:	90 e0       	ldi	r25, 0x00	; 0
+ 25e:	81 70       	andi	r24, 0x01	; 1
+ 260:	99 27       	eor	r25, r25
+ 262:	89 2b       	or	r24, r25
+ 264:	71 f4       	brne	.+28     	; 0x282 <tick+0x1d4>
+ 266:	80 e2       	ldi	r24, 0x20	; 32
+ 268:	90 e0       	ldi	r25, 0x00	; 0
+ 26a:	fc 01       	movw	r30, r24
+ 26c:	80 81       	ld	r24, Z
+ 26e:	88 2f       	mov	r24, r24
+ 270:	90 e0       	ldi	r25, 0x00	; 0
+ 272:	82 70       	andi	r24, 0x02	; 2
+ 274:	99 27       	eor	r25, r25
+ 276:	89 2b       	or	r24, r25
+ 278:	21 f0       	breq	.+8      	; 0x282 <tick+0x1d4>
+		{state = Wait2;}
+ 27a:	85 e0       	ldi	r24, 0x05	; 5
+ 27c:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 280:	1c c0       	rjmp	.+56     	; 0x2ba <tick+0x20c>
+		else if(A0 && A1)
+ 282:	80 e2       	ldi	r24, 0x20	; 32
+ 284:	90 e0       	ldi	r25, 0x00	; 0
+ 286:	fc 01       	movw	r30, r24
+ 288:	80 81       	ld	r24, Z
+ 28a:	88 2f       	mov	r24, r24
+ 28c:	90 e0       	ldi	r25, 0x00	; 0
+ 28e:	81 70       	andi	r24, 0x01	; 1
+ 290:	99 27       	eor	r25, r25
+ 292:	89 2b       	or	r24, r25
+ 294:	71 f0       	breq	.+28     	; 0x2b2 <tick+0x204>
+ 296:	80 e2       	ldi	r24, 0x20	; 32
+ 298:	90 e0       	ldi	r25, 0x00	; 0
+ 29a:	fc 01       	movw	r30, r24
+ 29c:	80 81       	ld	r24, Z
+ 29e:	88 2f       	mov	r24, r24
+ 2a0:	90 e0       	ldi	r25, 0x00	; 0
+ 2a2:	82 70       	andi	r24, 0x02	; 2
+ 2a4:	99 27       	eor	r25, r25
+ 2a6:	89 2b       	or	r24, r25
+ 2a8:	21 f0       	breq	.+8      	; 0x2b2 <tick+0x204>
+		{state = Reset;}
+ 2aa:	83 e0       	ldi	r24, 0x03	; 3
+ 2ac:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 2b0:	04 c0       	rjmp	.+8      	; 0x2ba <tick+0x20c>
+		else
+		{ state = Wait2;}
+ 2b2:	85 e0       	ldi	r24, 0x05	; 5
+ 2b4:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+	break;
+ 2b8:	9f c0       	rjmp	.+318    	; 0x3f8 <tick+0x34a>
+ 2ba:	9e c0       	rjmp	.+316    	; 0x3f8 <tick+0x34a>
+        
+        case Wait://for inc
+		if(A0 && !A1)
+ 2bc:	80 e2       	ldi	r24, 0x20	; 32
+ 2be:	90 e0       	ldi	r25, 0x00	; 0
+ 2c0:	fc 01       	movw	r30, r24
+ 2c2:	80 81       	ld	r24, Z
+ 2c4:	88 2f       	mov	r24, r24
+ 2c6:	90 e0       	ldi	r25, 0x00	; 0
+ 2c8:	81 70       	andi	r24, 0x01	; 1
+ 2ca:	99 27       	eor	r25, r25
+ 2cc:	89 2b       	or	r24, r25
+ 2ce:	71 f0       	breq	.+28     	; 0x2ec <tick+0x23e>
+ 2d0:	80 e2       	ldi	r24, 0x20	; 32
+ 2d2:	90 e0       	ldi	r25, 0x00	; 0
+ 2d4:	fc 01       	movw	r30, r24
+ 2d6:	80 81       	ld	r24, Z
+ 2d8:	88 2f       	mov	r24, r24
+ 2da:	90 e0       	ldi	r25, 0x00	; 0
+ 2dc:	82 70       	andi	r24, 0x02	; 2
+ 2de:	99 27       	eor	r25, r25
+ 2e0:	89 2b       	or	r24, r25
+ 2e2:	21 f4       	brne	.+8      	; 0x2ec <tick+0x23e>
+		{state = Inc;}
+ 2e4:	81 e0       	ldi	r24, 0x01	; 1
+ 2e6:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 2ea:	34 c0       	rjmp	.+104    	; 0x354 <tick+0x2a6>
+		else if(!A0 && A1)
+ 2ec:	80 e2       	ldi	r24, 0x20	; 32
+ 2ee:	90 e0       	ldi	r25, 0x00	; 0
+ 2f0:	fc 01       	movw	r30, r24
+ 2f2:	80 81       	ld	r24, Z
+ 2f4:	88 2f       	mov	r24, r24
+ 2f6:	90 e0       	ldi	r25, 0x00	; 0
+ 2f8:	81 70       	andi	r24, 0x01	; 1
+ 2fa:	99 27       	eor	r25, r25
+ 2fc:	89 2b       	or	r24, r25
+ 2fe:	71 f4       	brne	.+28     	; 0x31c <tick+0x26e>
+ 300:	80 e2       	ldi	r24, 0x20	; 32
+ 302:	90 e0       	ldi	r25, 0x00	; 0
+ 304:	fc 01       	movw	r30, r24
+ 306:	80 81       	ld	r24, Z
+ 308:	88 2f       	mov	r24, r24
+ 30a:	90 e0       	ldi	r25, 0x00	; 0
+ 30c:	82 70       	andi	r24, 0x02	; 2
+ 30e:	99 27       	eor	r25, r25
+ 310:	89 2b       	or	r24, r25
+ 312:	21 f0       	breq	.+8      	; 0x31c <tick+0x26e>
+		{state = Dec;}
+ 314:	82 e0       	ldi	r24, 0x02	; 2
+ 316:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 31a:	1c c0       	rjmp	.+56     	; 0x354 <tick+0x2a6>
+		else if(A0 && A1)
+ 31c:	80 e2       	ldi	r24, 0x20	; 32
+ 31e:	90 e0       	ldi	r25, 0x00	; 0
+ 320:	fc 01       	movw	r30, r24
+ 322:	80 81       	ld	r24, Z
+ 324:	88 2f       	mov	r24, r24
+ 326:	90 e0       	ldi	r25, 0x00	; 0
+ 328:	81 70       	andi	r24, 0x01	; 1
+ 32a:	99 27       	eor	r25, r25
+ 32c:	89 2b       	or	r24, r25
+ 32e:	71 f0       	breq	.+28     	; 0x34c <tick+0x29e>
+ 330:	80 e2       	ldi	r24, 0x20	; 32
+ 332:	90 e0       	ldi	r25, 0x00	; 0
+ 334:	fc 01       	movw	r30, r24
+ 336:	80 81       	ld	r24, Z
+ 338:	88 2f       	mov	r24, r24
+ 33a:	90 e0       	ldi	r25, 0x00	; 0
+ 33c:	82 70       	andi	r24, 0x02	; 2
+ 33e:	99 27       	eor	r25, r25
+ 340:	89 2b       	or	r24, r25
+ 342:	21 f0       	breq	.+8      	; 0x34c <tick+0x29e>
+		{state = Reset;}
+ 344:	83 e0       	ldi	r24, 0x03	; 3
+ 346:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 34a:	04 c0       	rjmp	.+8      	; 0x354 <tick+0x2a6>
+		else
+		{ state = Wait;}
+ 34c:	84 e0       	ldi	r24, 0x04	; 4
+ 34e:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+        break;
+ 352:	52 c0       	rjmp	.+164    	; 0x3f8 <tick+0x34a>
+ 354:	51 c0       	rjmp	.+162    	; 0x3f8 <tick+0x34a>
+		
+	case Wait2: //for dec 
+		if(!A0 && !A1)
+ 356:	80 e2       	ldi	r24, 0x20	; 32
+ 358:	90 e0       	ldi	r25, 0x00	; 0
+ 35a:	fc 01       	movw	r30, r24
+ 35c:	80 81       	ld	r24, Z
+ 35e:	88 2f       	mov	r24, r24
+ 360:	90 e0       	ldi	r25, 0x00	; 0
+ 362:	81 70       	andi	r24, 0x01	; 1
+ 364:	99 27       	eor	r25, r25
+ 366:	89 2b       	or	r24, r25
+ 368:	71 f4       	brne	.+28     	; 0x386 <tick+0x2d8>
+ 36a:	80 e2       	ldi	r24, 0x20	; 32
+ 36c:	90 e0       	ldi	r25, 0x00	; 0
+ 36e:	fc 01       	movw	r30, r24
+ 370:	80 81       	ld	r24, Z
+ 372:	88 2f       	mov	r24, r24
+ 374:	90 e0       	ldi	r25, 0x00	; 0
+ 376:	82 70       	andi	r24, 0x02	; 2
+ 378:	99 27       	eor	r25, r25
+ 37a:	89 2b       	or	r24, r25
+ 37c:	21 f4       	brne	.+8      	; 0x386 <tick+0x2d8>
+		{state = Wait;}
+ 37e:	84 e0       	ldi	r24, 0x04	; 4
+ 380:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+		else
+		{ state = Wait2;}
+        break;
+ 384:	39 c0       	rjmp	.+114    	; 0x3f8 <tick+0x34a>
+		
+	case Wait2: //for dec 
+		if(!A0 && !A1)
+		{state = Wait;}
+		else
+		{ state = Wait2;}
+ 386:	85 e0       	ldi	r24, 0x05	; 5
+ 388:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+        break;
+ 38c:	35 c0       	rjmp	.+106    	; 0x3f8 <tick+0x34a>
+	
+        case Reset:
+		if(A0 && !A1)
+ 38e:	80 e2       	ldi	r24, 0x20	; 32
+ 390:	90 e0       	ldi	r25, 0x00	; 0
+ 392:	fc 01       	movw	r30, r24
+ 394:	80 81       	ld	r24, Z
+ 396:	88 2f       	mov	r24, r24
+ 398:	90 e0       	ldi	r25, 0x00	; 0
+ 39a:	81 70       	andi	r24, 0x01	; 1
+ 39c:	99 27       	eor	r25, r25
+ 39e:	89 2b       	or	r24, r25
+ 3a0:	71 f0       	breq	.+28     	; 0x3be <tick+0x310>
+ 3a2:	80 e2       	ldi	r24, 0x20	; 32
+ 3a4:	90 e0       	ldi	r25, 0x00	; 0
+ 3a6:	fc 01       	movw	r30, r24
+ 3a8:	80 81       	ld	r24, Z
+ 3aa:	88 2f       	mov	r24, r24
+ 3ac:	90 e0       	ldi	r25, 0x00	; 0
+ 3ae:	82 70       	andi	r24, 0x02	; 2
+ 3b0:	99 27       	eor	r25, r25
+ 3b2:	89 2b       	or	r24, r25
+ 3b4:	21 f4       	brne	.+8      	; 0x3be <tick+0x310>
+		{state = Inc;}
+ 3b6:	81 e0       	ldi	r24, 0x01	; 1
+ 3b8:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 3bc:	1c c0       	rjmp	.+56     	; 0x3f6 <tick+0x348>
+		else if(!A0 && A1)
+ 3be:	80 e2       	ldi	r24, 0x20	; 32
+ 3c0:	90 e0       	ldi	r25, 0x00	; 0
+ 3c2:	fc 01       	movw	r30, r24
+ 3c4:	80 81       	ld	r24, Z
+ 3c6:	88 2f       	mov	r24, r24
+ 3c8:	90 e0       	ldi	r25, 0x00	; 0
+ 3ca:	81 70       	andi	r24, 0x01	; 1
+ 3cc:	99 27       	eor	r25, r25
+ 3ce:	89 2b       	or	r24, r25
+ 3d0:	71 f4       	brne	.+28     	; 0x3ee <tick+0x340>
+ 3d2:	80 e2       	ldi	r24, 0x20	; 32
+ 3d4:	90 e0       	ldi	r25, 0x00	; 0
+ 3d6:	fc 01       	movw	r30, r24
+ 3d8:	80 81       	ld	r24, Z
+ 3da:	88 2f       	mov	r24, r24
+ 3dc:	90 e0       	ldi	r25, 0x00	; 0
+ 3de:	82 70       	andi	r24, 0x02	; 2
+ 3e0:	99 27       	eor	r25, r25
+ 3e2:	89 2b       	or	r24, r25
+ 3e4:	21 f0       	breq	.+8      	; 0x3ee <tick+0x340>
+		{state = Dec;}
+ 3e6:	82 e0       	ldi	r24, 0x02	; 2
+ 3e8:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 3ec:	04 c0       	rjmp	.+8      	; 0x3f6 <tick+0x348>
+		else
+		{ state = Reset;}
+ 3ee:	83 e0       	ldi	r24, 0x03	; 3
+ 3f0:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+        break;
+ 3f4:	00 c0       	rjmp	.+0      	; 0x3f6 <tick+0x348>
+ 3f6:	00 00       	nop
+
+	default:
+	break;
+	}
+	//////////////////////////////////////////////////////
+	switch (state) { //State Actions		
+ 3f8:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 3fc:	88 2f       	mov	r24, r24
+ 3fe:	90 e0       	ldi	r25, 0x00	; 0
+ 400:	82 30       	cpi	r24, 0x02	; 2
+ 402:	91 05       	cpc	r25, r1
+ 404:	09 f1       	breq	.+66     	; 0x448 <__LOCK_REGION_LENGTH__+0x48>
+ 406:	83 30       	cpi	r24, 0x03	; 3
+ 408:	91 05       	cpc	r25, r1
+ 40a:	2c f4       	brge	.+10     	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
+ 40c:	00 97       	sbiw	r24, 0x00	; 0
+ 40e:	61 f0       	breq	.+24     	; 0x428 <__LOCK_REGION_LENGTH__+0x28>
+ 410:	01 97       	sbiw	r24, 0x01	; 1
+ 412:	81 f0       	breq	.+32     	; 0x434 <__LOCK_REGION_LENGTH__+0x34>
+	case Reset:
+		PORTB = 0x00; 
+	break;
+
+	default:
+	break;	
+ 414:	2b c0       	rjmp	.+86     	; 0x46c <__LOCK_REGION_LENGTH__+0x6c>
+
+	default:
+	break;
+	}
+	//////////////////////////////////////////////////////
+	switch (state) { //State Actions		
+ 416:	84 30       	cpi	r24, 0x04	; 4
+ 418:	91 05       	cpc	r25, r1
+ 41a:	29 f1       	breq	.+74     	; 0x466 <__LOCK_REGION_LENGTH__+0x66>
+ 41c:	84 30       	cpi	r24, 0x04	; 4
+ 41e:	91 05       	cpc	r25, r1
+ 420:	ec f0       	brlt	.+58     	; 0x45c <__LOCK_REGION_LENGTH__+0x5c>
+ 422:	05 97       	sbiw	r24, 0x05	; 5
+ 424:	11 f1       	breq	.+68     	; 0x46a <__LOCK_REGION_LENGTH__+0x6a>
+	case Reset:
+		PORTB = 0x00; 
+	break;
+
+	default:
+	break;	
+ 426:	22 c0       	rjmp	.+68     	; 0x46c <__LOCK_REGION_LENGTH__+0x6c>
+	break;
+	}
+	//////////////////////////////////////////////////////
+	switch (state) { //State Actions		
+	case Init:
+		PORTB = 0x07;
+ 428:	85 e2       	ldi	r24, 0x25	; 37
+ 42a:	90 e0       	ldi	r25, 0x00	; 0
+ 42c:	27 e0       	ldi	r18, 0x07	; 7
+ 42e:	fc 01       	movw	r30, r24
+ 430:	20 83       	st	Z, r18
+	break;
+ 432:	1c c0       	rjmp	.+56     	; 0x46c <__LOCK_REGION_LENGTH__+0x6c>
+
+	case Inc:
+        PORTB = PORTB+1; 
+ 434:	85 e2       	ldi	r24, 0x25	; 37
+ 436:	90 e0       	ldi	r25, 0x00	; 0
+ 438:	25 e2       	ldi	r18, 0x25	; 37
+ 43a:	30 e0       	ldi	r19, 0x00	; 0
+ 43c:	f9 01       	movw	r30, r18
+ 43e:	20 81       	ld	r18, Z
+ 440:	2f 5f       	subi	r18, 0xFF	; 255
+ 442:	fc 01       	movw	r30, r24
+ 444:	20 83       	st	Z, r18
+	break;
+ 446:	12 c0       	rjmp	.+36     	; 0x46c <__LOCK_REGION_LENGTH__+0x6c>
+		
+	case Dec:
+        PORTB = PORTB-1; 
+ 448:	85 e2       	ldi	r24, 0x25	; 37
+ 44a:	90 e0       	ldi	r25, 0x00	; 0
+ 44c:	25 e2       	ldi	r18, 0x25	; 37
+ 44e:	30 e0       	ldi	r19, 0x00	; 0
+ 450:	f9 01       	movw	r30, r18
+ 452:	20 81       	ld	r18, Z
+ 454:	21 50       	subi	r18, 0x01	; 1
+ 456:	fc 01       	movw	r30, r24
+ 458:	20 83       	st	Z, r18
+	break;
+ 45a:	08 c0       	rjmp	.+16     	; 0x46c <__LOCK_REGION_LENGTH__+0x6c>
+	case Wait2://do not change portB
+		//PORTB = PORTB;
+	break;
+
+	case Reset:
+		PORTB = 0x00; 
+ 45c:	85 e2       	ldi	r24, 0x25	; 37
+ 45e:	90 e0       	ldi	r25, 0x00	; 0
+ 460:	fc 01       	movw	r30, r24
+ 462:	10 82       	st	Z, r1
+	break;
+ 464:	03 c0       	rjmp	.+6      	; 0x46c <__LOCK_REGION_LENGTH__+0x6c>
+        PORTB = PORTB-1; 
+	break;
+
+    case Wait://do not change portB
+		//PORTB = PORTB;
+	break;
+ 466:	00 00       	nop
+ 468:	01 c0       	rjmp	.+2      	; 0x46c <__LOCK_REGION_LENGTH__+0x6c>
+		
+	case Wait2://do not change portB
+		//PORTB = PORTB;
+	break;
+ 46a:	00 00       	nop
+	break;
+
+	default:
+	break;	
+	}
+}
+ 46c:	00 00       	nop
+ 46e:	df 91       	pop	r29
+ 470:	cf 91       	pop	r28
+ 472:	08 95       	ret
+
+00000474 <main>:
+int main(void)
+{
+ 474:	cf 93       	push	r28
+ 476:	df 93       	push	r29
+ 478:	cd b7       	in	r28, 0x3d	; 61
+ 47a:	de b7       	in	r29, 0x3e	; 62
+	DDRA = 0x00; PORTA = 0xFF; //inputs, 2 buttons
+ 47c:	81 e2       	ldi	r24, 0x21	; 33
+ 47e:	90 e0       	ldi	r25, 0x00	; 0
+ 480:	fc 01       	movw	r30, r24
+ 482:	10 82       	st	Z, r1
+ 484:	82 e2       	ldi	r24, 0x22	; 34
+ 486:	90 e0       	ldi	r25, 0x00	; 0
+ 488:	2f ef       	ldi	r18, 0xFF	; 255
+ 48a:	fc 01       	movw	r30, r24
+ 48c:	20 83       	st	Z, r18
+	DDRB = 0xFF; PORTB = 0x00; //outputs 
+ 48e:	84 e2       	ldi	r24, 0x24	; 36
+ 490:	90 e0       	ldi	r25, 0x00	; 0
+ 492:	2f ef       	ldi	r18, 0xFF	; 255
+ 494:	fc 01       	movw	r30, r24
+ 496:	20 83       	st	Z, r18
+ 498:	85 e2       	ldi	r24, 0x25	; 37
+ 49a:	90 e0       	ldi	r25, 0x00	; 0
+ 49c:	fc 01       	movw	r30, r24
+ 49e:	10 82       	st	Z, r1
+	
+	state = Init;//initialize state
+ 4a0:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+	
+	while(1) { tick();}
+ 4a4:	04 de       	rcall	.-1016   	; 0xae <tick>
+ 4a6:	fe cf       	rjmp	.-4      	; 0x4a4 <main+0x30>
+
+000004a8 <_exit>:
+ 4a8:	f8 94       	cli
+
+000004aa <__stop_program>:
+ 4aa:	ff cf       	rjmp	.-2      	; 0x4aa <__stop_program>
