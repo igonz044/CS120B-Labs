@@ -8,8 +8,7 @@ enum States {Init, Inc, Dec, Reset, Wait, Wait2} state;
 #define A0 (PINA & 0x01)
 #define A1 (PINA & 0x02)
 
-unsigned char Increment(unsigned char x){ return x += 1;}
-unsigned char Decrement(unsigned char x){ return x -= 1;}
+unsigned char count = 0;
 
 unsigned char SetBit(unsigned char x, unsigned char k, unsigned char b){
 	return (b ? x | (0x01 << k) : x & ~(0x01 << k));
@@ -23,61 +22,75 @@ void tick()
 {
  	switch (state) { //Transitions
 	case Init:
-		if(A0 && !A1)
+		if(A0 && !A1 && count < 0x09)
 		{state = Inc;}
+			
 		else if(!A0 && A1)
 		{state = Dec;}
+			
 		else if(A0 && A1)
 		{state = Reset;}
+			
 		else
 		{ state = Init;}
 		break;
         
-        case Inc:
-		if(A0 && !A1)
+    case Inc:
+		if(A0 && !A1 && count < 0x09)
 		{state = Wait2;}
-		else if(!A0 && A1)
+			
+		else if(!A0 && A1 && count >= 0x00)
 		{state = Dec;}
+			
 		else if(A0 && A1)
 		{state = Reset;}
+			
 		else
 		{ state = Wait2;}
-        break;
+     break;
         
-        case Dec:
-		if(A0 && !A1)
+     case Dec:
+		if(A0 && !A1 && count < 0x09)
 		{state = Inc;}
-		else if(!A0 && A1)
+			
+		else if(!A0 && A1 && count >= 0x00)
 		{state = Wait2;}
+			
 		else if(A0 && A1)
 		{state = Reset;}
+			
 		else
 		{ state = Wait2;}
 	break;
         
-        case Wait://for inc
-		if(A0 && !A1)
+    case Wait://for inc
+		if(A0 && !A1 && count < 0x09)
 		{state = Inc;}
-		else if(!A0 && A1)
+			
+		else if(!A0 && A1 && count >= 0x00)
 		{state = Dec;}
+			
 		else if(A0 && A1)
 		{state = Reset;}
+			
 		else
 		{ state = Wait;}
-        break;
+    break;
 		
 	case Wait2: //for dec 
-		if(!A0 && !A1)
+		if(!A0 && !A1 )
 		{state = Wait;}
 		else
 		{ state = Wait2;}
         break;
 	
         case Reset:
-		if(A0 && !A1)
+		if(A0 && !A1 && count < 0x09)
 		{state = Inc;}
-		else if(!A0 && A1)
+			
+		else if(!A0 && A1 && count >= 0x00)
 		{state = Dec;}
+			
 		else
 		{ state = Reset;}
         break;
@@ -88,27 +101,27 @@ void tick()
 	//////////////////////////////////////////////////////
 	switch (state) { //State Actions		
 	case Init:
-		PORTB = 0x07;
+		count = 0x07;
 	break;
 
 	case Inc:
-        PORTB = PORTB+1; 
+        count = count+1; 
 	break;
 		
 	case Dec:
-        PORTB = PORTB-1; 
+        count = count-1; 
 	break;
 
-    case Wait://do not change portB
-		//PORTB = PORTB;
+    case Wait://do not change count
+		//count = count;
 	break;
 		
-	case Wait2://do not change portB
-		//PORTB = PORTB;
+	case Wait2://do not change count
+		//count = count;
 	break;
 
 	case Reset:
-		PORTB = 0x00; 
+		count = 0x00; 
 	break;
 
 	default:
@@ -122,7 +135,7 @@ int main(void)
 	
 	state = Init;//initialize state
 	
-	while(1) { tick();}
+	while(1) { tick();  PORTB = count;}
 }
 
 
