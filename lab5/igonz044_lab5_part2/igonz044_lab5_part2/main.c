@@ -10,15 +10,14 @@
  * code, is my own original work.
  */
 #include <avr/io.h>
-//#include ìsm.hî
+//#include ‚Äúsm.h‚Äù
 
-
-enum States {Init, Inc, Dec, Reset, Stay, Stay2} state;
+enum States {Init, Inc, Dec, Reset, Wait, Wait2} state;
 
 //Global variables here
-#define I (PINA & 0x01)//xxxx 0001
-#define D (PINA & 0x02)//xxxx 0010
-//#define R (GetBit(PINA, 0) && GetBit(PINA, 1))//xxxx 0011
+
+#define A0 (PINA & 0x01)
+#define A1 (PINA & 0x02)
 
 unsigned char Increment(unsigned char x){ return x += 1;}
 unsigned char Decrement(unsigned char x){ return x -= 1;}
@@ -34,148 +33,107 @@ unsigned char GetBit(unsigned char x, unsigned char k){
 void tick()
 {
  	switch (state) { //Transitions
-		case Init:
-		//In this state you can dec, incr, or reset from here
-			if(GetBit(PINA, 0) && !GetBit(PINA, 1) && PORTB <= 0x09)
-			{
-				state = Inc;
-			}
-			else if(GetBit(PINA, 1) && !GetBit(PINA, 0) && PORTB >= 0x00)
-			{
-				state = Dec;
-			}
-			else if(GetBit(PINA, 0) && GetBit(PINA, 1))
-			{
-				state = Reset;
-			}
-			else
-			{
-				state = Init;
-			}
+	case Init:
+		if(A0 && !A1)
+		{state = Inc;}
+		else if(
+		if(!A0 && A1)
+		{state = Dec;}
+		else if(A0 && A1)
+		{state = Reset;}
+		else
+		{ state = Init;}
 		break;
         
         case Inc:
-			if(GetBit(PINA, 0) && !GetBit(PINA, 1) && PORTB <= 0x09)
-			{
-				state = Stay;
-			}
-			else if(GetBit(PINA, 1) && !GetBit(PINA, 0) && PORTB >= 0x00)
-			{
-				state = Dec;
-			}
-			else if(GetBit(PINA, 0) && GetBit(PINA, 1))
-			{
-				state = Reset;
-			}
-			else
-			{
-				state = Stay;
-			}
+		if(A0 && !A1)
+		{state = Wait;}
+		else if(
+		if(!A0 && A1)
+		{state = Dec;}
+		else if(A0 && A1)
+		{state = Reset;}
+		else
+		{ state = Init;}
         break;
         
         case Dec:
-			if(GetBit(PINA, 0) && !GetBit(PINA, 1) && PORTB <= 0x09)
-			{
-				state = Inc;
-			}
-			else if(GetBit(PINA, 1) && !GetBit(PINA, 0) && PORTB >= 0x00)
-			{
-				state = Stay2;
-			}
-			else if(GetBit(PINA, 0) && GetBit(PINA, 1))
-			{
-				state = Reset;
-			}
-			else
-			{
-				state = Stay2;
-			}
-        break;
+		if(A0 && !A1)
+		{state = Inc;}
+		else if(
+		if(!A0 && A1)
+		{state = Wait2;}
+		else if(A0 && A1)
+		{state = Reset;}
+		else
+		{ state = Init;}
+	break;
         
-        case Stay:
-			if(GetBit(PINA, 0) && !GetBit(PINA, 1) && PORTB <= 0x09)
-			{
-				state = Stay;
-			}
-			else if(GetBit(PINA, 1) && !GetBit(PINA, 0) && PORTB >= 0x00)
-			{
-				state = Dec;
-			}
-			else if(GetBit(PINA, 0) && GetBit(PINA, 1))
-			{
-				state = Reset;
-			}
-			else
-			{
-				state = Stay;
-			}
+        case Wait://for inc
+		if(A0 && !A1)
+		{state = Inc;}
+		else if(
+		if(!A0 && A1)
+		{state = Dec;}
+		else if(A0 && A1)
+		{state = Reset;}
+		else
+		{ state = Wait;}
         break;
 		
-		case Stay2:
-			if(GetBit(PINA, 0) && !GetBit(PINA, 1) && PORTB <= 0x09)
-			{
-				state = Inc;
-			}
-			else if(GetBit(PINA, 1) && !GetBit(PINA, 0) && PORTB >= 0x00)
-			{
-				state = Stay2;
-			}
-			else if(GetBit(PINA, 0) && GetBit(PINA, 1))
-			{
-				state = Reset;
-			}
-			else
-			{
-				state = Stay2;
-			}
+	case Wait2: //for dec 
+		if(A0 && !A1)
+		{state = Inc;}
+		else if(
+		if(!A0 && A1)
+		{state = Dec;}
+		else if(A0 && A1)
+		{state = Reset;}
+		else
+		{ state = Wait2;}
         break;
 	
         case Reset:
-			if(GetBit(PINA, 0) && !GetBit(PINA, 1) && PORTB <= 0x09)
-			{
- 				state = Inc;
-			}
-			else if(GetBit(PINA, 1) && !GetBit(PINA, 0) && PORTB >= 0x00)
-			{
-				state = Dec;
-			}
-			else if(GetBit(PINA, 0) && GetBit(PINA, 1))
-			{
-				state = Reset;
-			}
-			else
-			{
-				state = Reset;
-			}
+		if(A0 && !A1)
+		{state = Inc;}
+		else if(
+		if(!A0 && A1)
+		{state = Dec;}
+		else
+		{ state = Reset;}
         break;
 
-		default:
-		break;
+	default:
+	break;
 	}
 	//////////////////////////////////////////////////////
 	switch (state) { //State Actions		
-		case Init:
-			PORTB = 0x07;
-			break;
+	case Init:
+	PORTB = 0x07;
+	break;
 
-		case Inc:
-            PORTB = PORTB+1; 
-			break;
+	case Inc:
+        PORTB = PORTB+1; 
+	break;
 		
-		case Dec:
-            PORTB = PORTB-1; 
-			break;
+	case Dec:
+        PORTB = PORTB-1; 
+	break;
 
         case Stay://do not change portB
-			PORTB = PORTB;
-			break;
+	PORTB = PORTB;
+	break;
+		
+	case Stay2://do not change portB
+	PORTB = PORTB;
+	break;
 
-		case Reset:
-		    PORTB = 0x00; 
-			break;
+	case Reset:
+	PORTB = 0x00; 
+	break;
 
-		default:
-		break;	
+	default:
+	break;	
 	}
 }
 int main(void)
