@@ -1,3 +1,140 @@
+/* My Name and email : Jimmy Le: jle071@ucr.edu
+* Partner Name and email: Reyna Lopez rlope071@ucr.edu
+ 
+* Lab Section: 26
+* Assignment: Lab 4 Exercise 3
+* Exercise Description: In this exercise, we have a house that has a digital combination deadbolt lock system on its door. 
+* Buttons A0, A1, and A2 are X, Y, and # respectively. Pressing # and then Y will open the door and set B0 to 1. Any other 
+* combination will reset the code. A7 is a button from the inside of the house and pressing it will lock the door, setting
+* B0 to 0. For debugging purposes, give each state a number, and always write the current state to PORTC 
+* (consider using the enum state variable). Also, be sure to check that only one button is pressed at a time.
+
+ 
+* I acknowledge all content contained herein, excluding template or example
+* code, is my own original work.
+
+ 
+
+#include <avr/io.h>
+
+enum States{ Init, Locked, WaitRel, PressPound, PressY, Unlock} State;
+
+
+void tick()
+{
+	switch (State)
+	{
+		case Init:
+			State = Locked;
+			break;
+
+		case Locked:
+			if(PINA == 0x04)
+			{
+				State = WaitRel;
+			}
+			else 
+			{
+				State = Locked;
+			}
+			break;
+
+		case WaitRel:
+			if(PINA == 0x04)
+			{
+				State = WaitRel;
+			}
+			else if(PINA == 0x00)
+			{
+				State = PressPound;
+			}
+			break;
+
+		case PressPound:
+			if(PINA == 0x02)
+			{
+				State = PressY;
+			}
+			else if (PINA == 0x00)
+			{
+			State = PressPound;
+			}
+			else
+			{
+				State = Locked;	
+			}
+			break;
+
+		case PressY:
+			if(PINA == 0x02)
+			{
+				State = Unlock;
+			}
+			else
+			{
+				State = Locked;
+			}
+			break;
+
+		case Unlock:
+			if(PINA == 0x80)
+			{
+				State = Locked;
+			}
+			break;
+
+		default:
+			State = Init;
+			break;
+	}
+	switch(State)
+	{
+		case Init:
+			PORTC=Init;
+			PORTB = 0x00;
+			break;
+
+		case Locked:
+			PORTC=Locked;
+			PORTB=0x00;
+			break;
+
+		case WaitRel:
+			PORTC=WaitRel;
+			break;
+
+		case PressPound:
+			PORTC=PressPound;
+			break;
+
+		case PressY:
+			PORTC=PressY;
+			break;
+
+		case Unlock:
+			PORTC=Unlock;
+			PORTB=0x01;
+			break;
+
+		default:
+			PORTB=0x00;
+			break;
+	}
+}
+int main(void)
+{
+	DDRA=0x00; PORTA=0xFF;
+	DDRB=0xFF; PORTB=0x00;
+	DDRC=0xFF; PORTC=0x00; 
+	PORTC = Init;
+	State = Init;
+	while(1)
+	{
+		tick();
+	}
+	return 0;
+}*/
+
 /* 
  * Name & Email: Itzel G. igonz044@ucr.edu
  * Lab Section: 026
@@ -36,7 +173,6 @@ void tick()
 	case Init:
 		if(A0 && !A1)
 		{state = Inc;}
-		else if(
 		if(!A0 && A1)
 		{state = Dec;}
 		else if(A0 && A1)
@@ -48,8 +184,7 @@ void tick()
         case Inc:
 		if(A0 && !A1)
 		{state = Wait;}
-		else if(
-		if(!A0 && A1)
+		else if(!A0 && A1)
 		{state = Dec;}
 		else if(A0 && A1)
 		{state = Reset;}
@@ -60,8 +195,7 @@ void tick()
         case Dec:
 		if(A0 && !A1)
 		{state = Inc;}
-		else if(
-		if(!A0 && A1)
+		else if(!A0 && A1)
 		{state = Wait2;}
 		else if(A0 && A1)
 		{state = Reset;}
@@ -72,7 +206,6 @@ void tick()
         case Wait://for inc
 		if(A0 && !A1)
 		{state = Inc;}
-		else if(
 		if(!A0 && A1)
 		{state = Dec;}
 		else if(A0 && A1)
@@ -84,7 +217,6 @@ void tick()
 	case Wait2: //for dec 
 		if(A0 && !A1)
 		{state = Inc;}
-		else if(
 		if(!A0 && A1)
 		{state = Dec;}
 		else if(A0 && A1)
@@ -96,8 +228,7 @@ void tick()
         case Reset:
 		if(A0 && !A1)
 		{state = Inc;}
-		else if(
-		if(!A0 && A1)
+		else if(!A0 && A1)
 		{state = Dec;}
 		else
 		{ state = Reset;}
@@ -120,11 +251,11 @@ void tick()
         PORTB = PORTB-1; 
 	break;
 
-        case Stay://do not change portB
+        case Wait://do not change portB
 	PORTB = PORTB;
 	break;
 		
-	case Stay2://do not change portB
+	case Wait2://do not change portB
 	PORTB = PORTB;
 	break;
 
@@ -145,3 +276,6 @@ int main(void)
 	
 	while(1) { tick();}
 }
+
+
+
