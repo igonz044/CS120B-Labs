@@ -1,0 +1,71 @@
+#include <avr/io.h>
+#include <avr/interrupt.h>
+
+volatile unsigned char TimerFlag = 0; //TimerISR() sets this to 1.
+
+unsigned long timer_M = 1; //start
+unsigned long timer_curr = 0; 
+
+void TimerOn(){
+  TCCR1B = 0x0B; //bit3 = 0: CTC mode (clear timer on compare)
+  OCR1A = 125; //Timer Interrupt will be generated when TCNT1 == OCR1A
+  
+  TIMSK1 = 0x02; //bit1: OCIE1A -- enables compare match interrupt
+  
+  //Init AVR counter
+  TCNT1 = 0;
+  timer_curr = timer_M; //ISR will be called every curr millise
+
+  //Enable global interrupts
+    SREG |= 0x80;
+}
+
+void TimerOff(){
+  TCCR1B = 0x00;//timer off
+}
+
+void TimerISR()
+{
+  TimerFlag = 1;
+}
+
+ISR(TIMER1_COMPA_vect){
+  //cpu automat. calls when TCNT1 == OCR1 (every 1 ms per TimerOn Settings)
+  timer_curr--; //count down to 0
+  
+  if(timer_curr == 0){
+    TimerISR();//Calls ISR user needs
+    timer_curr = timer_M;
+  }
+}
+
+//Set TimerISR() to tick every M ms
+void TimerSet(unsigned long M)
+{
+  timer_M = M;
+  timer_curr = timer_M;
+}
+
+void main()
+{
+  //init output
+  DDRB = 0xFF; PORTB = 0x00;
+  
+  TimerSet(1000);
+  TimerOn();
+  unsigned 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
