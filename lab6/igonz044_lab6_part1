@@ -1,71 +1,71 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-volatile unsigned char TimerFlag = 0; //TimerISR() sets this to 1.
+enum States{Start,first,second,third} state;
 
-unsigned long timer_M = 1; //start
-unsigned long timer_curr = 0; 
+volatile unsigned char TimerFlag = 0;
+
+unsigned long _avr_timer_M = 1;
+unsigned long _avr_timer_cntcurr = 0;
 
 void TimerOn(){
-  TCCR1B = 0x0B; //bit3 = 0: CTC mode (clear timer on compare)
-  OCR1A = 125; //Timer Interrupt will be generated when TCNT1 == OCR1A
-  
-  TIMSK1 = 0x02; //bit1: OCIE1A -- enables compare match interrupt
-  
-  //Init AVR counter
-  TCNT1 = 0;
-  timer_curr = timer_M; //ISR will be called every curr millise
-
-  //Enable global interrupts
-    SREG |= 0x80;
+	TCCR1B = 0x0B;
+	OCR1A = 125;
+	TIMSK1 = 0x02;
+	TCNT1 = 0;
+	
+	_avr_timer_cntcurr = _avr_timer_M;
+	
+	SREG |= 0x80;
 }
-
+/*
 void TimerOff(){
-  TCCR1B = 0x00;//timer off
+	TCCR1B = 0x00;
 }
-
-void TimerISR()
-{
-  TimerFlag = 1;
+*/
+void TimerISR(){
+	TimerFlag = 1;
 }
 
 ISR(TIMER1_COMPA_vect){
-  //cpu automat. calls when TCNT1 == OCR1 (every 1 ms per TimerOn Settings)
-  timer_curr--; //count down to 0
-  
-  if(timer_curr == 0){
-    TimerISR();//Calls ISR user needs
-    timer_curr = timer_M;
-  }
+	_avr_timer_cntcurr--;
+	if(_avr_timer_cntcurr == 0){
+		TimerISR();
+		_avr_timer_cntcurr = _avr_timer_M;
+	}
 }
 
-//Set TimerISR() to tick every M ms
-void TimerSet(unsigned long M)
+void TimerSet(unsigned long M){
+	_avr_timer_M = M;
+	_avr_timer_cntcurr = _avr_timer_M;
+}
+void synchSM(){
+	switch(state){
+		case Start: state = first; break;
+		case first: state = second; break;
+		case second: state = third; break;
+		case third: state = first; break;
+	};
+	switch(state){
+		case Start: break;
+		case first: PORTB = 0x01; break;
+		case second: PORTB = 0x08; break;
+		case third: PORTB = 0x40; break;
+	};
+}
+
+int main(void)
 {
-  timer_M = M;
-  timer_curr = timer_M;
+	DDRB = 0xFF; PORTB = 0x00;
+	state = Start;
+	TimerSet(125);
+	TimerOn();
+
+    /* Replace with your application code */
+    while (1){
+		synchSM();
+		
+		while(!TimerFlag){}
+		TimerFlag = 0;
+    }
 }
-
-void main()
-{
-  //init output
-  DDRB = 0xFF; PORTB = 0x00;
-  
-  TimerSet(1000);
-  TimerOn();
-  unsigned 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
