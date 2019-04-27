@@ -6,7 +6,7 @@
 volatile unsigned char TimerFlag = 0;
 // TimerISR() sets this to 1. C programmer should clear to 0.
 
-enum States { Start, init, waitA0Not, incrementC, waitA1Not, decrementC, resetC} State;
+enum States { Start, Init, Wait1, Incr, Wait2, Decr, Reset} state;
 
 // Internal variables for mapping AVR's ISR to our cleaner TimerISR model.
 unsigned long _avr_timer_M = 1; // Start count from here, down to 0. Default 1 ms.
