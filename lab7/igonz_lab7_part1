@@ -6,7 +6,7 @@
 volatile unsigned char TimerFlag = 0;
 // TimerISR() sets this to 1. C programmer should clear to 0.
 
-enum States { Start, Init, Wait1, Incr, Wait2, Decr, Reset} state;
+enum States {Start, Init, Wait1, Incr, Wait2, Decr, Reset} state;
 
 // Internal variables for mapping AVR's ISR to our cleaner TimerISR model.
 unsigned long _avr_timer_M = 1; // Start count from here, down to 0. Default 1 ms.
@@ -18,64 +18,63 @@ unsigned char next_state;
 unsigned char output;
 unsigned char counter;
 
-void IncrementDecrement()
-{
-	
-	switch(State){
+void IncrDecr()
+{	
+	switch(state){
 		
 		case Start:
-		next_state = init;
+		next_state = Init;
 		break;
 		
-		case init:
+		case Init:
 		if(PINAtmp==1){
-			next_state = waitA0Not;
+			next_state = Wait1;
 		}
 		else if (PINAtmp==2){
-			next_state = waitA1Not;
+			next_state = Wait2;
 		}
 		else if(PINAtmp ==3){
-			next_state = resetC;
+			next_state = Reset;
 		}
 		else{
-			next_state = init;
+			next_state = Init;
 		}
 		break;
 		
-		case waitA0Not:
+		case Wait1:
 		if(PINAtmp==1){
-			next_state = waitA0Not;
+			next_state = Wait1;
 		}
 		else if(PINAtmp==3){
-			next_state = resetC;
+			next_state = Reset;
 		}
 		else{
-			next_state = incrementC;
+			next_state = Incr;
 		}
 		break;
 		
-		case waitA1Not:
+		case Wait2:
 		if(PINAtmp==2){
-			next_state = waitA1Not;
+			next_state = Wait2;
 		}
 		else if(PINAtmp==3){
-			next_state = resetC;
+			next_state = Reset;
 		}
 		else{
-			next_state = decrementC;
+			next_state = Decr;
 		}
 		break;
 		
-		case incrementC:
-		next_state = init;
+		case Incr:
+		next_state = Init;
 		break;
 		
-		case decrementC:
-		next_state = init;
+		case Decr:
+		next_state = Init;
 		break;
 		
-		case resetC:
-		next_state = init;
+		case Reset:
+		next_state = Init;
 		break;
 		
 		default:
@@ -84,35 +83,34 @@ void IncrementDecrement()
 	}
 	
 	
-	switch(State){
+	switch(state){
 		
 		case Start:
 		PORTCout = 0x30;
-		counter =0;
+		counter = 0;
 		break;
 		
-		case init:
+		case Init:
 		PORTCout = PORTCout;
 		break;
 		
-		case waitA0Not:
-		if(counter == 10){
+		case Wait1:
+		if(counter == 10)
+		{
 			PORTCout = (PORTCout>= 57) ? PORTCout: PORTCout+1;
 			counter=0;
 		}
-		else {
-			counter++;
-		}
+		else { counter++;}
 		
 		break;
 		
 		
-		case incrementC:
+		case Incr:
 		PORTCout = (PORTCout>= 57) ? PORTCout: PORTCout+1;
 		break;
 		
 		
-		case waitA1Not:
+		case Wait2:
 		if(counter == 10){
 			PORTCout = (PORTCout<= 48) ? PORTCout: PORTCout-1;
 			counter =0;
@@ -123,12 +121,12 @@ void IncrementDecrement()
 		break;
 		
 		
-		case decrementC:
+		case Decr:
 		PORTCout = (PORTCout<= 48) ? PORTCout: PORTCout-1;
 		break;
 		
 		
-		case resetC:
+		case Reset:
 		PORTCout = 0x30;
 		break;
 		
@@ -137,7 +135,7 @@ void IncrementDecrement()
 		counter =0;
 		break;
 	}
-	State = next_state;
+	state = next_state;
 	output = PORTCout | 0x30;
 	LCD_Cursor(1);
 	LCD_WriteData( output); // will display 9 on the LCD
@@ -206,7 +204,7 @@ int main(void)
 	while(1) {
 		
 		PINAtmp = PINA & 0x03;
-		IncrementDecrement();
+		IncrDecr();
 		while(!TimerFlag);
 		TimerFlag = 0;
 		// Note: For the above a better style would use a synchSM with TickSM()
