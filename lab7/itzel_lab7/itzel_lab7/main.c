@@ -202,13 +202,11 @@ int main(void)
 	// Starting at position 1 on the LCD screen, writes Hello World
 	
 	while(1) {
-		
 		PINAtmp = PINA & 0x03;
 		IncrDecr();
 		while(!TimerFlag);
 		TimerFlag = 0;
 		// Note: For the above a better style would use a synchSM with TickSM()
 		// This example just illustrates the use of the ISR and flag
-		
 	}
 }
