@@ -1,0 +1,111 @@
+#include <avr/io.h>
+#include <avr/interrupt.h>
+
+enum States{Start, led1, led2, led3, release, stay, release2} state;
+//global variable
+#define A0 (PINA&0x01)
+unsigned char temp = 0;
+
+volatile unsigned char TimerFlag = 0;
+
+unsigned long _avr_timer_M = 1;
+unsigned long _avr_timer_cntcurr = 0;
+
+void TimerOn(){
+	TCCR1B = 0x0B;
+	OCR1A = 125;
+	TIMSK1 = 0x02;
+	TCNT1 = 0;
+	
+	_avr_timer_cntcurr = _avr_timer_M;
+	
+	SREG |= 0x80;
+}
+/*
+void TimerOff(){
+	TCCR1B = 0x00;
+}
+*/
+void TimerISR(){
+	TimerFlag = 1;
+}
+
+ISR(TIMER1_COMPA_vect){
+	_avr_timer_cntcurr--;
+	if(_avr_timer_cntcurr == 0){
+		TimerISR();
+		_avr_timer_cntcurr = _avr_timer_M;
+	}
+}
+
+void TimerSet(unsigned long M){
+	_avr_timer_M = M;
+	_avr_timer_cntcurr = _avr_timer_M;
+}
+void synchSM(){
+	switch(state){
+		case Start: 
+			state = led1; 
+			break;
+			
+		case led1: 
+			if(A0) { state  = release; } 
+			else{state = led2;}
+			break;
+				
+		case led2: 
+			if(A0) { state  = release; }
+			else{state = led3;}
+			break;
+		
+		case led3: 
+			if(A0) { state  = release; }
+			else{state = led1;}
+			break;
+			
+		case release:
+			if(!A0) { state = stay; }
+			else { state = release; }
+			break;
+			
+		case stay:
+			if(A0) { state  = release2; }
+			else{state = stay;}
+			break;
+			
+		case release2:
+			if(!A0) { state = led1; }
+			else { state = release2; }
+			break;
+	}
+	switch(state){
+		case Start: break;
+		case led1: temp = 0x01; break;
+		
+		case led2: temp = 0x02; break;
+		
+		case led3: temp = 0x04; break;
+		
+		case release: temp = temp; break;
+		case stay: temp = temp; break;
+		case release2: temp = temp; break;
+	}
+}
+
+int main(void)
+{
+	DDRA = 0x00; PORTA = 0xFF;
+	DDRB = 0xFF; PORTB = 0x00;
+	state = Start;
+	TimerSet(100);
+	TimerOn();
+
+    /* Replace with your application code */
+    while (1){
+		PORTB = temp;
+		synchSM();
+		
+		while(!TimerFlag){}
+		TimerFlag = 0;
+    }
+}
