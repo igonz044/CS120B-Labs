@@ -1,0 +1,47 @@
+/* 
+ * Name & Email: Itzel G. igonz044@ucr.edu
+ * Lab Section: 026
+ * Assignment: igonz044_lab8_part3.c
+ * Created: 5/3/2019 10:07:40 PM
+ * Author : ucrcse
+ * Exercise Description: Turning on/off an LED using a Photoresistor
+ *
+ * I acknowledge all content contained herein, excluding template or example
+ * code, is my own original work.
+ */
+#include <avr/io.h>
+
+void ADC_init() {
+	ADCSRA |= (1 << ADEN) | (1 << ADSC) | (1 << ADATE);
+	// ADEN: setting this bit enables analog-to-digital conversion.
+	// ADSC: setting this bit starts the first conversion.
+	// ADATE: setting this bit enables auto-triggering. Since we are
+	//        in Free Running Mode, a new conversion will trigger whenever
+	//        the previous conversion completes.
+}
+
+int main(void)
+{
+  DDRC = 0xFF; PORTC = 0x00;
+	DDRD = 0xFF; PORTD = 0x00;
+	
+  ADC_init();
+  
+  unsigned short my_short = 0x00;
+  unsigned char bottom_8 = 0x00;
+  unsigned char top_2 = 0x00;
+  unsigned char max  = 120;
+		
+  while(1)
+  {
+		my_short = ADC;
+		if (my_short >= (max / 2))
+		{
+			PORTC = 0x01;
+		}
+		else if (my_short < (max / 2))
+		{
+			PORTC = 0x00;
+		}
+  }
+}
