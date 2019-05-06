@@ -1,0 +1,66 @@
+/* 
+ * Name & Email: Itzel G. igonz044@ucr.edu
+ * Lab Section: 026
+ * Assignment: igonz044_lab8_part4.c
+ * Author : ucrcse
+ * Exercise Description: Light Meter (Challenge)
+ *
+ * I acknowledge all content contained herein, excluding template or example
+ * code, is my own original work.
+ */
+#include <avr/io.h>
+
+void ADC_init() {
+	ADCSRA |= (1 << ADEN) | (1 << ADSC) | (1 << ADATE);
+	// ADEN: setting this bit enables analog-to-digital conversion.
+	// ADSC: setting this bit starts the first conversion.
+	// ADATE: setting this bit enables auto-triggering. Since we are
+	//        in Free Running Mode, a new conversion will trigger whenever
+	//        the previous conversion completes.
+}
+
+int main(void)
+{
+	ADC_init();
+	
+	DDRC = 0xFF; PORTC = 0x00;
+	DDRD = 0xFF; PORTD = 0x00;
+  
+  unsigned short check = 0x00;
+  unsigned char bottom_8 = 0x00;
+  unsigned char top_2 = 0x00;
+  unsigned char max  = 120;
+		
+    while(1)
+    {
+		check = ADC;
+		if (check >= max)
+		{
+			PORTC = 0x7F;
+		}
+		else if (max > check && check > 105)
+		{
+			PORTC = 0x3F;
+		}
+		else if (105 > check && check > 90)
+		{
+			PORTC = 0x1F;
+		}
+		else if (90 > check && check > 75)
+		{
+			PORTC = 0x0F;
+		}
+		else if (75 > check && check > 50)
+		{
+			PORTC = 0x07;
+		}
+		else if (50 > check && check > 35)
+		{
+			PORTC = 0x03;
+		}
+		else if (15 >= check)
+		{
+			PORTC = 0x01;
+		}
+    }
+}
