@@ -22,7 +22,7 @@ void ADC_init() {
 }
 int main(void)
 {	
-  DDRC = 0xFF; PORTC = 0x00;
+  DDRB = 0xFF; PORTB = 0x00;
   DDRD = 0xFF; PORTD = 0x00;
   
   ADC_init();
@@ -35,9 +35,8 @@ int main(void)
   {
     my_short = ADC;
     bottom_8 = (char)my_short;	
-    top_2 = (char)(my_short >> 8);
-		
-    PORTC = bottom_8;
+    PORTB = bottom_8;
+	top_2 = (char)(my_short >> 8);
     PORTD = top_2;
   }
 }
