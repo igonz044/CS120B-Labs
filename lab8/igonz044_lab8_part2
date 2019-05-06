@@ -1,3 +1,16 @@
+
+/* 
+ * Name & Email: Itzel G. igonz044@ucr.edu
+ * Lab Section: 026
+ * Assignment: igonz044_lab8_part2.c
+ * Created: 5/1/2019 11:47:03 AM
+ * Author : ucrcse
+ * Exercise Description: Parking spaces modified
+ *
+ * I acknowledge all content contained herein, excluding template or example
+ * code, is my own original work.
+ */
+ 
 #include <avr/io.h>
 
 void ADC_init() {
