@@ -21,46 +21,45 @@ void ADC_init() {
 
 int main(void)
 {
+	
 	ADC_init();
 	
-	DDRC = 0xFF; PORTC = 0x00;
+	DDRB = 0xFF; PORTB = 0x00;
 	DDRD = 0xFF; PORTD = 0x00;
   
-  unsigned short check = 0x00;
-  unsigned char bottom_8 = 0x00;
-  unsigned char top_2 = 0x00;
-  unsigned char max  = 120;
+    unsigned short check = 0x00;
+    unsigned char max  = 120;
 		
     while(1)
     {
 		check = ADC;
 		if (check >= max)
 		{
-			PORTC = 0x7F;
+			PORTB = 0x7F;
 		}
 		else if (max > check && check > 105)
 		{
-			PORTC = 0x3F;
+			PORTB = 0x3F;
 		}
 		else if (105 > check && check > 90)
 		{
-			PORTC = 0x1F;
+			PORTB = 0x1F;
 		}
 		else if (90 > check && check > 75)
 		{
-			PORTC = 0x0F;
+			PORTB = 0x0F;
 		}
 		else if (75 > check && check > 50)
 		{
-			PORTC = 0x07;
+			PORTB = 0x07;
 		}
 		else if (50 > check && check > 35)
 		{
-			PORTC = 0x03;
+			PORTB = 0x03;
 		}
 		else if (15 >= check)
 		{
-			PORTC = 0x01;
+			PORTB = 0x01;
 		}
     }
 }
