@@ -13,12 +13,6 @@
 
 enum States{Start, Off, On} state;
 enum States2{Init, Base, Incr, Rel1, Decr, Rel2} state2;
-// Internal variables for mapping AVR's ISR to our cleaner TimerISR model.
-unsigned long _avr_timer_M = 1; // Start count from here, down to 0. Default 1 ms.
-unsigned long _avr_timer_cntcurr = 0; // Current internal count of 1ms ticks
-
-const unsigned short timerPeriod = 500;
-volatile unsigned char TimerFlag = 0;
 
 unsigned char toggle = 0;
 unsigned char index = 0;
@@ -26,8 +20,6 @@ unsigned char SIZE = 8;
 
 double freq[8] = {261.63, 293.66, 329.63, 349.23,
 				  392.00, 440.00, 493.88, 523.25};
-
-void TimerISR(){TimerFlag = 1;}
 void ToggleOnOff();
 void ChangeNotes();
 
@@ -68,6 +60,13 @@ void PWM_off() {
 	TCCR3A = 0x00;
 	TCCR3B = 0x00;
 }
+
+/*//Internal variables for mapping AVR's ISR to our cleaner TimerISR model.
+unsigned long _avr_timer_M = 1; // Start count from here, down to 0. Default 1 ms.
+unsigned long _avr_timer_cntcurr = 0; // Current internal count of 1ms ticks
+
+const unsigned short timerPeriod = 500;
+volatile unsigned char TimerFlag = 0;
 void TimerOn() {
 	// AVR timer/counter controller register TCCR1
 	TCCR1B = 0x0B;// bit3 = 0: CTC mode (clear timer on compare)
@@ -96,7 +95,7 @@ void TimerOn() {
 void TimerOff() {
 	TCCR1B = 0x00; // bit3bit1bit0=000: timer off
 }
-//void TimerISR() {TimerFlag = 1;}
+void TimerISR() {TimerFlag = 1;}
 // In our approach, the C programmer does not touch this ISR, but rather TimerISR()
 ISR(TIMER1_COMPA_vect) {
 	// CPU automatically calls when TCNT1 == OCR1 (every 1 ms per TimerOn settings)
@@ -110,7 +109,7 @@ ISR(TIMER1_COMPA_vect) {
 void TimerSet(unsigned long M) {
 	_avr_timer_M = M;
 	_avr_timer_cntcurr = _avr_timer_M;
-}
+}*/
 
 int main(void)
 {
@@ -120,15 +119,15 @@ int main(void)
 	state = Start;
 	state2 = Base;
 	
-	TimerSet(timerPeriod);
-	TimerOn();
+	/*TimerSet(timerPeriod);
+	TimerOn();*/
 	PWM_on();
     while (1){
 		ToggleOnOff();
 		ChangeNotes();
 		set_PWM(freq[index]);
-		while(!TimerFlag){}
-		TimerFlag = 0;
+		/*while(!TimerFlag){}
+		TimerFlag = 0;*/
 	}
 }
 
