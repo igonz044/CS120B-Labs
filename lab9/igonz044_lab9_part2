@@ -1,31 +1,27 @@
-/* itzel_lab9_part1.c
+/* itzel_lab9_part2.c
  *
  * Created: 5/6/2019 11:08:10 PM
  * Author : shado
  */ 
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include "io.c"
+//#include "io.c"
 
 #define A0 ((~PINA)&0x01)
 #define A1 ((~PINA)&0x02)
 #define A2 ((~PINA)&0x04)
 
-enum States{Start, Off, On, Incr, Rel1, Decr, Rel2} state;
-// Internal variables for mapping AVR's ISR to our cleaner TimerISR model.
-unsigned long _avr_timer_M = 1; // Start count from here, down to 0. Default 1 ms.
-unsigned long _avr_timer_cntcurr = 0; // Current internal count of 1ms ticks
+enum States{Start, Off, Release, On, Release2} state;
+enum States2{Init, Base, Incr, Rel1, Decr, Rel2} state2;
 
+unsigned char toggle = 0;
 unsigned char index = 0;
 unsigned char SIZE = 8;
 
 double freq[8] = {261.63, 293.66, 329.63, 349.23,
-392.00, 440.00, 493.88, 523.25};
-
-const unsigned short timerPeriod = 500;
-volatile unsigned char TimerFlag = 0;
-void TimerISR(){TimerFlag = 1;}
-void Tick();
+				  392.00, 440.00, 493.88, 523.25};
+void ToggleOnOff();
+void ChangeNotes();
 
 // 0.954 hz is lowest frequency possible with this function,
 // based on settings in PWM_on()
@@ -53,9 +49,9 @@ void set_PWM(double frequency) {
 	}
 }
 void PWM_on() {
-	TCCR3A = (1 << COM3A0);
+	TCCR3A = (1 << COM0A0);
 	// COM3A0: Toggle PB6 on compare match between counter and OCR3A
-	TCCR3B = (1 << WGM32) | (1 << CS31) | (1 << CS30);
+	TCCR3B = (1 << WGM02) | (1 << CS01) | (1 << CS30);
 	// WGM32: When counter (TCNT3) matches OCR3A, reset counter
 	// CS31 & CS30: Set a prescaler of 64
 	set_PWM(0);
@@ -64,6 +60,13 @@ void PWM_off() {
 	TCCR3A = 0x00;
 	TCCR3B = 0x00;
 }
+
+/*//Internal variables for mapping AVR's ISR to our cleaner TimerISR model.
+unsigned long _avr_timer_M = 1; // Start count from here, down to 0. Default 1 ms.
+unsigned long _avr_timer_cntcurr = 0; // Current internal count of 1ms ticks
+
+const unsigned short timerPeriod = 500;
+volatile unsigned char TimerFlag = 0;
 void TimerOn() {
 	// AVR timer/counter controller register TCCR1
 	TCCR1B = 0x0B;// bit3 = 0: CTC mode (clear timer on compare)
@@ -92,7 +95,7 @@ void TimerOn() {
 void TimerOff() {
 	TCCR1B = 0x00; // bit3bit1bit0=000: timer off
 }
-//void TimerISR() {TimerFlag = 1;}
+void TimerISR() {TimerFlag = 1;}
 // In our approach, the C programmer does not touch this ISR, but rather TimerISR()
 ISR(TIMER1_COMPA_vect) {
 	// CPU automatically calls when TCNT1 == OCR1 (every 1 ms per TimerOn settings)
@@ -106,103 +109,150 @@ ISR(TIMER1_COMPA_vect) {
 void TimerSet(unsigned long M) {
 	_avr_timer_M = M;
 	_avr_timer_cntcurr = _avr_timer_M;
-}
+}*/
 
 int main(void)
 {
 	DDRA = 0x00; PORTA = 0xFF; //inputs
 	DDRB = 0xFF; PORTB = 0x00; //outputs
-
-	PWM_on();
     
 	state = Start;
-	TimerSet(timerPeriod);
-	TimerOn();
+	state2 = Init;
 	
+	/*TimerSet(timerPeriod);
+	TimerOn();*/
     while (1){
-		Tick();
-		while(!TimerFlag){}
-		TimerFlag = 0;
+		ToggleOnOff();
+		ChangeNotes();
+		/*while(!TimerFlag){}
+		TimerFlag = 0;*/
 	}
 }
 
-void Tick()
+void ToggleOnOff()
 {
-	switch(state)//State Transitions
+	switch(state)//State Transitions 
 	{
-		case(Start):
+		case Start:
 		state = Off;
 		break;
 		
-		case(Off):
-		if(A0){ state = On; }
-		else { state = Off; }
+		case Off:
+		if(A0){state = Release;}
+		else {state = Off;}
 		break;
 		
-		case(On):
-		if(A0 && !A1 && !A2){ state = Off; }
-		else if(A1 && !A0 && !A2 && index <= 7){ state = Incr; }
-		else if(A2 && !A0 && !A1 && index >= 0){ state = Decr; }
-		else{ state = On; }
+		case Release:
+		if(A0){state = Release;}
+		else {state = On;}
 		break;
 		
-		case(Incr):
-		state = Rel1;
+		case On:
+		if(A0){state = Release2;}
+		else {state = On;}
 		break;
 		
-		case(Rel1):
-		if(A0 && !A1 && !A2){ state = Off; }
-		else if(A1 && !A0 && !A2 && index <= 7){ state = Incr; }
-		else if(A2 && !A0 && !A1 && index >= 0){ state = Decr; }
-		else{ state = Rel1; }
+		case Release2:
+		if(A0){state = Release2;}
+		else {state = Off;}
 		break;
 		
-		case(Decr):
-		state = Rel2;
+		default:
+		state = Off;
 		break;
-		
-		case(Rel2):
-		if(A0 && !A1 && !A2){ state = Off; }
-		else if(A1 && !A0 && !A2 && index <= 7){ state = Incr; }
-		else if(A2 && !A0 && !A1 && index >= 0){ state = Decr; }
-		else{ state = Rel2; }
-		break;
-	}//State Transitions
-	
+	}
 	switch(state)//State Actions
 	{
-		case(Start):
-		set_PWM(0);
-		index = 0;
+		case Start:
 		break;
 		
-		case(Off):
-		set_PWM(0);
-		index = 0;
+		case Off:
+		toggle = 0;
 		break;
 		
-		case(On):
-		set_PWM(freq[index]);
+		case Release:
 		break;
 		
-		case(Incr):
-		if(index <=7){index++; set_PWM(freq[index]);}
-		else{index = 8;}
+		case On:
+		toggle = 1;
 		break;
 		
-		case(Rel1):
-		if(index <=7){set_PWM(freq[index]);}
-		else{index = 8;}
+		case Release2:
 		break;
 		
-		case(Decr):
-		if(index >=0){index--; set_PWM(freq[index]);}
-		else{index = 0;}
+		default:
 		break;
+	}
+}
+void ChangeNotes()
+{
+	switch(state2)//State Transitions
+	{
+		case Init:
+			if(toggle == 1){ state2 = Base;}
+			else { state2 = Init;}
+			break;
+			
+		case Base:
+			if(toggle == 0 || A0){toggle = 0; state2 = Init;}
+			else if(A1 && toggle == 1 && index < 7){state2 = Incr; }
+			else if(A2 && toggle == 1 && index > 0){state2 = Decr; }
+			else{state2 = Base; }
+			break;
 		
-		case(Rel2):
-		if(index >=0){index--; set_PWM(freq[index]);}
-		else{index = 0;}
-		break;
+		case Incr:
+			state2 = Rel1;
+			break;
+		
+		case Rel1:
+			if(A0){state2 = Init; }
+			else if(A1 && toggle == 1 ){state2 = Rel1; } //odd
+			else if(A2 && !A0 && !A1 && toggle == 1 && index > 0){state2 = Decr; }
+			else if(!A2 && !A0 && !A1){ state2 = Base;}
+			else{state2 = Init; }
+			break;
+		
+		case Decr:
+			state2 = Rel2;
+			break;
+		
+		case Rel2:
+			if(A0){state2 = Init; }
+			else if(A2 && toggle == 1 ){state2 = Rel2; } //odd
+			else if(A1 && !A0 && !A2 && toggle == 1 && index < 8){state2 = Incr; }
+			else if(!A2 && !A0 && !A1){ state2 = Base;}
+			else{state2 = Init; }
+			
+			break;
+	}//State Transitions
+	
+	switch(state2)//State Actions
+	{
+		case Init:
+			PWM_on();
+			set_PWM(0);
+			break;
+		
+		case Base:
+			set_PWM(freq[index]);
+			break;
+		
+		case Incr:
+			if(index <=7){index++; set_PWM(freq[index]);}
+			else{index = 7; set_PWM(freq[index]);}
+			break;
+		
+		case Rel1:
+			if(A0){toggle = 0; }
+			break;
+		
+		case Decr:
+			if(index >=0){index--; set_PWM(freq[index]);}
+			else{index = 0; set_PWM(freq[index]);}
+			break;
+		
+		case Rel2:
+			if(A0){toggle = 0; }
+			break;
 	}//State Actions
 }
