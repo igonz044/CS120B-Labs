@@ -5,7 +5,8 @@
 enum BL_States {BL_start, off, on} BL_state;
 enum SP_States {SP_start, low, high} SP_state;
 enum TL_States {TL_start, l1, l2, l3} TL_state;
-	
+
+unsigned char pinaTmp;	
 unsigned char BL_next;
 unsigned char TL_next;
 unsigned char SP_next;
@@ -115,11 +116,11 @@ int main(void)
 	const unsigned long BL_limit = 1000;
 	const unsigned long TL_limit = 300;
 	const unsigned long timer = 2;
-	
 	TimerSet(timer);
 	TimerOn();
     
 	while (1){
+		pinaTmp = ~PINA & 0x01;
 		PORTB = outputT << 1 | outputB | outputS << 4;
 		
 		if(TL_timer >= TL_limit)
@@ -228,15 +229,36 @@ void Speak()
 {
 	switch(SP_state){//State Transitions
 		case SP_start:
-		SP_next = high;
+		if(pinaTmp == 0x01)
+		{
+			SP_next = high;
+		}
+		else
+		{
+			SP_next = SP_start;
+		}
 		break;
 		
 		case high:
-		SP_next = low;
+		if(pinaTmp == 0x01)
+		{
+			SP_next = low;
+		}
+		else
+		{
+			SP_next = SP_start;
+		}
 		break;
 		
 		case low:
-		SP_next = high;
+		if(pinaTmp == 0x01)
+		{
+			SP_next = high;
+		}
+		else
+		{
+			SP_next = SP_start;
+		}
 		break;
 		
 		default:
