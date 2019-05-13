@@ -1,5 +1,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include "io.c"
+
 
 volatile unsigned char TimerFlag = 0;
 // TimerISR() sets this to 1. C programmer should clear to 0.
@@ -13,9 +15,8 @@ unsigned long _avr_timer_cntcurr = 0; // Current internal count of 1ms ticks
 unsigned char PORTCout;
 unsigned char PINAtmp;
 unsigned char next_state;
+unsigned char output;
 unsigned char counter;
-unsigned char TEMP = 0;
-unsigned char TEMP2 = 10;
 
 void IncrDecr()
 {
@@ -83,8 +84,9 @@ void IncrDecr()
 	
 	
 	switch(state){
+		
 		case Start:
-		PORTCout = 0;
+		PORTCout = 0x30;
 		counter = 0;
 		break;
 		
@@ -93,29 +95,25 @@ void IncrDecr()
 		break;
 		
 		case Wait1:
-		if(counter >= TEMP2){
-			PORTCout = (PORTCout>= 9) ? PORTCout: PORTCout+1;
-			counter = 0; TEMP++;
-			if(TEMP >= 3) {TEMP2 = 4;}
+		if(counter == 10)
+		{
+			PORTCout = (PORTCout>= 57) ? PORTCout: PORTCout+1;
+			counter=0;
 		}
-		else{
-			counter++;
-		}
+		else { counter++;}
+		
 		break;
 		
 		
 		case Incr:
-		PORTCout = (PORTCout>= 9) ? PORTCout: PORTCout+1;
-		TEMP2 = 10;
-		TEMP= 0;
+		PORTCout = (PORTCout>= 57) ? PORTCout: PORTCout+1;
 		break;
 		
 		
 		case Wait2:
-		if(counter >= TEMP2){
-			PORTCout = (PORTCout<= 0) ? PORTCout: PORTCout-1;
-			counter = 0; TEMP++;
-			if(TEMP >= 3) {TEMP2 = 4;}
+		if(counter == 10){
+			PORTCout = (PORTCout<= 48) ? PORTCout: PORTCout-1;
+			counter =0;
 		}
 		else{
 			counter++;
@@ -124,22 +122,23 @@ void IncrDecr()
 		
 		
 		case Decr:
-		PORTCout = (PORTCout<= 0) ? PORTCout: PORTCout-1;
-		TEMP2 = 10;
-		TEMP= 0;
+		PORTCout = (PORTCout<= 48) ? PORTCout: PORTCout-1;
 		break;
 		
 		
 		case Reset:
-		PORTCout = 0;
+		PORTCout = 0x30;
 		break;
 		
 		default:
-		PORTCout = 0;
+		PORTCout = 0x37;
 		counter =0;
 		break;
 	}
 	state = next_state;
+	output = PORTCout | 0x30;
+	LCD_Cursor(1);
+	LCD_WriteData( output); // will display 9 on the LCD
 }
 void TimerOn() {
 	// AVR timer/counter controller register TCCR1
@@ -193,14 +192,16 @@ void TimerSet(unsigned long M) {
 
 int main(void)
 {
-	DDRA = 0x00; PORTA = 0xFF; //input 
-	DDRB = 0xFF; PORTB = 0x00; //output
-	
+	DDRA = 0x00; PORTA = 0xFF; // LCD input button
+	DDRC = 0xFF; PORTC = 0x00; // LCD data lines
+	DDRD = 0xFF; PORTD = 0x00; // LCD control
 	TimerSet(100);
 	TimerOn();
+	// Initializes the LCD display
+	LCD_init();
+	// Starting at position 1 on the LCD screen, writes Hello World
 	
 	while(1) {
-		PORTB = PORTCout;
 		PINAtmp = PINA & 0x03;
 		IncrDecr();
 		while(!TimerFlag);

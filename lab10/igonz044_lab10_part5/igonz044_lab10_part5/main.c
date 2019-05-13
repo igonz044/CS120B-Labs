@@ -1,3 +1,9 @@
+/*
+ * igonz044_lab10_part5.c
+ *
+ * Created: 5/13/2019 2:07:42 AM
+ * Author : ucrcse
+ */ 
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
@@ -193,7 +199,7 @@ void TimerSet(unsigned long M) {
 
 int main(void)
 {
-	DDRA = 0x00; PORTA = 0xFF; //input 
+	DDRA = 0x00; PORTA = 0xFF; //input
 	DDRB = 0xFF; PORTB = 0x00; //output
 	
 	TimerSet(100);
@@ -201,7 +207,7 @@ int main(void)
 	
 	while(1) {
 		PORTB = PORTCout;
-		PINAtmp = PINA & 0x03;
+		PINAtmp = ~PINA & 0x03;
 		IncrDecr();
 		while(!TimerFlag);
 		TimerFlag = 0;
