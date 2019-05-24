@@ -1,13 +1,23 @@
- #include <avr/io.h>
+ /* 
+ * Name & Email: Itzel G. igonz044@ucr.edu
+ * Lab Section: 026
+ * Assignment: Final Project: Complexity 1 - Joystick
+ * Exercise Description: Read README file 
+ *
+ * I acknowledge all content contained herein, excluding template or example
+ * code, is my own original work.
+ */ 
+
+#include <avr/io.h>
  //header to enable data flow control over pins
  #define F_CPU 1000000
  //telling controller crystal frequency attached
  #include <util/delay.h>
  //header to enable delay function in program
  #define    E   5
- //giving name “enable”  to 5th pin of PORTD, since it Is connected to LCD enable pin
+ //giving name â€œenableâ€  to 5th pin of PORTD, since it Is connected to LCD enable pin
  #define RS  6
- //giving name “register selection” to 6th pin of PORTD, since is connected to LCD RS pin
+ //giving name â€œregister selectionâ€ to 6th pin of PORTD, since is connected to LCD RS pin
  void send_a_command(unsigned char command);
  void send_a_character(unsigned char character);
  void send_a_string(char *string_of_characters);
@@ -54,8 +64,6 @@
 				 break;
 			 }
 		 }
-		 
-		 
 		 ///////////////////////////////////////////////////////////////////////////////////
 		 if (MoveH > StartH + 500) //changed this value from the original code
 		 {
