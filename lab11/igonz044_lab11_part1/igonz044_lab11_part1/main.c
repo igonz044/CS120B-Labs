@@ -25,12 +25,13 @@ int nextState;
 
 int main(void)
 {
-	DDRB = 0xFF; PORTB = 0x00; // PORTB set to output, outputs init 0s
-	DDRC = 0xF0; PORTC = 0x0F; // PC7..4 outputs init 0s, PC3..0 inputs init 1s
-
+	DDRB = 0xFF; PORTB = 0x00;//OUTPUT for the 5 LEDs (B0-B4)
+	DDRC = 0xF0; PORTC = 0x0F;//KEYPAD PC7:C4 outputs 0s, PC3:C0 inputs 1s
+	
 	int x;
 	unsigned char i;
 	const unsigned char tasksSize = 2;
+	
 	static task task1;
 	task *tasks[] = { &task1};
 
@@ -54,7 +55,7 @@ int main(void)
 		}
 
 		while(!TimerFlag){}
-			TimerFlag = 0;
+		TimerFlag = 0;
 	}
 }
 

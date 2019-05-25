@@ -583,16 +583,16 @@ int nextState;
 
 int main(void)
 {
-	DDRB = 0xFF; PORTB = 0x00; // PORTB set to output, outputs init 0s
+	DDRB = 0xFF; PORTB = 0x00;//OUTPUT for the 5 LEDs (B0-B4)
  4dc:	8f ef       	ldi	r24, 0xFF	; 255
  4de:	84 b9       	out	0x04, r24	; 4
  4e0:	15 b8       	out	0x05, r1	; 5
-	DDRC = 0xF0; PORTC = 0x0F; // PC7..4 outputs init 0s, PC3..0 inputs init 1s
+	DDRC = 0xF0; PORTC = 0x0F;//KEYPAD PC7:C4 outputs 0s, PC3:C0 inputs 1s
  4e2:	80 ef       	ldi	r24, 0xF0	; 240
  4e4:	87 b9       	out	0x07, r24	; 7
  4e6:	8f e0       	ldi	r24, 0x0F	; 15
  4e8:	88 b9       	out	0x08, r24	; 8
-	const unsigned char tasksSize = 2;
+	
 	static task task1;
 	task *tasks[] = { &task1};
 
@@ -708,7 +708,7 @@ int main(void)
  57e:	88 23       	and	r24, r24
  580:	e1 f3       	breq	.-8      	; 0x57a <main+0x9e>
  582:	10 92 13 01 	sts	0x0113, r1	; 0x800113 <TimerFlag>
-			TimerFlag = 0;
+		TimerFlag = 0;
  586:	cb cf       	rjmp	.-106    	; 0x51e <main+0x42>
 
 00000588 <__tablejump2__>:
