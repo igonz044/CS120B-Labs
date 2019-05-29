@@ -139,7 +139,7 @@ int KeyPad_LCD_SM(int state){
 			LCD_WriteData(tempB); 
 			break;
 			
-			case '0': tempB = 0x00;
+			case '0': tempB = 0x30;
 			LCD_Cursor(1); 
 			LCD_WriteData(tempB); 
 			break;
