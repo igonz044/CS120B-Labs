@@ -10,44 +10,32 @@
  *
  * Original library written by SkewPL, http://skew.tk
  */
-
 #ifndef __NOKIA_5110_H__
 #define __NOKIA_5110_H__
 
 #include <avr/pgmspace.h>
 #include <stdint.h>
 
-/*
- * LCD's port
- */
+//LCD port
 #define PORT_LCD PORTD
 #define DDR_LCD DDRD
 
-/*
- * LCD's pins
- */
+//LCD pins
 #define LCD_CLK PORTD0
 #define LCD_DIN PORTD1
 #define LCD_DC PORTD2
 #define LCD_SCE PORTD3
 #define LCD_RST PORTD4
 
-
-
-
 #define LCD_CONTRAST 0x40
 
 void custom_write_string(const char *str, uint8_t scale);
-void custom_scroll(char code, uint8_t scale);
+void custom_scroll(char code, uint8_t scale, uint8_t end);
 
-/*
- * Must be called once before any other function, initializes display
- */
+//Must be called once before any other function, initializes display
 void nokia_lcd_init(void);
 
-/*
- * Clear screen
- */
+//Clear Screen 
 void nokia_lcd_clear(void);
 
 /**
@@ -57,12 +45,10 @@ void nokia_lcd_clear(void);
  */
 void nokia_lcd_power(uint8_t on);
 
-/**
- * Set single pixel
+/* Set single pixel
  * @x: horizontal position
  * @y: vertical position
- * @value: show/hide pixel
- */
+ * @value: show/hide pixel*/
 void nokia_lcd_set_pixel(uint8_t x, uint8_t y, uint8_t value);
 
 /**
@@ -86,10 +72,7 @@ void nokia_lcd_write_string(const char *str, uint8_t scale);
  */
 void nokia_lcd_set_cursor(uint8_t x, uint8_t y);
 
-/*
- * Render screen to display
- */
+//Render screen to display
 void nokia_lcd_render(void);
-
 
 #endif

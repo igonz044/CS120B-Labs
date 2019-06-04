@@ -10,14 +10,12 @@
  *
  * Original library written by SkewPL, http://skew.tk
  */
-
 #include "nokia5110.h"
 
 #include <avr/pgmspace.h>
 #include <avr/io.h>
 #include <util/delay.h>
 #include "nokia5110_chars.h"
-
 
 static struct {
     /* screen byte massive */
@@ -67,20 +65,11 @@ static void write(uint8_t bytes, uint8_t is_data)
 	PORT_LCD |= (1 << LCD_SCE);
 }
 
-static void write_cmd(uint8_t cmd)
-{
-	write(cmd, 0);
-}
+static void write_cmd(uint8_t cmd){write(cmd, 0);}
 
-static void write_data(uint8_t data)
-{
-	write(data, 1);
-}
+static void write_data(uint8_t data){write(data, 1);}
 
-/*
- * Public functions
- */
-
+//Public functions
 void nokia_lcd_init(void)
 {
 	register unsigned i;
@@ -178,21 +167,21 @@ void nokia_lcd_write_char(char code, uint8_t scale)
 	}
 }
 
-void custom_scroll(char code, uint8_t scale)
+void custom_scroll(char code, uint8_t scale, uint8_t end)
 {
 	register uint8_t x, y;
 
 	for (x = 0; x < 5*scale; x++)
-	for (y = 0; y < 7*scale; y++)
-	if (pgm_read_byte(&CHARSET[code-32][x/scale]) & (1 << y/scale))
-	nokia_lcd_set_pixel(nokia_lcd.cursor_x + x, nokia_lcd.cursor_y + y, 1);
-	else
-	nokia_lcd_set_pixel(nokia_lcd.cursor_x + x, nokia_lcd.cursor_y + y, 0);
+		for (y = 0; y < 7*scale; y++)
+			if (pgm_read_byte(&CHARSET[code-32][x/scale]) & (1 << y/scale))
+				nokia_lcd_set_pixel(nokia_lcd.cursor_x + x, nokia_lcd.cursor_y + y, 1);
+			else
+				nokia_lcd_set_pixel(nokia_lcd.cursor_x + x, nokia_lcd.cursor_y + y, 0);
 
 	nokia_lcd.cursor_x += 5*scale + 1;
-	if (nokia_lcd.cursor_x >= 500) {
-		nokia_lcd.cursor_x = 0;
-		nokia_lcd.cursor_y += 7*scale + 1;
+	if (nokia_lcd.cursor_x >= end) {
+		nokia_lcd.cursor_x = 500;
+		nokia_lcd.cursor_y = 50;
 	}
 	if (nokia_lcd.cursor_y >= 48) {
 		nokia_lcd.cursor_x = 0;
@@ -209,7 +198,7 @@ void nokia_lcd_write_string(const char *str, uint8_t scale)
 void custom_write_string(const char *str, uint8_t scale)
 {
 	while(*str)
-	custom_scroll(*str++, scale);
+	custom_scroll(*str++, scale,0);
 }
 
 void nokia_lcd_set_cursor(uint8_t x, uint8_t y)

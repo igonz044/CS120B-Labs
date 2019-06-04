@@ -14,7 +14,7 @@
  //telling controller crystal frequency attached
  #include <util/delay.h>
  //header to enable delay function in program
- #define    E   5
+ #define E   5
  //giving name “enable”  to 5th pin of PORTD, since it Is connected to LCD enable pin
  #define RS  6
  //giving name “register selection” to 6th pin of PORTD, since is connected to LCD RS pin
