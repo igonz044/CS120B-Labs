@@ -72,44 +72,44 @@ int KeyPad_LCD_SM(int state){
 		switch (x) {
 			case '\0': break;
 			
-			case '1': tempB = 0x01;
+			case '1': tempB = 0x31;
 			LCD_Cursor(1);
 			LCD_WriteData(tempB); break; //hex values of all the numbers and letters are outputted to tempB which is portB
 			
-			case '2': tempB = 0x02;
+			case '2': tempB = 0x32;
 			LCD_Cursor(1); 
 			LCD_WriteData(tempB ); 
 			break;
 			
-			case '3': tempB = 0x03;
+			case '3': tempB = 0x33;
 			LCD_Cursor(1); 
 			LCD_WriteData(tempB); 
 			break;
 			
-			case '4': tempB = 0x04;
+			case '4': tempB = 0x34;
 			LCD_Cursor(1); 
 			LCD_WriteData(tempB);
 			break;
 			
-			case '5': tempB = 0x05;
+			case '5': tempB = 0x35;
 			LCD_Cursor(1); 
 			LCD_WriteData(tempB); 
 			break;
 			
-			case '6': tempB = 0x06;
+			case '6': tempB = 0x36;
 			LCD_Cursor(1); LCD_WriteData(tempB); break;
 			
-			case '7': tempB = 0x07;
+			case '7': tempB = 0x37;
 			LCD_Cursor(1); 
 			LCD_WriteData(tempB); 
 			break;
 			
-			case '8': tempB = 0x08;
+			case '8': tempB = 0x38;
 			LCD_Cursor(1); 
 			LCD_WriteData(tempB); 
 			break;
 			
-			case '9': tempB = 0x09;
+			case '9': tempB = 0x39;
 			LCD_Cursor(1); 
 			LCD_WriteData(tempB); 
 			break;
@@ -139,7 +139,7 @@ int KeyPad_LCD_SM(int state){
 			LCD_WriteData(tempB); 
 			break;
 			
-			case '0': tempB = 0x00;
+			case '0': tempB = 0x30;
 			LCD_Cursor(1); 
 			LCD_WriteData(tempB); 
 			break;
@@ -153,8 +153,13 @@ int KeyPad_LCD_SM(int state){
 			break; // Should never occur. Middle LED off.
 		}
 		state = output;
-		PORTB = tempB;
+		if(tempB == 0x1B){}
+			//PORTB = PORTB;
+		else{
+			PORTB = tempB;
+		}
 		break;
+
 	}
 	return state;
 }

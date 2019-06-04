@@ -31,7 +31,11 @@ unsigned short scroll_counter = 1;
 unsigned short array_counter = 1;
 unsigned short output_counter = 0;
 unsigned short display_delay = 0;
-unsigned char DisplayArray [80] = {' ','C', 'S', '1', '2', '0', 'B', ' ', 'I', 'S', ' ', 'L', 'E', 'G', 'E', 'N', 'D', ' ', 'W', 'A', 'I', 'T', ' ', 'F', 'O', 'R', ' ', 'I', 'T', '.', '.', '.', '.', '.', '.', '.', '.', 'D', 'A', 'R', 'Y', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
+unsigned char DisplayArray [80] = 
+   {'C', 'S', '1', '2', '0', 'B', ' ', 'I', 'S', ' ', 'L', 'E', 'G', 'E', 'N',//20
+	'D', ' ', 'W', 'A', 'I', 'T', ' ','F', 'O', 'R', ' ', 'I', 'T', '.', '.', '.', 'D', 'A', 'R', 'Y',//40 
+	' ', ' ', ' ', ' ', ' ',' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',//60 
+	' ', ' ', ' ',' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ', ' ', ' ', ' ', ' '};//80
 
 int main(void)
 {
@@ -193,7 +197,7 @@ int Legendary(int LG_state)
 		case increment: 
 		output_counter++;
 		scroll_counter = 1;
-		array_counter  = output_counter + 1;
+		array_counter = output_counter + 1;
 		display_delay = 0;
 		if(output_counter > 47 )
 		{
